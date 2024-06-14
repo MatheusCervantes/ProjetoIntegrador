@@ -1,0 +1,23 @@
+name: Push_server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the files
+      uses: actions/checkout@v4
+
+    - name: Copy files with SSH
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{secrets.PROJETOINTEGRADOR}} 
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "./"
+        REMOTE_HOST: "clinica.brazilsouth.cloudapp.azure.com"
+        REMOTE_USER: "azureuser"
+        TARGET: "/var/www/html/ProjetoIntegrador"
+        EXCLUDE: "/dist/, /vendor/, /node_modules/, **.env"
