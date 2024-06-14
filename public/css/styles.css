@@ -1,0 +1,149 @@
+* {
+    font-family: 'Roboto';
+}
+
+ion-icon.icon-usuario {
+    font-size: 1.7rem;
+}
+
+ion-icon.icon-notific {
+    font-size: 1.4rem;
+}
+
+ion-icon.icon-email,
+ion-icon.icon-senha {
+    font-size: 1.5rem;
+}
+
+.login-background {
+    background-image: url('/img/fundo-login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-texto span {
+    text-shadow: 0.09vw 0.09vw 0.09vw rgba(0, 0, 0, 0.793);
+}
+
+.login-texto p {
+    color: hsl(217, 10%, 50.8%);
+}
+
+.circle-logo-login {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    font-size: 2.3rem;
+}
+
+.circle-logo-painel {
+    width: 2.68rem;
+    height: 2.68rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    margin-left: 0.8rem;
+    justify-content: center;
+    font-size: 1.9rem;
+}
+
+.dropdown-item:hover .nav-link {
+    color: #007bff !important;
+}
+
+.dropdown-item:focus,
+.dropdown-item.active {
+    background-color: transparent;
+    color: #007bff !important;
+}
+
+.nav-item {
+    margin-left: 1.3rem;
+    text-align: center;
+}
+
+.nav-item .nav-link {
+    display: inline-block;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    border-bottom: 0.2rem solid #007bff;
+    padding-bottom: 0.3rem;
+    width: fit-content;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #e9e9e9;
+    color: #007bff !important;
+}
+
+@media (max-width: 575px) {
+    .dropdown-menu-sm-only {
+        background-color: #f8f9fa !important;
+        border: none !important;
+    }
+    .dropdown-menu-sm-only a.dropdown-item {
+        color: #007bff !important;
+    }
+}
+
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+.border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+
+.border-left-danger {
+    border-left: 0.25rem solid #dc3545 !important;
+}
+
+.chart-bar {
+    position: relative;
+    height: 10rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .chart-bar {
+        height: 13rem;
+    }
+}
+
+.chart-pie {
+    position: relative;
+    height: 15rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .chart-pie {
+        height: calc(15.7rem - 43px) !important;
+    }
+}
+
+.chart-area {
+    position: relative;
+    height: 15rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .chart-area {
+        height: 13rem;
+    }
+}
+
+.hscroll {
+    overflow-x: auto;
+}
