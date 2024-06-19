@@ -133,7 +133,7 @@
                 <div class="col-xxl-7 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
                     <div class="card shadow-sm mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 text-primary">Consultas por Mês</h6>
+                            <h6 class="m-0 text-primary">Total de Consultas por Mês</h6>
                         </div>
                         <div class="card-body">
                             <div class="chart-bar">

@@ -87,6 +87,7 @@ ion-icon.icon-senha {
         background-color: #f8f9fa !important;
         border: none !important;
     }
+
     .dropdown-menu-sm-only a.dropdown-item {
         color: #007bff !important;
     }
@@ -146,4 +147,97 @@ ion-icon.icon-senha {
 
 .hscroll {
     overflow-x: auto;
+}
+
+.font-nome-agenda {
+    font-size: 1.11rem;
+}
+
+.font-bullet {
+    font-size: 0.75rem;
+}
+
+.font-resumo {
+    font-size: 0.97rem;
+}
+
+#calendario-agenda {
+    margin-top: 0.7rem;
+}
+
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+    padding: 0.47rem; 
+}
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover,
+.bootstrap-datetimepicker-widget table td.active.disabled,
+.bootstrap-datetimepicker-widget table td.active.disabled:hover {
+    background-color: #4e73df !important; 
+}
+
+.bootstrap-datetimepicker-widget table td span {
+    color: #333; 
+}
+
+.bootstrap-datetimepicker-widget table td.disabled,
+.bootstrap-datetimepicker-widget table td.disabled:hover {
+    color: #ccc; 
+}
+
+.bootstrap-datetimepicker-widget table td.new,
+.bootstrap-datetimepicker-widget table td.old {
+    color: #ccc; 
+}
+
+.bootstrap-datetimepicker-widget thead th {
+    text-transform: capitalize;
+}
+
+.fc .fc-button-primary { 
+    color: #333; 
+    background-color: #f8f9fa !important;
+    border-color: #ccc !important; 
+}
+
+.fc .fc-button-primary:hover {
+    background-color: #4e73df !important;
+    border-color: #ccc !important;
+}
+
+.fc .fc-button-primary.fc-button-active {
+    background-color: #4e73df !important;
+    border-color: #4e73df !important;
+    color: #fff;
+}
+
+:root {
+    --fc-today-bg-color: #ededed;
+    --fc-event-text-color: #333;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: #333333;
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+.today-header {
+    background-color: #4e73df !important;
+}
+
+.today-header .fc-col-header-cell-cushion {
+    color: #fff; 
+}
+
+.fc-event {
+    display: flex !important;
+    justify-content: center !important; 
+    align-items: center !important; 
+    background-color: transparent !important;
+    border: none !important;
+    font-size: 0.88rem !important;
+    text-align: center !important;
+    margin-top: 1.9rem !important;
 }

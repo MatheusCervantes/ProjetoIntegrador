@@ -107,24 +107,40 @@
                         <h5 class="mb-4 fw-semibold">Histórico Médico</h5>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="condicao" class="form-label">Condição Médica Atual</label>
-                                <textarea class="form-control" id="condicao" name="condicao" readonly></textarea>
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="doencas-ant" class="form-label">Doenças Anteriores</label>
+                                <textarea class="form-control" id="doencas-ant" name="doencas-ant" readonly rows="2"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="doencas-ant" class="form-label">Doenças Anteriores</label>
-                                <textarea class="form-control" id="doencas-ant" name="doencas-ant" placeholder="Opcional" readonly></textarea>
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="doencas-hered" class="form-label">Doenças/Condições Hereditárias</label>
+                                <textarea class="form-control" id="doencas-hered" name="doencas-hered" readonly rows="2"></textarea>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="doencas-hered" class="form-label">Doenças Hereditárias</label>
-                                <textarea class="form-control" id="doencas-hered" name="doencas-hered" placeholder="Opcional" readonly></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="cirurgias" class="form-label">Histórico de Cirurgias</label>
+                                <textarea class="form-control" id="cirurgias" name="cirurgias" readonly rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-4">
+                                <label for="alergias" class="form-label">Alergias</label>
+                                <textarea class="form-control" id="alergias" name="alergias" readonly rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-4">
+                                <label for="uso-medicamentos" class="form-label">Histórico de Uso de Medicamentos</label>
+                                <textarea class="form-control" id="uso-medicamentos" name="uso-medicamentos" readonly rows="3"></textarea>
                             </div>
                         </div>
                     </div>
