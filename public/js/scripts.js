@@ -108,6 +108,26 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('.btnList2').click(function () {
+        $('.dados2').each(function () {
+            if ($(this).css('display') === 'none') {
+                $(this).css('display', 'block');
+            } else {
+                $(this).css('display', 'none');
+            }
+        });
+    });
+
+    $('.btnIniciarConsulta').click(function () {
+        $('#modalIniciarConsulta').modal('show');
+    });
+
+    $('.btnProntuarioPaciente').click(function () {
+        $('#modalProntuarioPaciente').modal('show');
+    });
+});
+
+$(document).ready(function () {
     moment.locale('pt');
 
     var start = moment().subtract(29, 'days');
@@ -223,6 +243,80 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    var ctx = $("#grafico-medico-consultas");
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            datasets: [{
+                label: "Consultas",
+                backgroundColor: "#4e73df",
+                hoverBackgroundColor: "#2e59d9",
+                borderColor: "#4e73df",
+                data: [114, 121, 167, 192, 79],
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 22,
+                    top: 2,
+                    bottom: 8
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 6
+                    },
+                    maxBarThickness: 25,
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 15000,
+                        maxTicksLimit: 5,
+                        padding: 10
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }],
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10
+            },
+        }
+    });
+});
+
+$(document).ready(function () {
     var ctx = $("#grafico-financeiro-despesas");
     var myPieChart = new Chart(ctx, {
         type: 'doughnut',
@@ -232,6 +326,72 @@ $(document).ready(function () {
                 data: [60, 40],
                 backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                 hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
+    });
+});
+
+$(document).ready(function () {
+    var ctx = $("#grafico-medico-pacientes");
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Homem", "Mulher"],
+            datasets: [{
+                data: [46, 54],
+                backgroundColor: ['#abdbe3', '#e3abdb'],
+                hoverBackgroundColor: ['#9ac5cc', '#cc9ac5'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
+    });
+});
+
+$(document).ready(function () {
+    var ctx = $("#grafico-medico-atendimentos");
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Amil", "Unimed", "Hapvida", "Outros"],
+            datasets: [{
+                data: [33, 35, 20, 12],
+                backgroundColor: ['#f8ed7d', '#7df897', '#f8897d', '#7d9bf8'],
+                hoverBackgroundColor: ['#dfd571', '#64c679', '#df7b71', '#647cc6'],
                 hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
         },
@@ -362,6 +522,131 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function () {
+    moment.updateLocale('pt-br', {
+        weekdaysMin: ["D", "Seg", "Ter", "Qua", "Qui", "Sex", "S"]
+    });
+
+    var currentDate = moment();
+
+    $('#calendario-agenda').datetimepicker({
+        inline: true,
+        sideBySide: true,
+        locale: 'pt-br',
+        format: 'DD/MM/YYYY',
+        icons: {
+            next: 'fa fa-angle-right',
+            previous: 'fa fa-angle-left'
+        },
+        defaultDate: currentDate 
+    });
+
+    var currentDateElement = document.getElementById("data-atual");
+    var currentDayOfWeekElement = document.getElementById("dia-semana-atual");
+    var formattedDate = currentDate.format('DD [de] MMMM [de] YYYY');
+    var dayOfWeek = currentDate.format('dddd');
+
+    $('#data-atual').text(formattedDate);
+    $('#dia-semana-atual').text(dayOfWeek);
+
+    $('#calendario-agenda').on('dp.change', function (e) {
+        var selectedDate = e.date.format('DD [de] MMMM [de] YYYY');
+        var selectedDayOfWeek = e.date.format('dddd');
+        
+        currentDateElement.textContent = selectedDate;
+        currentDayOfWeekElement.textContent = selectedDayOfWeek;
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendario-dashboard');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+        initialView: 'dayGridWeek',
+        height: 180,
+        locale: 'pt-br',
+        headerToolbar: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'dayGridWeek,dayGridDay'
+        },
+        buttonText: {
+            day: 'Dia',
+            week: 'Semana'
+        },
+        viewDidMount: function () {
+            var todayHeaderCell = document.querySelector('.fc-col-header-cell.fc-day-today');
+            if (todayHeaderCell) {
+                todayHeaderCell.classList.add('today-header');
+            }
+        },
+        allDayDefault: true,
+        events: [
+            {
+                title: '10 AGENDAMENTOS  ',
+                start: '2024-05-10',
+                allDay: true
+            },
+            {
+                title: '8 AGENDAMENTOS  ',
+                start: '2024-05-13',
+                allDay: true
+            },
+            {
+                title: '11 AGENDAMENTOS  ',
+                start: '2024-05-14',
+                allDay: true
+            }
+        ]
+    });
+
+    $('#calendario-dashboard').css('font-size', '0.92rem');
+
+    calendar.render();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var dataInput = document.getElementById('data-consulta');
+    var dataAtual = new Date().toISOString().split('T')[0];
+    dataInput.value = dataAtual;
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    function formatarData(data) {
+        const dia = String(data.getUTCDate()).padStart(2, '0');
+        const mes = String(data.getUTCMonth() + 1).padStart(2, '0'); 
+        const ano = data.getUTCFullYear();
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    function dataPorExtenso(data) {
+        const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+        const dia = data.getUTCDate();
+        const mes = meses[data.getUTCMonth()];
+        const ano = data.getUTCFullYear();
+        return `${dia} de ${mes} de ${ano}`;
+    }
+
+    function atualizarData() {
+        const dataInput = document.getElementById('data-consulta');
+        const dataSelecionada = new Date(dataInput.value);
+        const textoDataFormatada = formatarData(dataSelecionada);
+        const textoDataPorExtenso = dataPorExtenso(dataSelecionada);
+
+        const h6Data = document.getElementById('data-calendario-consulta');
+        h6Data.textContent = textoDataPorExtenso;
+
+        const dataColunas = document.getElementsByClassName('data-coluna-consulta');
+        for (let i = 0; i < dataColunas.length; i++) {
+            dataColunas[i].innerHTML = `${textoDataFormatada}`;
+        }
+    }
+
+    document.getElementById('data-consulta').addEventListener('change', atualizarData);
+
+    atualizarData();
+})
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("plano-sim-novo").addEventListener("click", function () {

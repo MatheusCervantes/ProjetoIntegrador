@@ -2,9 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');
 });
+
+
+Route::get('/painel-medico/meu-perfil', function () {
+    return view('meu-perfil');
+})->name('meu-perfil');
+
+Route::get('/painel-medico/meu-perfil', function () {
+    return view('meu-perfil');
+})->name('meu-perfil');
+
 
 Route::get('/painel-adm', function () {
     return view('painel-adm');
@@ -29,3 +39,20 @@ Route::get('/painel-adm/financeiro', function () {
 Route::get('/painel-adm/relatorio', function () {
     return view('relatorio');
 })->name('relatorio');
+
+
+Route::get('/painel-medico', function () {
+    return view('painel-medico');
+})->name('painel-medico');
+
+Route::get('/painel-medico/agenda', function () {
+    return view('agenda');
+})->name('agenda');
+
+Route::get('/painel-medico/pacientes', function () {
+    return view('pacientes');
+})->name('pacientes');
+
+Route::get('/painel-medico/consultas', function () {
+    return view('consultas');
+})->name('consultas');
