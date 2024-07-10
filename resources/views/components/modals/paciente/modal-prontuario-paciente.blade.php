@@ -19,7 +19,6 @@
                 </div>
                 <nav class="nav nav-tabs w-100 justify-content-center mt-4 border-bottom-0" id="nav-tab" role="tablist">
                     <button class="nav-link active py-2" id="nav-identificacao-tab" data-bs-toggle="tab" data-bs-target="#nav-identificacao" type="button" role="tab" aria-controls="nav-identificacao" aria-selected="true">Identificação</button>
-                    <button class="nav-link py-2" id="nav-historico-tab" data-bs-toggle="tab" data-bs-target="#nav-historico" type="button" role="tab" aria-controls="nav-historico" aria-selected="false">Histórico Médico</button>
                     <button class="nav-link py-2" id="nav-consultas-tab" data-bs-toggle="tab" data-bs-target="#nav-consultas" type="button" role="tab" aria-controls="nav-consultas" aria-selected="false">Consultas</button>
                 </nav>
             </div>
@@ -152,87 +151,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="nav-historico" role="tabpanel" aria-labelledby="nav-historico-tab">
-                        <form>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-4">
-                                        <label for="doencas-ant" class="form-label">Doenças Anteriores</label>
-                                        <textarea class="form-control" id="doencas-ant" name="doencas-ant" readonly rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-4">
-                                        <label for="doencas-hered" class="form-label">Doenças/Condições Hereditárias</label>
-                                        <textarea class="form-control" id="doencas-hered" name="doencas-hered" readonly rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-4">
-                                        <label for="cirurgias" class="form-label">Histórico de Cirurgias</label>
-                                        <textarea class="form-control" id="cirurgias" name="cirurgias" readonly rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="mb-4">
-                                        <label for="alergias" class="form-label">Alergias</label>
-                                        <textarea class="form-control" id="alergias" name="alergias" readonly rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mb-4">
-                                        <label for="uso-medicamentos" class="form-label">Histórico de Uso de Medicamentos</label>
-                                        <textarea class="form-control" id="uso-medicamentos" name="uso-medicamentos" readonly rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">Estilo de Vida</label>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="sedentarismo" name="estilo-vida" value="sedentarismo" disabled>
-                                                    <label class="form-check-label" for="sedentarismo">Sedentarismo</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="tabagismo" name="estilo-vida" value="tabagismo" disabled>
-                                                    <label class="form-check-label" for="tabagismo">Tabagismo</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="alcool" name="estilo-vida" value="alcool" disabled>
-                                                    <label class="form-check-label" for="alcool">Consumo de álcool</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="estresse" name="estilo-vida" value="estresse" disabled>
-                                                    <label class="form-check-label" for="estresse">Estresse crônico</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-5">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="sono" name="estilo-vida" value="sono" disabled>
-                                                    <label class="form-check-label" for="sono">Problemas de sono</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="acompanhamento" name="estilo-vida" value="acompanhamento" disabled>
-                                                    <label class="form-check-label" for="acompanhamento">Falta de acompanhamento médico regular</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                     <div class="tab-pane fade" id="nav-consultas" role="tabpanel" aria-labelledby="nav-consultas-tab">
                         <div class="row" id="accordion-consultas">
                             <div class="col-9 mx-auto">
@@ -270,7 +188,7 @@
                                         </div>
                                         <div>
                                             <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Abrir Consulta">
-                                                <span class="material-symbols-outlined align-middle fs-4">clinical_notes</span>
+                                                <span class="material-symbols-outlined align-middle fs-4">tab_move</span>
                                             </a>
                                         </div>
                                     </div>
@@ -287,7 +205,7 @@
                                         </div>
                                         <div>
                                             <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Abrir Consulta">
-                                                <span class="material-symbols-outlined align-middle fs-4">stethoscope_arrow</span>
+                                                <span class="material-symbols-outlined align-middle fs-4">tab_move</span>
                                             </a>
                                         </div>
                                     </div>

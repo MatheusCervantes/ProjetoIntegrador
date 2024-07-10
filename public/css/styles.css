@@ -2,6 +2,21 @@
     font-family: 'Roboto';
 }
 
+label:has(+ input:required):after {
+    content: ' *';
+    color: red;
+}
+
+label:has(+ select:required):after {
+    content: ' *';
+    color: red;
+}
+
+.required-field {
+    color: red;
+    margin-left: 0.3vw;
+}
+
 ion-icon.icon-usuario {
     font-size: 1.7rem;
 }
@@ -167,38 +182,38 @@ ion-icon.icon-senha {
 
 .bootstrap-datetimepicker-widget table td,
 .bootstrap-datetimepicker-widget table th {
-    padding: 0.47rem; 
+    padding: 0.47rem;
 }
 
 .bootstrap-datetimepicker-widget table td.active,
 .bootstrap-datetimepicker-widget table td.active:hover,
 .bootstrap-datetimepicker-widget table td.active.disabled,
 .bootstrap-datetimepicker-widget table td.active.disabled:hover {
-    background-color: #4e73df !important; 
+    background-color: #4e73df !important;
 }
 
 .bootstrap-datetimepicker-widget table td span {
-    color: #333; 
+    color: #333;
 }
 
 .bootstrap-datetimepicker-widget table td.disabled,
 .bootstrap-datetimepicker-widget table td.disabled:hover {
-    color: #ccc; 
+    color: #ccc;
 }
 
 .bootstrap-datetimepicker-widget table td.new,
 .bootstrap-datetimepicker-widget table td.old {
-    color: #ccc; 
+    color: #ccc;
 }
 
 .bootstrap-datetimepicker-widget thead th {
     text-transform: capitalize;
 }
 
-.fc .fc-button-primary { 
-    color: #333; 
+.fc .fc-button-primary {
+    color: #333;
     background-color: #f8f9fa !important;
-    border-color: #ccc !important; 
+    border-color: #ccc !important;
 }
 
 .fc .fc-button-primary:hover {
@@ -228,16 +243,73 @@ ion-icon.icon-senha {
 }
 
 .today-header .fc-col-header-cell-cushion {
-    color: #fff; 
+    color: #fff;
 }
 
 .fc-event {
     display: flex !important;
-    justify-content: center !important; 
-    align-items: center !important; 
+    justify-content: center !important;
+    align-items: center !important;
     background-color: transparent !important;
     border: none !important;
     font-size: 0.88rem !important;
     text-align: center !important;
     margin-top: 1.9rem !important;
+}
+
+#anamneseEditor {
+    height: 20vw;
+}
+
+#diagnosticoEditor {
+    height: 9vw;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+.bootstrap-tagsinput input[type="text"] {
+    padding: 0.23vw;
+}
+
+.bootstrap-tagsinput .tag {
+    margin-right: 1vw;
+    color: #3c3c3c !important;
+    background-color: #e6f2ff;
+    padding: 0.5vw;
+    font-size: 1vw;
+    margin-top: 0.26vw;
+    margin-bottom: 0.26vw;
+    border-radius: 0.3vw;
+    font-weight: normal;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+    padding-left: 0.8vw;
+    cursor: pointer;
+    color: #3c3c3c;
+    font-size: 1vw;
+    font-weight: bold !important;
+}
+
+.bootstrap-tagsinput input {
+    color: #333 !important;
+    font-size: 1vw;
+    font-weight: normal;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.tooltip-inner {
+    background-color: #dddddd !important;
+    color: #000000 !important;
+    max-width: 25vw !important; 
+    text-align: left; 
+}
+
+.tooltip-arrow::before {
+    border-top-color: #dddddd !important;
 }

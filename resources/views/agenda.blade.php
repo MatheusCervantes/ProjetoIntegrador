@@ -27,7 +27,7 @@
                                 <div class="col-1">
                                     <div>10:00</div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-7">
                                     <div class="font-nome-agenda">João da Silva</div>
                                     <div class="text-secondary">Particular</div>
                                 </div>
@@ -37,9 +37,10 @@
                                         <div class="text-success font-resumo">Confirmado</div>
                                     </div>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
-                                        <span class="material-symbols-outlined align-middle fs-4">stethoscope</span>
+                                        <span>Atender</span>
+                                        <ion-icon name="arrow-forward-circle-outline" class="align-middle fs-5"></ion-icon>
                                     </a>
                                 </div>
                             </div>
@@ -47,7 +48,7 @@
                                 <div class="col-1">
                                     <div>10:30</div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-7">
                                     <div class="font-nome-agenda">Maria Oliveira</div>
                                     <div class="text-secondary">Unimed</div>
                                 </div>
@@ -57,17 +58,12 @@
                                         <div class="text-danger font-resumo">Desmarcado</div>
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
-                                        <span class="material-symbols-outlined align-middle fs-4">stethoscope</span>
-                                    </a>
-                                </div>
                             </div>
                             <div class="row pt-3 pb-3 align-items-center">
                                 <div class="col-1">
                                     <div>11:00</div>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-7">
                                     <div class="font-nome-agenda">Marco Ferreira</div>
                                     <div class="text-secondary">Amil</div>
                                 </div>
@@ -77,9 +73,10 @@
                                         <div class="text-success font-resumo">Confirmado</div>
                                     </div>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
-                                        <span class="material-symbols-outlined align-middle fs-4">stethoscope</span>
+                                        <span>Atender</span>
+                                        <ion-icon name="arrow-forward-circle-outline" class="align-middle fs-5"></ion-icon>
                                     </a>
                                 </div>
                             </div>

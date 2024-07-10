@@ -80,9 +80,6 @@
                 <div class="col-xxl-12">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 hscroll">
                         <div class="d-flex align-items-center">
-                            <button class="btn btn-light shadow-sm border small me-3 btnList" type="button" data-toggle="tooltip" title="Exibir Lista de Movimentações Financeiras">
-                                <ion-icon name="list-outline" class="fs-5 align-middle"></ion-icon>
-                            </button>
                             <button type="button" class="btn btn-primary shadow-sm btnNovoFinanceiro" data-toggle="tooltip" title="Adicionar Movimentação Financeira">
                                 <div class="d-flex align-items-center">
                                     <ion-icon name="add-outline" class="fs-5"></ion-icon>
@@ -120,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-xxl-12">
-                        <div class="card shadow-sm mb-5">
+                        <div class="card shadow-sm mb-4">
                             <div class="card-header py-3">
                                 <div class="row">
                                     <div class="col-2 text-primary fw-semibold">Data</div>
@@ -131,7 +128,7 @@
                                     <div class="col-2 text-primary fw-semibold">Ações</div>
                                 </div>
                             </div>
-                            <div class="card-body py-0 ps-3 dados border-bottom hscroll" style="display: none;">
+                            <div class="card-body py-0 ps-3 dados border-bottom hscroll">
                                 <div class="row pt-3 pb-3 border-bottom border-left-success">
                                     <div class="col-2">
                                         <div>28/04/2024</div>
@@ -231,6 +228,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row mb-4 pb-3">
+                <div class="col">
+                    <button class="btn btn-outline-primary">Carregar mais</button>
                 </div>
             </div>
         </div>

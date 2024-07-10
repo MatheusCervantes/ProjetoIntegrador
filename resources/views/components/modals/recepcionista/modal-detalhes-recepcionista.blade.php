@@ -102,18 +102,6 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div>
-                        <h5 class="mb-4 fw-semibold">Informações de Acesso</h5>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-5">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Nome de Usuário</label>
-                                <input type="text" class="form-control" id="username" name="username" readonly>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer bg-body-tertiary">

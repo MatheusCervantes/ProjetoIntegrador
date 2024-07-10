@@ -3,17 +3,7 @@ $(document).ready(function () {
     $('#rg').mask('00.000.000-0');
     $('#tel').mask('(00) 00000-0000');
     $('#cep').mask('00000-000');
-    $('#crm').mask('000000/AA');
-
-    $('.btnList').click(function () {
-        $('.dados').each(function () {
-            if ($(this).css('display') === 'none') {
-                $(this).css('display', 'block');
-            } else {
-                $(this).css('display', 'none');
-            }
-        });
-    });
+    $('#crm').mask('0000000/AA');
 
     $('.btnNovoPaciente').click(function () {
         $('#modalNovoPaciente').modal('show');
@@ -67,8 +57,8 @@ $(document).ready(function () {
         $('#modalExcluirFinanceiro').modal('show');
     });
 
-    $('.btnExcluirRelatorio').click(function () {
-        $('#modalExcluirRelatorio').modal('show');
+    $('.btnEditarSenha').click(function () {
+        $('#modalEditarSenha').modal('show');
     });
 
     $('input[name="dias-semana"]').on('click', function () {
@@ -108,16 +98,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('.btnList2').click(function () {
-        $('.dados2').each(function () {
-            if ($(this).css('display') === 'none') {
-                $(this).css('display', 'block');
-            } else {
-                $(this).css('display', 'none');
-            }
-        });
-    });
-
     $('.btnIniciarConsulta').click(function () {
         $('#modalIniciarConsulta').modal('show');
     });
@@ -135,11 +115,12 @@ $(document).ready(function () {
 
     function cb(start, end) {
         $('#filtroDataFinanceiro span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-        $('#periodoDataRelatorio span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        $('#periodoDataRelatorioDados span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        $('#periodoDataRelatorioConsultas span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         $('#filtroDataRelatorio span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
     }
 
-    $('#filtroDataFinanceiro, #periodoDataRelatorio, #filtroDataRelatorio').daterangepicker({
+    $('#filtroDataFinanceiro, #periodoDataRelatorioDados, #periodoDataRelatorioConsultas, #filtroDataRelatorio').daterangepicker({
         startDate: start,
         endDate: end,
         locale: {
@@ -539,7 +520,7 @@ $(document).ready(function () {
             next: 'fa fa-angle-right',
             previous: 'fa fa-angle-left'
         },
-        defaultDate: currentDate 
+        defaultDate: currentDate
     });
 
     var currentDateElement = document.getElementById("data-atual");
@@ -553,7 +534,7 @@ $(document).ready(function () {
     $('#calendario-agenda').on('dp.change', function (e) {
         var selectedDate = e.date.format('DD [de] MMMM [de] YYYY');
         var selectedDayOfWeek = e.date.format('dddd');
-        
+
         currentDateElement.textContent = selectedDate;
         currentDayOfWeekElement.textContent = selectedDayOfWeek;
     });
@@ -615,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     function formatarData(data) {
         const dia = String(data.getUTCDate()).padStart(2, '0');
-        const mes = String(data.getUTCMonth() + 1).padStart(2, '0'); 
+        const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
         const ano = data.getUTCFullYear();
         return `${dia}/${mes}/${ano}`;
     }
@@ -663,17 +644,129 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const senhaInput = document.getElementById('senha');
-    const mostrarSenhaBtn = document.getElementById('mostrarSenha');
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("alergia-sim").addEventListener("click", function () {
+        document.getElementById("info-alergia-medicamentos").style.display = "block";
+    });
+    document.getElementById("alergia-nao").addEventListener("click", function () {
+        document.getElementById("info-alergia-medicamentos").style.display = "none";
+    });
 
-    mostrarSenhaBtn.addEventListener('click', function () {
-        if (senhaInput.type === 'password') {
-            senhaInput.type = 'text';
-            mostrarSenhaBtn.innerHTML = '<ion-icon name="eye-off-outline" class="pt-1"></ion-icon>';
+    document.getElementById("cirurgia-sim").addEventListener("click", function () {
+        document.getElementById("info-cirurgia").style.display = "block";
+    });
+    document.getElementById("cirurgia-nao").addEventListener("click", function () {
+        document.getElementById("info-cirurgia").style.display = "none";
+    });
+
+    document.getElementById("medicamento-sim").addEventListener("click", function () {
+        document.getElementById("info-medicamento-regular").style.display = "block";
+    });
+    document.getElementById("medicamento-nao").addEventListener("click", function () {
+        document.getElementById("info-medicamento-regular").style.display = "none";
+    });
+
+    document.getElementById("condicao-sim").addEventListener("click", function () {
+        document.getElementById("info-condicao-preexistente").style.display = "block";
+    });
+    document.getElementById("condicao-nao").addEventListener("click", function () {
+        document.getElementById("info-condicao-preexistente").style.display = "none";
+    });
+
+    document.getElementById("vicio-sim").addEventListener("click", function () {
+        document.getElementById("info-vicio").style.display = "block";
+    });
+    document.getElementById("vicio-nao").addEventListener("click", function () {
+        document.getElementById("info-vicio").style.display = "none";
+    });
+});
+
+$(document).ready(function () {
+    $('#nav-anamnese-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#anamneseEditor').data('quill')) {
+                var quill = new Quill('#anamneseEditor', {
+                    theme: 'snow'
+                });
+                $('#anamneseEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+    $('#nav-diagnostico-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#diagnosticoEditor').data('quill')) {
+                var quill = new Quill('#diagnosticoEditor', {
+                    theme: 'snow'
+                });
+                $('#diagnosticoEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+});
+
+$(document).ready(function () {
+    $('#especialidades').tagsinput({
+        tagClass: 'badge'
+    });
+
+    $('#atuacao').tagsinput({
+        tagClass: 'badge'
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const senhaAtualInput = document.getElementById('senha-atual');
+    const novaSenhaInput = document.getElementById('nova-senha');
+    const confirmNovaSenhaInput = document.getElementById('confirm-nova-senha');
+
+    const mostrarSenhaAtualBtn = document.getElementById('mostrarSenhaAtual');
+    const mostrarNovaSenhaBtn = document.getElementById('mostrarNovaSenha');
+    const mostrarConfirmNovaSenhaBtn = document.getElementById('mostrarConfirmNovaSenha');
+
+    function togglePasswordVisibility(inputField, toggleButton) {
+        if (inputField.type === 'password') {
+            inputField.type = 'text';
+            toggleButton.innerHTML = '<ion-icon name="eye-off-outline" class="pt-2 px-1 font-nome-agenda"></ion-icon>';
         } else {
-            senhaInput.type = 'password';
-            mostrarSenhaBtn.innerHTML = '<ion-icon name="eye-outline" class="pt-1"></ion-icon>';
+            inputField.type = 'password';
+            toggleButton.innerHTML = '<ion-icon name="eye-outline" class="pt-2 px-1 font-nome-agenda"></ion-icon>';
+        }
+    }
+
+    mostrarSenhaAtualBtn.addEventListener('click', function () {
+        togglePasswordVisibility(senhaAtualInput, mostrarSenhaAtualBtn);
+    });
+
+    mostrarNovaSenhaBtn.addEventListener('click', function () {
+        togglePasswordVisibility(novaSenhaInput, mostrarNovaSenhaBtn);
+    });
+
+    mostrarConfirmNovaSenhaBtn.addEventListener('click', function () {
+        togglePasswordVisibility(confirmNovaSenhaInput, mostrarConfirmNovaSenhaBtn);
+    });
+});
+
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+/* API DO CID
+$(document).ready(function() {
+    var apiUrl = 'https://api.example.com/cid'; 
+
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            var select = $('#cidSelect');
+            $.each(data, function(index, item) {
+                select.append($('<option></option>').val(item.code).text(item.description));
+            });
+        },
+        error: function() {
+            alert('Erro ao carregar a lista de CID.');
         }
     });
 });
+*/

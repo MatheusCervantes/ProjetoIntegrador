@@ -1,18 +1,14 @@
-<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel"
-    aria-hidden="true">
+<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-body-tertiary">
                 <div class="d-flex justify-content-center align-items-center flex-grow-1">
-                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista
-                    </h4>
+                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista</h4>
                 </div>
-                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
-                    aria-label="Fechar"></button>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body m-auto py-4">
-                <form id="formNovoRecepcionista" method="POST" action="/recepcionista/insert">
-                    @csrf
+                <form id="formNovoRecepcionista">
                     <div>
                         <h5 class="mb-4 fw-semibold">Informações Pessoais</h5>
                     </div>
@@ -26,7 +22,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="sexo" class="form-label">Sexo</label>
-                                <select id="sexo" class="form-select" name="sexo" required>
+                                <select id="sexo" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="masculino">Masculino</option>
@@ -86,8 +82,7 @@
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="complemento" class="form-label">Complemento</label>
-                                <input type="text" class="form-control" id="complemento" name="complemento"
-                                    placeholder="Opcional">
+                                <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Opcional">
                             </div>
                         </div>
                     </div>
@@ -101,7 +96,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <select id="estado" class="form-select" name="estado" required>
+                                <select id="estado" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -140,7 +135,6 @@
                             </div>
                         </div>
                     </div>
-                    <br>
                 </form>
             </div>
             <div class="modal-footer bg-body-tertiary">
