@@ -18,7 +18,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{secrets.PROJETOINTEGRADOR}}
         script: |
-          /~/scripts/update_permissions.sh
+          /home/azureuser/scripts/update_permissions.sh
 
     - name: Copy files with SSH
       uses: easingthemes/ssh-deploy@main
@@ -28,7 +28,7 @@ jobs:
         SOURCE: "./"
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.TARGET }}
+        TARGET: /var/www/html/ProjetoIntegrador
         EXCLUDE: "/dist/, /vendor/, /node_modules/, **.env"
 
     - name: Execute deploy script on server
@@ -38,4 +38,4 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{secrets.PROJETOINTEGRADOR}}
         script: |
-          /~/scripts/deploy.sh
+          /home/azureuser/scripts/deploy.sh
