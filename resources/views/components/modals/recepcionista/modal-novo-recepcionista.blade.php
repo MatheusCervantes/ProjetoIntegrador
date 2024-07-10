@@ -45,7 +45,7 @@
                         </div>
                         <div class="col">
                             <label for="data-nasc" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="data-nasc" name="data-nasc" required>
+                            <input type="date" class="form-control" id="data-nasc" name="data_nasc" required max="<?php echo date('Y-m-d'); ?>">
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +76,7 @@
                         <div class="col-2">
                             <div class="mb-3">
                                 <label for="num" class="form-label">Número</label>
-                                <input type="number" class="form-control" id="num" name="num" required>
+                                <input type="number" class="form-control" id="num" name="num" required min="1">
                             </div>
                         </div>
                         <div class="col-3">
@@ -132,34 +132,6 @@
                             <div class="mb-3">
                                 <label for="cep" class="form-label">CEP</label>
                                 <input type="text" class="form-control" id="cep" name="cep" required>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div>
-                        <h5 class="mb-4 fw-semibold">Informações de Acesso</h5>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Nome de Usuário</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="senha" class="form-label">Senha</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="senha" name="senha" required>
-                                    <button class="btn btn-outline-light text-dark border-secondary-subtle" type="button" id="mostrarSenha">
-                                        <ion-icon name="eye-outline" class="pt-1"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="my-3">
-                                <button type="button" class="btn btn-sm btn-outline-light mt-3 text-dark border-dark">Gerar Senha Automática</button>
                             </div>
                         </div>
                     </div>

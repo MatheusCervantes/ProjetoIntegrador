@@ -45,7 +45,7 @@
                         </div>
                         <div class="col">
                             <label for="data-nasc" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="data-nasc" name="data-nasc" required>
+                            <input type="date" class="form-control" id="data-nasc" name="data_nasc" required max="<?php echo date('Y-m-d'); ?>">
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +76,7 @@
                         <div class="col-2">
                             <div class="mb-3">
                                 <label for="num" class="form-label">Número</label>
-                                <input type="number" class="form-control" id="num" name="num" required>
+                                <input type="number" class="form-control" id="num" name="num" required min="1">
                             </div>
                         </div>
                         <div class="col-3">
@@ -132,85 +132,6 @@
                             <div class="mb-3">
                                 <label for="cep" class="form-label">CEP</label>
                                 <input type="text" class="form-control" id="cep" name="cep" required>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div>
-                        <h5 class="mb-4 fw-semibold">Histórico Médico</h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-4">
-                                <label for="doencas-ant" class="form-label">Doenças Anteriores</label>
-                                <textarea class="form-control" id="doencas-ant" name="doencas-ant" rows="2"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-4">
-                                <label for="doencas-hered" class="form-label">Doenças/Condições Hereditárias</label>
-                                <textarea class="form-control" id="doencas-hered" name="doencas-hered" rows="2"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-4">
-                                <label for="cirurgias" class="form-label">Histórico de Cirurgias</label>
-                                <textarea class="form-control" id="cirurgias" name="cirurgias" rows="2"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-4">
-                                <label for="alergias" class="form-label">Alergias</label>
-                                <textarea class="form-control" id="alergias" name="alergias" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-4">
-                                <label for="uso-medicamentos" class="form-label">Histórico de Uso de Medicamentos</label>
-                                <textarea class="form-control" id="uso-medicamentos" name="uso-medicamentos" rows="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label class="form-label">Estilo de Vida</label>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sedentarismo" name="estilo-vida" value="sedentarismo">
-                                            <label class="form-check-label" for="sedentarismo">Sedentarismo</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="tabagismo" name="estilo-vida" value="tabagismo">
-                                            <label class="form-check-label" for="tabagismo">Tabagismo</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="alcool" name="estilo-vida" value="alcool">
-                                            <label class="form-check-label" for="alcool">Consumo de álcool</label>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="estresse" name="estilo-vida" value="estresse">
-                                            <label class="form-check-label" for="estresse">Estresse crônico</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="sono" name="estilo-vida" value="sono">
-                                            <label class="form-check-label" for="sono">Problemas de sono</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="acompanhamento" name="estilo-vida" value="acompanhamento">
-                                            <label class="form-check-label" for="acompanhamento">Falta de acompanhamento médico regular</label>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

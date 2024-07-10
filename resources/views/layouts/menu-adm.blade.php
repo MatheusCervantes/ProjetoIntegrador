@@ -11,24 +11,17 @@
         </div>
         <div class="d-flex align-items-center ms-auto d-xxl-none d-xl-none d-lg-none d-md-none d-sm-none">
             <div class="dropdown">
-                <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-primary me-3" href="#" role="button" id="navbarDropdownMenuNotific" data-bs-toggle="dropdown">
-                    <ion-icon name="notifications-outline" class="icon-notific"></ion-icon>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuNotific">
-                    <li><a class="dropdown-item" href="#">Alguma coisa</a></li>
-                </ul>
-            </div>
-            <div class="dropdown">
                 <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-primary" href="#" role="button" id="navbarDropdownMenuAvatar" data-bs-toggle="dropdown">
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                    <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
         <div class="collapse navbar-collapse justify-content-center d-lg-block" id="navbarResponsive">
-            <ul class="navbar-nav mx-auto d-flex align-items-center">
+            <ul class="navbar-nav mx-auto d-flex align-items-center pe-3">
                 <li class="nav-item {{ Request::is('painel-adm') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('painel-adm') }}">Home</a>
                 </li>
@@ -54,12 +47,17 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                    <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    @include('components.modals.usuario.modal-editar-senha')
 </nav>
+@endsection
+
+@push('scripts')
 <script src="/js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
@@ -67,4 +65,6 @@
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@endsection
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+@endpush

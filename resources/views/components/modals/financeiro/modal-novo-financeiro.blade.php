@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-4">
                             <div class="mb-3">
-                                <label for="valor" class="form-label">Valor</label>
+                                <label for="valor" class="form-label">Valor<span class="required-field">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
                                     <input type="text" class="form-control" id="valor" name="valor" required>

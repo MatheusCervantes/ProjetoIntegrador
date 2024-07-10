@@ -11,25 +11,18 @@
         </div>
         <div class="d-flex align-items-center ms-auto d-xxl-none d-xl-none d-lg-none d-md-none d-sm-none">
             <div class="dropdown">
-                <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-primary me-3" href="#" role="button" id="navbarDropdownMenuNotific" data-bs-toggle="dropdown">
-                    <ion-icon name="notifications-outline" class="icon-notific"></ion-icon>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuNotific">
-                    <li><a class="dropdown-item" href="#">Alguma coisa</a></li>
-                </ul>
-            </div>
-            <div class="dropdown">
                 <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-primary" href="#" role="button" id="navbarDropdownMenuAvatar" data-bs-toggle="dropdown">
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Informações de Atendimento</a></li>
+                    <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
         <div class="collapse navbar-collapse justify-content-center d-lg-block" id="navbarResponsive">
-            <ul class="navbar-nav mx-auto d-flex align-items-center">
+            <ul class="navbar-nav mx-auto d-flex align-items-center pe-3">
                 <li class="nav-item {{ Request::is('painel-medico') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('painel-medico') }}">Home</a>
                 </li>
@@ -50,6 +43,7 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                    <li><a class="dropdown-item" href="#">Informações de Atendimento</a></li>
                     <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
@@ -57,6 +51,9 @@
         </div>
     </div>
 </nav>
+@endsection
+
+@push('scripts')
 <script src="/js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -68,4 +65,6 @@
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
-@endsection
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+@endpush
