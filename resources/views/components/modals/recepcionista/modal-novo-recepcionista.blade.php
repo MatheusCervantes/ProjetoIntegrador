@@ -1,14 +1,18 @@
-<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-body-tertiary">
                 <div class="d-flex justify-content-center align-items-center flex-grow-1">
-                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista</h4>
+                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista
+                    </h4>
                 </div>
-                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                    aria-label="Fechar"></button>
             </div>
             <div class="modal-body m-auto py-4">
-                <form id="formNovoRecepcionista">
+                <form id="formNovoRecepcionista" method="POST" action="/recepcionista/insert">
+                    @csrf
                     <div>
                         <h5 class="mb-4 fw-semibold">Informações Pessoais</h5>
                     </div>
@@ -22,7 +26,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="sexo" class="form-label">Sexo</label>
-                                <select id="sexo" class="form-select" required>
+                                <select id="sexo" class="form-select" name="sexo" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="masculino">Masculino</option>
@@ -45,7 +49,7 @@
                         </div>
                         <div class="col">
                             <label for="data-nasc" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="data-nasc" name="data-nasc" required>
+                            <input type="date" class="form-control" id="data-nasc" name="data_nasc" required max="<?php echo date('Y-m-d'); ?>">
                         </div>
                     </div>
                     <div class="row">
@@ -76,13 +80,14 @@
                         <div class="col-2">
                             <div class="mb-3">
                                 <label for="num" class="form-label">Número</label>
-                                <input type="number" class="form-control" id="num" name="num" required>
+                                <input type="number" class="form-control" id="num" name="num" required min="1">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="complemento" class="form-label">Complemento</label>
-                                <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Opcional">
+                                <input type="text" class="form-control" id="complemento" name="complemento"
+                                    placeholder="Opcional">
                             </div>
                         </div>
                     </div>
@@ -96,7 +101,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <select id="estado" class="form-select" required>
+                                <select id="estado" class="form-select" name="estado" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -136,33 +141,6 @@
                         </div>
                     </div>
                     <br>
-                    <div>
-                        <h5 class="mb-4 fw-semibold">Informações de Acesso</h5>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Nome de Usuário</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="mb-3">
-                                <label for="senha" class="form-label">Senha</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="senha" name="senha" required>
-                                    <button class="btn btn-outline-light text-dark border-secondary-subtle" type="button" id="mostrarSenha">
-                                        <ion-icon name="eye-outline" class="pt-1"></ion-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="my-3">
-                                <button type="button" class="btn btn-sm btn-outline-light mt-3 text-dark border-dark">Gerar Senha Automática</button>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
             <div class="modal-footer bg-body-tertiary">
