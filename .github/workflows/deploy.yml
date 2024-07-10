@@ -38,4 +38,4 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{secrets.PROJETOINTEGRADOR}}
         script: |
-          /~/scripts/deploy.sh    
+          /~/scripts/deploy.sh
