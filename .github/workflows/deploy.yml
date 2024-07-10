@@ -8,34 +8,34 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout the files
-      uses: actions/checkout@v4
+      - name: Checkout the files
+        uses: actions/checkout@v4
 
       - name: Update permissions
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{secrets.PROJETOINTEGRADOR}}
-        script: |
-          /home/azureuser/scripts/update_permissions.sh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{secrets.PROJETOINTEGRADOR}}
+          script: |
+            /~/scripts/update_permissions.sh
 
-    - name: Copy files with SSH
-      uses: easingthemes/ssh-deploy@main
-      env:
-        SSH_PRIVATE_KEY: ${{secrets.PROJETOINTEGRADOR}} 
-        ARGS: "-rltgoDzvO --delete"
-        SOURCE: "./"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: /var/www/html/ProjetoIntegrador
-        EXCLUDE: "/dist/, /vendor/, /node_modules/, **.env"
+      - name: Copy files with SSH
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.PROJETOINTEGRADOR}} 
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.TARGET }}
+          EXCLUDE: "/dist/, /vendor/, /node_modules/, **.env"
 
-    - name: Execute deploy script on server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username: ${{ secrets.REMOTE_USER }}
-        key: ${{secrets.PROJETOINTEGRADOR}}
-        script: |
-          /home/azureuser/scripts/deploy.sh
+      - name: Execute deploy script on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{secrets.PROJETOINTEGRADOR}}
+          script: |
+            /~/scripts/deploy.sh
