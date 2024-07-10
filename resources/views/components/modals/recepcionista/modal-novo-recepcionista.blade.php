@@ -8,7 +8,8 @@
                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body m-auto py-4">
-                <form id="formNovoRecepcionista">
+                <form id="formNovoRecepcionista" method="POST" action="/recepcionista/insert">
+                    @csrf
                     <div>
                         <h5 class="mb-4 fw-semibold">Informações Pessoais</h5>
                     </div>
@@ -22,7 +23,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="sexo" class="form-label">Sexo</label>
-                                <select id="sexo" class="form-select" required>
+                                <select id="sexo" name="sexo" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="masculino">Masculino</option>
@@ -96,7 +97,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <select id="estado" class="form-select" required>
+                                <select id="estado" name="estado" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
