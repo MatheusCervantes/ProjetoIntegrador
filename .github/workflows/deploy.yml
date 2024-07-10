@@ -11,13 +11,31 @@ jobs:
     - name: Checkout the files
       uses: actions/checkout@v4
 
+      - name: Update permissions
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{secrets.PROJETOINTEGRADOR}}
+        script: |
+          /~/scripts/update_permissions.sh
+
     - name: Copy files with SSH
       uses: easingthemes/ssh-deploy@main
       env:
         SSH_PRIVATE_KEY: ${{secrets.PROJETOINTEGRADOR}} 
         ARGS: "-rltgoDzvO --delete"
         SOURCE: "./"
-        REMOTE_HOST: "clinica.brazilsouth.cloudapp.azure.com"
-        REMOTE_USER: "azureuser"
-        TARGET: "/var/www/html/ProjetoIntegrador"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.TARGET }}
         EXCLUDE: "/dist/, /vendor/, /node_modules/, **.env"
+
+    - name: Execute deploy script on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{secrets.PROJETOINTEGRADOR}}
+        script: |
+          /~/scripts/deploy.sh    
