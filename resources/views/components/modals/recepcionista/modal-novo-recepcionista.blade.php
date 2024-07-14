@@ -1,11 +1,14 @@
-<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="modalNovoRecepcionista" tabindex="-1" aria-labelledby="modalNovoRecepcionistaLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-body-tertiary">
                 <div class="d-flex justify-content-center align-items-center flex-grow-1">
-                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista</h4>
+                    <h4 class="modal-title fw-bold text-primary ms-4" id="modalNovoRecepcionistaLabel">Novo Recepcionista
+                    </h4>
                 </div>
-                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                    aria-label="Fechar"></button>
             </div>
             <div class="modal-body m-auto py-4">
                 <form id="formNovoRecepcionista" method="POST" action="/recepcionista/insert">
@@ -25,8 +28,8 @@
                                 <label for="sexo" class="form-label">Sexo</label>
                                 <select id="sexo" name="sexo" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
                                 </select>
                             </div>
                         </div>
@@ -46,7 +49,8 @@
                         </div>
                         <div class="col">
                             <label for="data-nasc" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="data-nasc" name="data_nasc" required max="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" class="form-control" id="data-nasc" name="data_nasc" required
+                                max="<?php echo date('Y-m-d'); ?>">
                         </div>
                     </div>
                     <div class="row">
@@ -77,13 +81,15 @@
                         <div class="col-2">
                             <div class="mb-3">
                                 <label for="num" class="form-label">Número</label>
-                                <input type="number" class="form-control" id="num" name="num" required min="1">
+                                <input type="number" class="form-control" id="num" name="num" required
+                                    min="1">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="complemento" class="form-label">Complemento</label>
-                                <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Opcional">
+                                <input type="text" class="form-control" id="complemento" name="complemento"
+                                    placeholder="Opcional">
                             </div>
                         </div>
                     </div>

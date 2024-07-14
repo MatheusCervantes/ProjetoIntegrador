@@ -8,7 +8,8 @@
                 <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body m-auto py-4">
-                <form id="formNovoPaciente">
+                <form id="formNovoPaciente" method="POST" action="/paciente/insert">
+                    @csrf
                     <div>
                         <h5 class="mb-4 fw-semibold">Informações Pessoais</h5>
                     </div>
@@ -22,10 +23,10 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="sexo" class="form-label">Sexo</label>
-                                <select id="sexo" class="form-select" required>
+                                <select id="sexo" name="sexo" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
                                 </select>
                             </div>
                         </div>
@@ -96,7 +97,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado</label>
-                                <select id="estado" class="form-select" required>
+                                <select id="estado" name="estado" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -141,11 +142,11 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="plano-saude" id="plano-sim-novo" value="sim" required>
+                            <input class="form-check-input" type="radio" name="plano_saude" id="plano-sim-novo" value="sim">
                             <label class="form-check-label" for="plano-sim-novo">Sim</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="plano-saude" id="plano-nao-novo" value="nao">
+                            <input class="form-check-input" type="radio" name="plano_saude" id="plano-nao-novo" value="não">
                             <label class="form-check-label" for="plano-nao-novo">Não</label>
                         </div>
                     </div>
@@ -154,13 +155,13 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="nome-plano" class="form-label">Nome do Plano de Saúde</label>
-                                    <input type="text" class="form-control" id="nome-plano" name="nome-plano">
+                                    <input type="text" class="form-control" id="nome-plano" name="nome_plano">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
                                     <label for="numero-cartao" class="form-label">Número do Cartão do Plano</label>
-                                    <input type="text" class="form-control" id="numero-cartao" name="numero-cartao">
+                                    <input type="text" class="form-control" id="numero-cartao" name="numero_cartao">
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\RecepcionistaController;
+use App\Http\Controllers\admin\PacienteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,11 +28,31 @@ Route::get('/painel-adm/gestao-medico', function () {
     return view('gestao-medico');
 })->name('gestao-medico');
 
-Route::get('/painel-adm/gestao-recepcionista', function () {
-    return view('gestao-recepcionista');
-})->name('gestao-recepcionista');
+//Rotas painel-adm gestão recepcionista
+Route::get('/painel-adm/gestao-recepcionista', [RecepcionistaController::class, 'index']);
 
 Route::post('/recepcionista/insert', [RecepcionistaController::class, 'store']);
+
+Route::get('/painel-adm/gestao-recepcionista/{id}', [RecepcionistaController::class, 'show']);
+
+Route::put('/painel-adm/gestao-recepcionista/edit/{id}', [RecepcionistaController::class, 'update_repcionista']);
+
+Route::delete('/painel-adm/gestao-recepcionista/delete/{id}', [RecepcionistaController::class, 'delete_repcionista']);
+
+Route::get('/painel-adm/gestao-recepcionista', [RecepcionistaController::class, 'search'])->name('recepcionistas.search');
+
+//Rotas painel-adm gestão pacientes
+Route::get('/painel-adm/gestao-paciente', [PacienteController::class, 'index']);
+
+Route::post('/paciente/insert', [PacienteController::class, 'store']);
+
+Route::get('/painel-adm/gestao-paciente/{id}', [PacienteController::class, 'show']);
+
+Route::put('/painel-adm/gestao-paciente/edit/{id}', [PacienteController::class, 'update_paciente']);
+
+Route::delete('/painel-adm/gestao-paciente/delete/{id}', [PacienteController::class, 'delete_paciente']);
+
+Route::get('/painel-adm/gestao-paciente', [PacienteController::class, 'search'])->name('pacientes.search');
 
 Route::get('/painel-adm/financeiro', function () {
     return view('financeiro');

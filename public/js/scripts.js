@@ -1,32 +1,26 @@
 $(document).ready(function () {
-    $('#cpf').mask('000.000.000-00', { reverse: true });
-    $('#rg').mask('00.000.000-0');
-    $('#tel').mask('(00) 00000-0000');
-    $('#cep').mask('00000-000');
+    $('#cpf, #cpf_recepcionista_edit').mask('000.000.000-00', { reverse: true });
+    $('#rg, #rg_recepcionista_edit').mask('00.000.000-0');
+    $('#tel, #tel_recepcionista_edit').mask('(00) 00000-0000');
+    $('#cep, #cep_recepcionista_edit').mask('00000-000');
     $('#crm').mask('0000000/AA');
 
     $('.btnNovoPaciente').click(function () {
         $('#modalNovoPaciente').modal('show');
     });
-    $('.btnDetalhesPaciente').click(function () {
-        $('#modalDetalhesPaciente').modal('show');
-    });
-    $('.btnEditarPaciente').click(function () {
-        $('#modalEditarPaciente').modal('show');
-    });
-    $('.btnExcluirPaciente').click(function () {
-        $('#modalExcluirPaciente').modal('show');
-    });
 
     $('.btnNovoMedico').click(function () {
         $('#modalNovoMedico').modal('show');
     });
+
     $('.btnDetalhesMedico').click(function () {
         $('#modalDetalhesMedico').modal('show');
     });
+
     $('.btnEditarMedico').click(function () {
         $('#modalEditarMedico').modal('show');
     });
+
     $('.btnExcluirMedico').click(function () {
         $('#modalExcluirMedico').modal('show');
     });
@@ -34,27 +28,25 @@ $(document).ready(function () {
     $('.btnNovoRecepcionista').click(function () {
         $('#modalNovoRecepcionista').modal('show');
     });
-    $('.btnDetalhesRecepcionista').click(function () {
-        $('#modalDetalhesRecepcionista').modal('show');
-    });
-    $('.btnEditarRecepcionista').click(function () {
-        $('#modalEditarRecepcionista').modal('show');
-    });
+
     $('.btnExcluirRecepcionista').click(function () {
         $('#modalExcluirRecepcionista').modal('show');
+    });
+
+    $('.btnExcluirPaciente').click(function () {
+        $('#modalExcluirPaciente').modal('show');
     });
 
     $('.btnNovoFinanceiro').click(function () {
         $('#modalNovoFinanceiro').modal('show');
     });
+
     $('.btnDetalhesFinanceiro').click(function () {
         $('#modalDetalhesFinanceiro').modal('show');
     });
+
     $('.btnEditarFinanceiro').click(function () {
         $('#modalEditarFinanceiro').modal('show');
-    });
-    $('.btnExcluirFinanceiro').click(function () {
-        $('#modalExcluirFinanceiro').modal('show');
     });
 
     $('.btnEditarSenha').click(function () {
@@ -96,6 +88,165 @@ $(document).ready(function () {
         }
     });
 });
+
+//JS painel-adm gestão paciente
+$('.btnDetalhesPaciente').on('click', function () {
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-paciente/' + id,
+        method: 'GET',
+        success: function (data) {
+            $('#nome_paciente').val(data.nome_completo);
+            $('#sexo_paciente').val(data.sexo);
+            $('#cpf_paciente').val(data.cpf);
+            $('#rg_paciente').val(data.rg);
+            $('#data-nasc_paciente').val(data.data_nascimento);
+            $('#email_paciente').val(data.email);
+            $('#tel_paciente').val(data.telefone);
+            $('#rua_paciente').val(data.rua);
+            $('#num_paciente').val(data.numero);
+            $('#complemento_paciente').val(data.complemento);
+            $('#cidade_paciente').val(data.cidade);
+            $('#estado_paciente').val(data.estado);
+            $('#cep_paciente').val(data.cep);
+            if (data.plano_saude) {
+                $('#plano-sim-detalhes_paciente').prop('checked', true);
+                $('#detalhe-nome-plano_paciente').val(data.plano_saude.nome_plano);
+                $('#detalhe-numero-cartao_paciente').val(data.plano_saude.nro_plano);
+
+            } else {
+                $('#plano-nao-detalhes_paciente').prop('checked', true);
+                $('#detalhe-nome-plano_paciente').val('');
+                $('#detalhe-numero-cartao_paciente').val('');
+            }
+            $('#modalDetalhesPaciente').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalDetalhesPaciente .modal-body').html('Erro ao carregar dados.');
+            $('#modalDetalhesPaciente').modal('show');
+        }
+    });
+});
+
+$('.btnEditarPaciente').on('click', function () {
+    var id_edição = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-paciente/' + id_edição,
+        method: 'GET',
+        success: function (data) {
+            console.log(data);
+            $('#formEditarPaciente').attr('action', '/painel-adm/gestao-paciente/edit/' + id_edição);
+            $('#nome_paciente_edit').val(data.nome_completo);
+            $('#sexo_paciente_edit').val(data.sexo);
+            $('#cpf_paciente_edit').val(data.cpf);
+            $('#rg_paciente_edit').val(data.rg);
+            $('#data-nasc_paciente_edit').val(data.data_nascimento);
+            $('#email_paciente_edit').val(data.email);
+            $('#tel_paciente_edit').val(data.telefone);
+            $('#rua_paciente_edit').val(data.rua);
+            $('#num_paciente_edit').val(data.numero);
+            $('#complemento_paciente_edit').val(data.complemento);
+            $('#cidade_paciente_edit').val(data.cidade);
+            $('#estado_paciente_edit').val(data.estado);
+            $('#cep_paciente_edit').val(data.cep);
+            if (data.plano_saude) {
+                $('#plano-sim-editar_paciente_edit').prop('checked', true);
+                $('#nome-plano_paciente_edit').val(data.plano_saude.nome_plano);
+                $('#numero-cartao_paciente_edit').val(data.plano_saude.nro_plano);
+            } else {
+                $('#plano-nao-editar_paciente_edit').prop('checked', true);
+                $('#detalhe-nome-plano_paciente').val('');
+                $('#detalhe-numero-cartao_paciente').val('');
+            }
+            $('#modalEditarPaciente').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalEditarPaciente .modal-body').html('Erro ao carregar dados.');
+            $('#modalEditarPaciente').modal('show');
+        }
+    });
+});
+
+$('.btnExcluirPaciente').on('click', function () {
+    var pacienteId = $(this).data('id');
+    var formAction = $('#formExcluirPaciente').data('action') + pacienteId;
+    $('#formExcluirPaciente').attr('action', formAction);
+});
+// Fim gestão paciente
+
+// JS painel gestão recepcionista
+$('.btnDetalhesRecepcionista').on('click', function () {
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-recepcionista/' + id,
+        method: 'GET',
+        success: function (data) {
+            $('#nome_recepcionista').val(data.nome_completo);
+            $('#sexo_recepcionista').val(data.sexo);
+            $('#cpf_recepcionista').val(data.cpf);
+            $('#rg_recepcionista').val(data.rg);
+            $('#data-nasc_recepcionista').val(data.data_nascimento);
+            $('#email_recepcionista').val(data.email);
+            $('#tel_recepcionista').val(data.telefone);
+            $('#rua_recepcionista').val(data.rua);
+            $('#num_recepcionista').val(data.numero);
+            $('#complemento_recepcionista').val(data.complemento);
+            $('#cidade_recepcionista').val(data.cidade);
+            $('#estado_recepcionista').val(data.estado);
+            $('#cep_recepcionista').val(data.cep);
+            $('#modalDetalhesRecepcionista').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalDetalhesRecepcionista .modal-body').html('Erro ao carregar dados.');
+            $('#modalDetalhesRecepcionista').modal('show');
+        }
+    });
+});
+
+$('.btnEditarRecepcionista').on('click', function () {
+    var id_edição = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-recepcionista/' + id_edição,
+        method: 'GET',
+        success: function (data) {
+            $('#formEditarRecepcionista').attr('action', '/painel-adm/gestao-recepcionista/edit/' + id_edição);
+            $('#nome_recepcionista_edit').val(data.nome_completo);
+            $('#sexo_recepcionista_edit').val(data.sexo);
+            $('#cpf_recepcionista_edit').val(data.cpf);
+            $('#rg_recepcionista_edit').val(data.rg);
+            $('#data-nasc_recepcionista_edit').val(data.data_nascimento);
+            $('#email_recepcionista_edit').val(data.email);
+            $('#tel_recepcionista_edit').val(data.telefone);
+            $('#rua_recepcionista_edit').val(data.rua);
+            $('#num_recepcionista_edit').val(data.numero);
+            $('#complemento_recepcionista_edit').val(data.complemento);
+            $('#cidade_recepcionista_edit').val(data.cidade);
+            $('#estado_recepcionista_edit').val(data.estado);
+            $('#cep_recepcionista_edit').val(data.cep);
+            $('#modalEditarRecepcionista').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalEditarRecepcionista .modal-body').html('Erro ao carregar dados.');
+            $('#modalEditarRecepcionista').modal('show');
+        }
+    });
+});
+
+$('.btnExcluirRecepcionista').on('click', function () {
+    var recepcionistaId = $(this).data('id');
+    var formAction = $('#formExcluirRecepcionista').data('action') + recepcionistaId;
+    $('#formExcluirRecepcionista').attr('action', formAction);
+});
+
+// Fim gestão paciente
 
 $(document).ready(function () {
     $('.btnIniciarConsulta').click(function () {
@@ -629,18 +780,77 @@ document.addEventListener('DOMContentLoaded', function () {
     atualizarData();
 })
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("plano-sim-novo").addEventListener("click", function () {
-        document.getElementById("info-plano-saude-novo").style.display = "block";
+$(document).ready(function () {
+    // Função para verificar e exibir/ocultar o elemento
+    function verificarExibirInfoPlano() {
+        if ($('#plano-sim-detalhes_paciente').prop('checked')) {
+            $('#info-plano-saude-detalhes').css('display', 'block');
+        } else {
+            $('#info-plano-saude-detalhes').css('display', 'none');
+        }
+    }
+
+    $('#modalDetalhesPaciente').on('shown.bs.modal', function () {
+        verificarExibirInfoPlano();
     });
-    document.getElementById("plano-sim-editar").addEventListener("click", function () {
-        document.getElementById("info-plano-saude-editar").style.display = "block";
+
+    $('#btnDetalhesPaciente').on('click', function () {
+        verificarExibirInfoPlano();
     });
-    document.getElementById("plano-nao-novo").addEventListener("click", function () {
-        document.getElementById("info-plano-saude-novo").style.display = "none";
+
+    verificarExibirInfoPlano();
+});
+
+$(document).ready(function () {
+    // Função para verificar e exibir/ocultar o elemento
+    function verificarExibir() {
+        if ($('#plano-sim-editar_paciente_edit').prop('checked')) {
+            $('#info-plano-saude-editar').css('display', 'block');
+        } else {
+            $('#info-plano-saude-editar').css('display', 'none');
+        }
+    }
+
+    $('#modalEditarPaciente').on('shown.bs.modal', function () {
+        verificarExibir();
     });
-    document.getElementById("plano-nao-editar").addEventListener("click", function () {
-        document.getElementById("info-plano-saude-editar").style.display = "none";
+
+    $('#btnEditarPaciente').on('click', function () {
+        verificarExibir();
+    });
+
+    verificarExibir();
+});
+
+$(document).ready(function () {
+    $('#plano-sim-novo').change(function () {
+        if (this.checked) {
+            $('#info-plano-saude-novo').css('display', 'block');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#plano-nao-novo').change(function () {
+        if (this.checked) {
+            $('#info-plano-saude-novo').css('display', 'none');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#plano-sim-editar_paciente_edit').change(function () {
+        if (this.checked) {
+            $('#info-plano-saude-editar').css('display', 'block');
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#plano-nao-editar_paciente_edit').change(function () {
+        if (this.checked) {
+            $('#info-plano-saude-editar').css('display', 'none');
+        }
     });
 });
 

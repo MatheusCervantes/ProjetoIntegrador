@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use App\Mail\Usuario;
 use App\Models\User;
 use Illuminate\Support\Str;
