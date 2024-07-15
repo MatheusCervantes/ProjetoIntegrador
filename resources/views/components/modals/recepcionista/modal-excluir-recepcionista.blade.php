@@ -1,4 +1,5 @@
-<div class="modal fade modal-md" id="modalExcluirRecepcionista" tabindex="-1" aria-labelledby="modalExcluirRecepcionistaLabel" aria-hidden="true">
+<div class="modal fade modal-md" id="modalExcluirRecepcionista" tabindex="-1"
+    aria-labelledby="modalExcluirRecepcionistaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="formExcluirRecepcionista" method="POST" data-action="/painel-adm/gestao-recepcionista/delete/">
@@ -14,7 +15,8 @@
                 </div>
                 <div class="modal-footer bg-body-tertiary">
                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-sm btn-danger" id="btnConfirmarExclusaoRecepcionista">Confirmar</button>
+                    <button type="submit" class="btn btn-sm btn-danger"
+                        id="btnConfirmarExclusaoRecepcionista">Confirmar</button>
                 </div>
             </form>
         </div>

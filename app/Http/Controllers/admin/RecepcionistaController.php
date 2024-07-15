@@ -39,7 +39,7 @@ class RecepcionistaController extends Controller
                 'cpf' => 'required|unique:recepcionistas,cpf',
                 'rg' => 'required|unique:recepcionistas,rg',
                 'data_nasc' => 'required|date|before_or_equal:' . now()->format('Y-m-d'),
-                'email' => 'required|email|unique:users,email|unique:recepcionistas,email',
+                'email' => 'required|unique:recepcionistas,email',
                 'tel' => 'required|string|max:20',
                 'rua' => 'required|string|max:255',
                 'num' => 'required|integer|min:1',
@@ -54,7 +54,7 @@ class RecepcionistaController extends Controller
             $nomeuser = strtolower($partesNome[0]) . "." . strtolower(end($partesNome)) . random_int(0, 99);
 
             // Criar o usuário
-            $user = $this->userController->store($nomeuser, $validatedData['email'], 'recepcionista');
+            $user = $this->userController->store($nomeuser, 'recepcionista');
 
             // Criar a recepcionista associada ao usuário criado
             $recepcionista = new Recepcionista();
@@ -78,8 +78,8 @@ class RecepcionistaController extends Controller
             return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Recepcionista cadastrado com sucesso!');
         } catch (ValidationException $e) {
             // Captura os erros de validação
-            //return redirect()->back()->with('error', $e->validator->errors());
-            return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
+            return redirect()->back()->with('error', $e->validator->errors());
+            //return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
             return redirect()->back()->with('error', 'Erro ao inserir o recepcionista. Por favor, tente novamente mais tarde.');
@@ -101,7 +101,7 @@ class RecepcionistaController extends Controller
                 'cpf' => 'required|unique:recepcionistas,cpf,' . $id,
                 'rg' => 'required|unique:recepcionistas,rg,' . $id,
                 'data_nascimento' => 'required|date|before_or_equal:' . now()->format('Y-m-d'),
-                'email' => 'required|email|unique:users,email|unique:recepcionistas,email,' . $id,
+                'email' => 'required|email|unique:recepcionistas,email,' . $id,
                 'telefone' => 'required|string|max:20',
                 'rua' => 'required|string|max:255',
                 'numero' => 'required|integer|min:1',
@@ -109,7 +109,6 @@ class RecepcionistaController extends Controller
                 'estado' => 'required|string|max:255',
                 'cep' => 'required|string|max:10',
             ]);
-
             Recepcionista::findOrFail($id)->update($data);
 
             return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Recepcionista atualizado com sucesso!');

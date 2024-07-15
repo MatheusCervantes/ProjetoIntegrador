@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    $('#cpf, #cpf_recepcionista_edit').mask('000.000.000-00', { reverse: true });
-    $('#rg, #rg_recepcionista_edit').mask('00.000.000-0');
-    $('#tel, #tel_recepcionista_edit').mask('(00) 00000-0000');
-    $('#cep, #cep_recepcionista_edit').mask('00000-000');
-    $('#crm').mask('0000000/AA');
+    $('.cpf').mask('000.000.000-00', { reverse: true });
+    $('.rg').mask('00.000.000-0');
+    $('.tel').mask('(00) 00000-0000');
+    $('.cep').mask('00000-000');
+    $('.crm').mask('0000000/AA');
 
     $('.btnNovoPaciente').click(function () {
         $('#modalNovoPaciente').modal('show');
@@ -11,14 +11,6 @@ $(document).ready(function () {
 
     $('.btnNovoMedico').click(function () {
         $('#modalNovoMedico').modal('show');
-    });
-
-    $('.btnDetalhesMedico').click(function () {
-        $('#modalDetalhesMedico').modal('show');
-    });
-
-    $('.btnEditarMedico').click(function () {
-        $('#modalEditarMedico').modal('show');
     });
 
     $('.btnExcluirMedico').click(function () {
@@ -108,7 +100,7 @@ $('.btnDetalhesPaciente').on('click', function () {
             $('#num_paciente').val(data.numero);
             $('#complemento_paciente').val(data.complemento);
             $('#cidade_paciente').val(data.cidade);
-            $('#estado_paciente').val(data.estado);
+            $('#estado_paciente').val(data.estado).change();
             $('#cep_paciente').val(data.cep);
             if (data.plano_saude) {
                 $('#plano-sim-detalhes_paciente').prop('checked', true);
@@ -140,7 +132,7 @@ $('.btnEditarPaciente').on('click', function () {
             console.log(data);
             $('#formEditarPaciente').attr('action', '/painel-adm/gestao-paciente/edit/' + id_edição);
             $('#nome_paciente_edit').val(data.nome_completo);
-            $('#sexo_paciente_edit').val(data.sexo);
+            $('#sexo_paciente_edit').val(data.sexo).change();
             $('#cpf_paciente_edit').val(data.cpf);
             $('#rg_paciente_edit').val(data.rg);
             $('#data-nasc_paciente_edit').val(data.data_nascimento);
@@ -150,7 +142,7 @@ $('.btnEditarPaciente').on('click', function () {
             $('#num_paciente_edit').val(data.numero);
             $('#complemento_paciente_edit').val(data.complemento);
             $('#cidade_paciente_edit').val(data.cidade);
-            $('#estado_paciente_edit').val(data.estado);
+            $('#estado_paciente_edit').val(data.estado).change();
             $('#cep_paciente_edit').val(data.cep);
             if (data.plano_saude) {
                 $('#plano-sim-editar_paciente_edit').prop('checked', true);
@@ -178,6 +170,76 @@ $('.btnExcluirPaciente').on('click', function () {
 });
 // Fim gestão paciente
 
+// JS painel gestão medico
+$('.btnDetalhesMedico').on('click', function () {
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-medico/' + id,
+        method: 'GET',
+        success: function (data) {
+            $('#nome_medico').val(data.nome_completo);
+            $('#sexo_medico').val(data.sexo);
+            $('#cpf_medico').val(data.cpf);
+            $('#rg_medico').val(data.rg);
+            $('#data-nasc_medico').val(data.data_nascimento);
+            $('#email_medico').val(data.email);
+            $('#tel_medico').val(data.telefone);
+            $('#rua_medico').val(data.rua);
+            $('#num_medico').val(data.numero);
+            $('#complemento_medico').val(data.complemento);
+            $('#cidade_medico').val(data.cidade);
+            $('#estado_medico').val(data.estado).change();
+            $('#cep_medico').val(data.cep);
+            $('#modalDetalhesMedico').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalDetalhesMedico .modal-body').html('Erro ao carregar dados.');
+            $('#modalDetalhesMedico').modal('show');
+        }
+    });
+});
+
+$('.btnEditarMedico').on('click', function () {
+    var id_edição = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/gestao-medico/' + id_edição,
+        method: 'GET',
+        success: function (data) {
+            $('#formEditarMedico').attr('action', '/painel-adm/gestao-medico/edit/' + id_edição);
+            $('#nome_medico_edit').val(data.nome_completo);
+            $('#sexo_medico_edit').val(data.sexo).change();
+            $('#cpf_medico_edit').val(data.cpf);
+            $('#rg_medico_edit').val(data.rg);
+            $('#data-nasc_medico_edit').val(data.data_nascimento);
+            $('#email_medico_edit').val(data.email);
+            $('#tel_medico_edit').val(data.telefone);
+            $('#rua_medico_edit').val(data.rua);
+            $('#num_medico_edit').val(data.numero);
+            $('#complemento_medico_edit').val(data.complemento);
+            $('#cidade_medico_edit').val(data.cidade);
+            $('#estado_medico_edit').val(data.estado).change();
+            $('#cep_medico_edit').val(data.cep);
+            $('#modalEditarMedico').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalEditarMedico .modal-body').html('Erro ao carregar dados.');
+            $('#modalEditarMedico').modal('show');
+        }
+    });
+});
+
+$('.btnExcluirMedico').on('click', function () {
+    var medicoId = $(this).data('id');
+    var formAction = $('#formExcluirMedico').data('action') + medicoId;
+    $('#formExcluirMedico').attr('action', formAction);
+});
+
+// Fim gestão medico
+
 // JS painel gestão recepcionista
 $('.btnDetalhesRecepcionista').on('click', function () {
     var id = $(this).data('id');
@@ -197,7 +259,7 @@ $('.btnDetalhesRecepcionista').on('click', function () {
             $('#num_recepcionista').val(data.numero);
             $('#complemento_recepcionista').val(data.complemento);
             $('#cidade_recepcionista').val(data.cidade);
-            $('#estado_recepcionista').val(data.estado);
+            $('#estado_recepcionista').val(data.estado).change();
             $('#cep_recepcionista').val(data.cep);
             $('#modalDetalhesRecepcionista').modal('show');
         },
@@ -218,7 +280,7 @@ $('.btnEditarRecepcionista').on('click', function () {
         success: function (data) {
             $('#formEditarRecepcionista').attr('action', '/painel-adm/gestao-recepcionista/edit/' + id_edição);
             $('#nome_recepcionista_edit').val(data.nome_completo);
-            $('#sexo_recepcionista_edit').val(data.sexo);
+            $('#sexo_recepcionista_edit').val(data.sexo).change();
             $('#cpf_recepcionista_edit').val(data.cpf);
             $('#rg_recepcionista_edit').val(data.rg);
             $('#data-nasc_recepcionista_edit').val(data.data_nascimento);
@@ -228,7 +290,7 @@ $('.btnEditarRecepcionista').on('click', function () {
             $('#num_recepcionista_edit').val(data.numero);
             $('#complemento_recepcionista_edit').val(data.complemento);
             $('#cidade_recepcionista_edit').val(data.cidade);
-            $('#estado_recepcionista_edit').val(data.estado);
+            $('#estado_recepcionista_edit').val(data.estado).change();
             $('#cep_recepcionista_edit').val(data.cep);
             $('#modalEditarRecepcionista').modal('show');
         },
@@ -246,7 +308,7 @@ $('.btnExcluirRecepcionista').on('click', function () {
     $('#formExcluirRecepcionista').attr('action', formAction);
 });
 
-// Fim gestão paciente
+// Fim gestão recepcionista
 
 $(document).ready(function () {
     $('.btnIniciarConsulta').click(function () {

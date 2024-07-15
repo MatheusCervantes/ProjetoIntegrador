@@ -31,18 +31,18 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="cpf_recepcionista" class="form-label">CPF</label>
-                                <input type="text" class="form-control" id="cpf_recepcionista" name="cpf" readonly>
+                                <input type="text" class="form-control cpf" id="cpf_recepcionista" name="cpf" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="rg_recepcionista" class="form-label">RG</label>
-                                <input type="text" class="form-control" id="rg_recepcionista" name="rg" readonly>
+                                <input type="text" class="form-control rg" id="rg_recepcionista" name="rg" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <label for="data-nasc_recepcionista" class="form-label">Data de Nascimento</label>
-                            <input type="text" class="form-control" id="data-nasc_recepcionista" name="data-nasc" readonly>
+                            <input type="date" class="form-control" id="data-nasc_recepcionista" name="data-nasc" readonly>
                         </div>
                     </div>
                     <div class="row">
@@ -55,7 +55,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="tel_recepcionista" class="form-label">Telefone</label>
-                                <input type="tel" class="form-control" id="tel_recepcionista" name="tel" readonly>
+                                <input type="tel" class="form-control tel" id="tel_recepcionista" name="tel" readonly>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="cep_recepcionista" class="form-label">CEP</label>
-                                <input type="text" class="form-control" id="cep_recepcionista" name="cep" readonly>
+                                <input type="text" class="form-control cep" id="cep_recepcionista" name="cep" readonly>
                             </div>
                         </div>
                     </div>

@@ -92,13 +92,12 @@
                                     <p class="text-center text-muted my-4">Nenhum paciente encontrado</p>
                             @endif
                         </div>
-
                     </div>
-                </div>
-            </div>
-            <div class="row mb-4 pb-3">
-                <div class="col">
-                    <button class="btn btn-outline-primary">Carregar mais</button>
+                    <div class="row mb-4 pb-3">
+                        <div class="col">
+                            <button class="btn btn-outline-primary">Carregar mais</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
