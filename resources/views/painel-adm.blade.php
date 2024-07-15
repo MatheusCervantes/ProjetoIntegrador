@@ -16,7 +16,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="text-primary text-uppercase mb-1">Pacientes Cadastrados</div>
-                                    <div class="h5 mb-0 text-gray-800">32</div>
+                                    <div class="h5 mb-0 text-gray-800">{{ $countPacientes }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <ion-icon name="person-outline" class="fs-2 text-secondary mt-1"></ion-icon>
@@ -31,7 +31,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="text-primary text-uppercase mb-1">Médicos Cadastrados</div>
-                                    <div class="h5 mb-0 text-gray-800">5</div>
+                                    <div class="h5 mb-0 text-gray-800">{{ $countMedicos }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <ion-icon name="medkit-outline" class="fs-2 text-secondary mt-1"></ion-icon>
@@ -46,7 +46,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <div class="text-primary text-uppercase mb-1">Recepcionistas Cadastrados</div>
-                                    <div class="h5 mb-0 text-gray-800">3</div>
+                                    <div class="h5 mb-0 text-gray-800">{{ $countRecepcionistas }}</div>
                                 </div>
                                 <div class="col-auto">
                                     <ion-icon name="desktop-outline" class="fs-2 text-secondary mt-2"></ion-icon>

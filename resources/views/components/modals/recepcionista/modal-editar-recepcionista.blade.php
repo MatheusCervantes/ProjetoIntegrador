@@ -39,15 +39,15 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="cpf" class="form-label cpf">CPF</label>
-                                <input type="text" class="form-control" id="cpf_recepcionista_edit" name="cpf"
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="text" class="form-control cpf" id="cpf_recepcionista_edit" name="cpf"
                                     required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="rg" class="form-label">RG</label>
-                                <input type="text" class="form-control" id="rg_recepcionista_edit" name="rg"
+                                <input type="text" class="form-control rg" id="rg_recepcionista_edit" name="rg"
                                     required>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="tel" class="form-label">Telefone</label>
-                                <input type="tel" class="form-control" id="tel_recepcionista_edit" name="telefone"
+                                <input type="tel" class="form-control tel" id="tel_recepcionista_edit" name="telefone"
                                     required>
                             </div>
                         </div>
@@ -113,40 +113,40 @@
                                 <label for="estado" class="form-label">Estado</label>
                                 <select id="estado_recepcionista_edit" name="estado" class="form-select" required>
                                     <option disabled selected>Selecione...</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                                    <option value="Acre">Acre</option>
+                                    <option value="Alagoas">Alagoas</option>
+                                    <option value="Amapá">Amapá</option>
+                                    <option value="Amazonas">Amazonas</option>
+                                    <option value="Bahia">Bahia</option>
+                                    <option value="Ceará">Ceará</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Espírito Santo">Espírito Santo</option>
+                                    <option value="Goiás">Goiás</option>
+                                    <option value="Maranhão">Maranhão</option>
+                                    <option value="Mato Grosso">Mato Grosso</option>
+                                    <option value="Mato Grosso do Su">Mato Grosso do Sul</option>
+                                    <option value="Minas Gerais">Minas Gerais</option>
+                                    <option value="Pará">Pará</option>
+                                    <option value="Paraíba">Paraíba</option>
+                                    <option value="Paraná">Paraná</option>
+                                    <option value="Pernambuco">Pernambuco</option>
+                                    <option value="Piauí">Piauí</option>
+                                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                                    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                                    <option value="Rondônia">Rondônia</option>
+                                    <option value="Roraima">Roraima</option>
+                                    <option value="Santa Catarina">Santa Catarina</option>
+                                    <option value="São Paulo">São Paulo</option>
+                                    <option value="Sergipe">Sergipe</option>
+                                    <option value="Tocantins">Tocantins</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="cep" class="form-label">CEP</label>
-                                <input type="text" class="form-control" id="cep_recepcionista_edit"
+                                <input type="text" class="form-control cep" id="cep_recepcionista_edit"
                                     name="cep" required>
                             </div>
                         </div>

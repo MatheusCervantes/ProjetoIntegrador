@@ -30,18 +30,18 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="cpf" class="form-label">CPF</label>
-                                <input type="text" class="form-control" id="cpf_paciente" name="cpf" readonly>
+                                <input type="text" class="form-control cpf" id="cpf_paciente" name="cpf" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
                                 <label for="rg" class="form-label">RG</label>
-                                <input type="text" class="form-control" id="rg_paciente" name="rg" readonly>
+                                <input type="text" class="form-control rg" id="rg_paciente" name="rg" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <label for="data-nasc" class="form-label">Data de Nascimento</label>
-                            <input type="text" class="form-control" id="data-nasc_paciente" name="data-nasc" readonly>
+                            <input type="date" class="form-control" id="data-nasc_paciente" name="data-nasc" readonly>
                         </div>
                     </div>
                     <div class="row">
@@ -54,7 +54,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="tel" class="form-label">Telefone</label>
-                                <input type="tel" class="form-control" id="tel_paciente" name="tel" readonly>
+                                <input type="tel" class="form-control tel" id="tel_paciente" name="tel" readonly>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="cep" class="form-label">CEP</label>
-                                <input type="text" class="form-control" id="cep_paciente" name="cep" readonly>
+                                <input type="text" class="form-control cep" id="cep_paciente" name="cep" readonly>
                             </div>
                         </div>
                     </div>

@@ -12,12 +12,11 @@ class UserController extends Controller
     protected $userController;
     protected $senhaAleatoria;
 
-    public function store($nomeuser, $email, $type)
+    public function store($nomeuser, $type)
     {
         //Criando usuário
         $user = new User();
         $user->username = $nomeuser;
-        $user->email = $email;
         $user->password = hash('sha512', $this->senhaAleatoria = Str::random(12)); // Gerar senha aleatória gerada
         $user->type = $type;
         $user->save();
@@ -25,7 +24,8 @@ class UserController extends Controller
         return $user;
     }
 
-    public function sendemail($nome, $nomeuser, $email) {
+    public function sendemail($nome, $nomeuser, $email)
+    {
         $username = $nomeuser;
         $password = $this->senhaAleatoria;
 

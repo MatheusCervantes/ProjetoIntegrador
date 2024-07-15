@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse justify-content-center d-lg-block" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto d-flex align-items-center pe-3">
                     <li class="nav-item {{ Request::is('painel-adm') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('painel-adm') }}">Home</a>
+                        <a class="nav-link" href="/painel-adm">Home</a>
                     </li>
                     <li class="nav-item dropdown {{ Request::is('painel-adm/gestao*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGestao" role="button"
@@ -34,7 +34,7 @@
                         <ul class="dropdown-menu dropdown-menu-sm-only text-center text-sm-start text-md-start text-lg-start"
                             aria-labelledby="navbarDropdownGestao">
                             <li><a class="dropdown-item" href="/painel-adm/gestao-paciente">Paciente</a></li>
-                            <li><a class="dropdown-item" href="{{ route('gestao-medico') }}">Médico</a></li>
+                            <li><a class="dropdown-item" href="/painel-adm/gestao-medico">Médico</a></li>
                             <li><a class="dropdown-item" href="/painel-adm/gestao-recepcionista">Recepcionista</a></li>
                         </ul>
                     </li>
