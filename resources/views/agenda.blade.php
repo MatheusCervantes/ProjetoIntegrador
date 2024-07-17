@@ -33,15 +33,9 @@
                                 </div>
                                 <div class="col-2">
                                     <div class="d-flex align-items-center">
-                                        <ion-icon name="ellipse" class="text-success me-2 font-bullet"></ion-icon>
-                                        <div class="text-success font-resumo">Confirmado</div>
+                                        <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
+                                        <div class="text-danger font-resumo">Faltante</div>
                                     </div>
-                                </div>
-                                <div class="col-2">
-                                    <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
-                                        <span>Atender</span>
-                                        <ion-icon name="arrow-forward-circle-outline" class="align-middle fs-5"></ion-icon>
-                                    </a>
                                 </div>
                             </div>
                             <div class="row pt-3 pb-3 border-bottom align-items-center">
@@ -54,12 +48,12 @@
                                 </div>
                                 <div class="col-2">
                                     <div class="d-flex align-items-center">
-                                        <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
-                                        <div class="text-danger font-resumo">Desmarcado</div>
+                                        <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
+                                        <div class="text-warning font-resumo">Desmarcado</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row pt-3 pb-3 align-items-center">
+                            <div class="row pt-3 pb-3 border-bottom align-items-center">
                                 <div class="col-1">
                                     <div>11:00</div>
                                 </div>
@@ -70,13 +64,34 @@
                                 <div class="col-2">
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="ellipse" class="text-success me-2 font-bullet"></ion-icon>
-                                        <div class="text-success font-resumo">Confirmado</div>
+                                        <div class="text-success font-resumo">Concluído</div>
                                     </div>
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
+                                    <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3 w-100" type="button" data-toggle="tooltip" title="Gerenciar Consulta">
+                                        <span>Visualizar</span>
+                                        <ion-icon name="open-outline" class="align-middle font-resumo ps-1"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row pt-3 pb-3 align-items-center">
+                                <div class="col-1">
+                                    <div>11:30</div>
+                                </div>
+                                <div class="col-7">
+                                    <div class="font-nome-agenda">Rodrigo Mendes</div>
+                                    <div class="text-secondary">Bensaúde</div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="d-flex align-items-center">
+                                        <ion-icon name="ellipse" class="text-primary me-2 font-bullet"></ion-icon>
+                                        <div class="text-primary font-resumo">Confirmado</div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{ route('consultas') }}" class="btn btn-light shadow-sm border small me-3 w-100" type="button" data-toggle="tooltip" title="Iniciar Consulta">
                                         <span>Atender</span>
-                                        <ion-icon name="arrow-forward-circle-outline" class="align-middle fs-5"></ion-icon>
+                                        <ion-icon name="arrow-forward-circle-outline" class="align-middle font-nome-agenda ps-1"></ion-icon>
                                     </a>
                                 </div>
                             </div>
@@ -107,20 +122,38 @@
                             </div>
                             <div class="row pt-2 ms-1">
                                 <div class="col d-flex align-items-center">
-                                    <ion-icon name="ellipse" class="text-success me-2 font-bullet"></ion-icon>
-                                    <div class="text-success font-resumo">Confirmados</div>
+                                    <ion-icon name="ellipse" class="text-primary me-2 font-bullet"></ion-icon>
+                                    <div class="text-primary font-resumo">Confirmados</div>
                                 </div>
                                 <div class="col-auto">
-                                    <div>8</div>
+                                    <div>1</div>
+                                </div>
+                            </div>
+                            <div class="row pt-2 ms-1">
+                                <div class="col d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
+                                    <div class="text-warning font-resumo">Desmarcados</div>
+                                </div>
+                                <div class="col-auto">
+                                    <div>2</div>
+                                </div>
+                            </div>
+                            <div class="row pt-2 ms-1">
+                                <div class="col d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-success me-2 font-bullet"></ion-icon>
+                                    <div class="text-success font-resumo">Concluídos</div>
+                                </div>
+                                <div class="col-auto">
+                                    <div>7</div>
                                 </div>
                             </div>
                             <div class="row pt-2 ms-1">
                                 <div class="col d-flex align-items-center">
                                     <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
-                                    <div class="text-danger font-resumo">Desmarcados</div>
+                                    <div class="text-danger font-resumo">Faltantes</div>
                                 </div>
                                 <div class="col-auto">
-                                    <div>2</div>
+                                    <div>0</div>
                                 </div>
                             </div>
                         </div>

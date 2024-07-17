@@ -113,23 +113,6 @@
                                             </div>
                                             <div class="row gutters p-2">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <h5 class="mt-2 mb-3 text-primary">Informações de Acesso</h5>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="username">Nome de Usuário</label>
-                                                        <input type="text" class="form-control" id="username" name="username" readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="senha">Senha</label>
-                                                        <input type="password" class="form-control" id="senha" name="senha" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row gutters p-2">
-                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="text-end mt-4">
                                                         <button type="button" class="btn btn-primary shadow-sm ms-3">
                                                             <div class="d-flex align-items-center">

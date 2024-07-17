@@ -25,7 +25,7 @@ ion-icon.icon-notific {
     font-size: 1.4rem;
 }
 
-ion-icon.icon-email,
+ion-icon.icon-nome-usuario,
 ion-icon.icon-senha {
     font-size: 1.5rem;
 }
@@ -258,11 +258,63 @@ ion-icon.icon-senha {
 }
 
 #anamneseEditor {
-    height: 20vw;
+    height: 14vw;
+}
+
+#anamneseDetalhesEditor {
+    height: 14vw;
+}
+
+#anamneseEditarEditor {
+    height: 14vw;
 }
 
 #diagnosticoEditor {
-    height: 9vw;
+    height: 10vw;
+}
+
+#diagnosticoDetalhesEditor {
+    height: 10vw;
+}
+
+#diagnosticoEditarEditor {
+    height: 10vw;
+}
+
+#prescricoesEditor {
+    height: 14vw;
+}
+
+#prescricoesDetalhesEditor {
+    height: 14vw;
+}
+
+#prescricoesEditarEditor {
+    height: 14vw;
+}
+
+#examesEditor {
+    height: 14vw;
+}
+
+#examesDetalhesEditor {
+    height: 14vw;
+}
+
+#examesEditarEditor {
+    height: 14vw;
+}
+
+#atestadosEditor {
+    height: 14vw;
+}
+
+#atestadosDetalhesEditor {
+    height: 14vw;
+}
+
+#atestadosEditarEditor {
+    height: 14vw;
 }
 
 .bootstrap-tagsinput {
