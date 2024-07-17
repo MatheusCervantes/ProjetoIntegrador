@@ -102,8 +102,20 @@ $(document).ready(function () {
         $('#modalIniciarConsulta').modal('show');
     });
 
+    $('.btnDetalhesConsulta').click(function () {
+        $('#modalDetalhesConsulta').modal('show');
+    });
+
+    $('.btnEditarConsulta').click(function () {
+        $('#modalEditarConsulta').modal('show');
+    });
+
     $('.btnProntuarioPaciente').click(function () {
         $('#modalProntuarioPaciente').modal('show');
+    });
+
+    $('.btnEditarAcesso').click(function () {
+        $('#modalEditarAcesso').modal('show');
     });
 });
 
@@ -364,39 +376,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var ctx = $("#grafico-medico-atendimentos");
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Amil", "Unimed", "Hapvida", "Outros"],
-            datasets: [{
-                data: [33, 35, 20, 12],
-                backgroundColor: ['#f8ed7d', '#7df897', '#f8897d', '#7d9bf8'],
-                hoverBackgroundColor: ['#dfd571', '#64c679', '#df7b71', '#647cc6'],
-                hoverBorderColor: "rgba(234, 236, 244, 1)",
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                caretPadding: 10,
-            },
-            legend: {
-                display: false
-            },
-            cutoutPercentage: 80,
-        },
-    });
-});
-
-$(document).ready(function () {
     var ctx = $("#grafico-financeiro-entradas");
     var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -462,7 +441,6 @@ $(document).ready(function () {
                     ticks: {
                         maxTicksLimit: 5,
                         padding: 10,
-                        // Include a dollar sign in the ticks
                         callback: function (value, index, values) {
                             return '$' + number_format(value);
                         }
@@ -679,6 +657,45 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("vicio-nao").addEventListener("click", function () {
         document.getElementById("info-vicio").style.display = "none";
     });
+    
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("editar-alergia-sim").addEventListener("click", function () {
+        document.getElementById("info-editar-alergia-medicamentos").style.display = "block";
+    });
+    document.getElementById("editar-alergia-nao").addEventListener("click", function () {
+        document.getElementById("info-editar-alergia-medicamentos").style.display = "none";
+    });
+
+    document.getElementById("editar-cirurgia-sim").addEventListener("click", function () {
+        document.getElementById("info-editar-cirurgia").style.display = "block";
+    });
+    document.getElementById("editar-cirurgia-nao").addEventListener("click", function () {
+        document.getElementById("info-editar-cirurgia").style.display = "none";
+    });
+
+    document.getElementById("editar-medicamento-sim").addEventListener("click", function () {
+        document.getElementById("info-editar-medicamento-regular").style.display = "block";
+    });
+    document.getElementById("editar-medicamento-nao").addEventListener("click", function () {
+        document.getElementById("info-editar-medicamento-regular").style.display = "none";
+    });
+
+    document.getElementById("editar-condicao-sim").addEventListener("click", function () {
+        document.getElementById("info-editar-condicao-preexistente").style.display = "block";
+    });
+    document.getElementById("editar-condicao-nao").addEventListener("click", function () {
+        document.getElementById("info-editar-condicao-preexistente").style.display = "none";
+    });
+
+    document.getElementById("editar-vicio-sim").addEventListener("click", function () {
+        document.getElementById("info-editar-vicio").style.display = "block";
+    });
+    document.getElementById("editar-vicio-nao").addEventListener("click", function () {
+        document.getElementById("info-editar-vicio").style.display = "none";
+    });
+    
 });
 
 $(document).ready(function () {
@@ -699,6 +716,155 @@ $(document).ready(function () {
                     theme: 'snow'
                 });
                 $('#diagnosticoEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+    $('#nav-prescricoes-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#prescricoesEditor').data('quill')) {
+                var quill = new Quill('#prescricoesEditor', {
+                    theme: 'snow'
+                });
+                $('#prescricoesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+    $('#nav-exames-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#examesEditor').data('quill')) {
+                var quill = new Quill('#examesEditor', {
+                    theme: 'snow'
+                });
+                $('#examesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+    $('#nav-atestados-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#atestadosEditor').data('quill')) {
+                var quill = new Quill('#atestadosEditor', {
+                    theme: 'snow'
+                });
+                $('#atestadosEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+});
+
+$(document).ready(function () {
+    $('#nav-detalhes-anamnese-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#anamneseDetalhesEditor').data('quill')) {
+                var quill = new Quill('#anamneseDetalhesEditor', {
+                    theme: 'snow',
+                    readOnly: true
+                });
+                $('#anamneseDetalhesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-detalhes-diagnostico-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#diagnosticoDetalhesEditor').data('quill')) {
+                var quill = new Quill('#diagnosticoDetalhesEditor', {
+                    theme: 'snow',
+                    readOnly: true
+                });
+                $('#diagnosticoDetalhesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-detalhes-prescricoes-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#prescricoesDetalhesEditor').data('quill')) {
+                var quill = new Quill('#prescricoesDetalhesEditor', {
+                    theme: 'snow',
+                    readOnly: true
+                });
+                $('#prescricoesDetalhesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-detalhes-exames-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#examesDetalhesEditor').data('quill')) {
+                var quill = new Quill('#examesDetalhesEditor', {
+                    theme: 'snow',
+                    readOnly: true
+                });
+                $('#examesDetalhesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-detalhes-atestados-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#atestadosDetalhesEditor').data('quill')) {
+                var quill = new Quill('#atestadosDetalhesEditor', {
+                    theme: 'snow',
+                    readOnly: true
+                });
+                $('#atestadosDetalhesEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+});  
+
+$(document).ready(function () {
+    $('#nav-editar-anamnese-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#anamneseEditarEditor').data('quill')) {
+                var quill = new Quill('#anamneseEditarEditor', {
+                    theme: 'snow'
+                });
+                $('#anamneseEditarEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-editar-diagnostico-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#diagnosticoEditarEditor').data('quill')) {
+                var quill = new Quill('#diagnosticoEditarEditor', {
+                    theme: 'snow'
+                });
+                $('#diagnosticoEditarEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-editar-prescricoes-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#prescricoesEditarEditor').data('quill')) {
+                var quill = new Quill('#prescricoesEditarEditor', {
+                    theme: 'snow'
+                });
+                $('#prescricoesEditarEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-editar-exames-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#examesEditarEditor').data('quill')) {
+                var quill = new Quill('#examesEditarEditor', {
+                    theme: 'snow'
+                });
+                $('#examesEditarEditor').data('quill', quill);
+            }
+        }, 200);
+    });
+
+    $('#nav-editar-atestados-tab').on('click', function () {
+        setTimeout(function () {
+            if (!$('#atestadosEditarEditor').data('quill')) {
+                var quill = new Quill('#atestadosEditarEditor', {
+                    theme: 'snow'
+                });
+                $('#atestadosEditarEditor').data('quill', quill);
             }
         }, 200);
     });

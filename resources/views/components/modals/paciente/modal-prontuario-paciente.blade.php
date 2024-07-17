@@ -4,8 +4,9 @@
             <div class="modal-header bg-body-tertiary d-flex flex-column align-items-center pb-0">
                 <div class="d-flex justify-content-between w-100 mt-2">
                     <div class="d-flex align-items-center ms-3">
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png" width="108rem" alt="Ícone Masculino">
-                        <!-- FEMININO: <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/woman-user-circle-icon.png" width="108rem" alt="Ícone Feminino"> -->
+                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-dark-subtle text-white" style="width: 5.5vw; height: 5.5vw;">
+                            <div class="fs-3">JS</div>
+                        </div>
                         <div class="ms-3">
                             <h4 class="mb-0 fw-semibold">João da Silva</h4>
                             <h5 class="mb-0 text-dark-emphasis">29 anos</h5>
@@ -19,6 +20,7 @@
                 </div>
                 <nav class="nav nav-tabs w-100 justify-content-center mt-4 border-bottom-0" id="nav-tab" role="tablist">
                     <button class="nav-link active py-2" id="nav-identificacao-tab" data-bs-toggle="tab" data-bs-target="#nav-identificacao" type="button" role="tab" aria-controls="nav-identificacao" aria-selected="true">Identificação</button>
+                    <button class="nav-link py-2" id="nav-dados-medicos-tab" data-bs-toggle="tab" data-bs-target="#nav-dados-medicos" type="button" role="tab" aria-controls="nav-dados-medicos" aria-selected="false">Dados Médicos</button>
                     <button class="nav-link py-2" id="nav-consultas-tab" data-bs-toggle="tab" data-bs-target="#nav-consultas" type="button" role="tab" aria-controls="nav-consultas" aria-selected="false">Consultas</button>
                 </nav>
             </div>
@@ -151,6 +153,155 @@
                             </div>
                         </form>
                     </div>
+                    <div class="tab-pane fade" id="nav-dados-medicos" role="tabpanel" aria-labelledby="nav-dados-medicos-tab">
+                        <form>
+                            <div class="row mx-5">
+                                <div class="border border-2 border-primary-subtle rounded p-3">
+                                    <div class="pb-2">Peso do paciente</div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <input type="text" class="form-control" id="peso" name="peso" placeholder="Digite aqui..." readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Altura do paciente</div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-2">
+                                                <input type="text" class="form-control" id="altura" name="altura" placeholder="Digite aqui..." readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Tem alergia a medicamentos?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-alergia-medicamentos" id="prontuario-alergia-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-alergia-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-alergia-medicamentos" id="prontuario-alergia-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-alergia-nao">Não</label>
+                                        </div>
+                                    </div>
+                                    <div id="info-prontuario-alergia-medicamentos" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mt-3">
+                                                    <textarea class="form-control" id="prontuario-alergias" name="prontuario-alergias" rows="2" placeholder="Qual(is)?" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Já fez cirurgia?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-cirurgia" id="prontuario-cirurgia-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-cirurgia-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-cirurgia" id="prontuario-cirurgia-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-cirurgia-nao">Não</label>
+                                        </div>
+                                    </div>
+                                    <div id="info-prontuario-cirurgia" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mt-3">
+                                                    <textarea class="form-control" id="prontuario-cirurgias" name="prontuario-cirurgias" rows="2" placeholder="Qual(is)?" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Toma algum medicamento regularmente?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-medicamento-regular" id="prontuario-medicamento-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-medicamento-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-medicamento-regular" id="prontuario-medicamento-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-medicamento-nao">Não</label>
+                                        </div>
+                                    </div>
+                                    <div id="info-prontuario-medicamento-regular" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mt-3">
+                                                    <textarea class="form-control" id="prontuario-medicamentos" name="prontuario-medicamentos" rows="2" placeholder="Qual(is)?" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Tem alguma condição de saúde preexistente?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-condicao-preexistente" id="prontuario-condicao-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-condicao-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-condicao-preexistente" id="prontuario-condicao-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-condicao-nao">Não</label>
+                                        </div>
+                                    </div>
+                                    <div id="info-prontuario-condicao-preexistente" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mt-3">
+                                                    <textarea class="form-control" id="prontuario-condicoes" name="prontuario-condicoes" rows="2" placeholder="Qual(is)?" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3">
+                                    <div class="pb-2">Pratica atividade física regularmente?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-atividade-fisica" id="prontuario-atividade-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-atividade-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-atividade-fisica" id="prontuario-atividade-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-atividade-nao">Não</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-2 border-primary-subtle rounded p-3 mt-3 mb-3">
+                                    <div class="pb-2">Tem algum vício (álcool, tabaco, outras substâncias)?</div>
+                                    <div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-vicio" id="prontuario-vicio-sim" value="sim" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-vicio-sim">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline align-middle">
+                                            <input class="form-check-input border-primary-subtle font-resumo" type="radio" name="prontuario-vicio" id="prontuario-vicio-nao" value="nao" disabled>
+                                            <label class="form-check-label font-resumo" for="prontuario-vicio-nao">Não</label>
+                                        </div>
+                                    </div>
+                                    <div id="info-prontuario-vicio" style="display: none;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mt-3">
+                                                    <textarea class="form-control" id="prontuario-vicios" name="prontuario-vicios" rows="2" placeholder="Qual(is)?" readonly></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="tab-pane fade" id="nav-consultas" role="tabpanel" aria-labelledby="nav-consultas-tab">
                         <div class="row" id="accordion-consultas">
                             <div class="col-9 mx-auto">
@@ -195,7 +346,7 @@
                                 </div>
                             </div>
                             <div class="col-9 mx-auto">
-                                <div class="card mb-2">
+                                <div class="card mb-3">
                                     <div class="card-header d-flex justify-content-between align-items-center" id="headingThree">
                                         <div>
                                             05/09/2023

@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2">
+                <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2">
                     <div class="card shadow-sm mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 text-primary">Perfil dos Pacientes</h6>
@@ -34,19 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 text-primary">Atendimentos por Plano de Saúde</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-pie">
-                                <canvas id="grafico-medico-atendimentos"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2">
+                <div class="col-xxl-8 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2">
                     <div class="card shadow-sm mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 text-primary">Consultas por Mês</h6>

@@ -21,10 +21,10 @@
                             <div class="input-group mb-3" width="3vw">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <ion-icon name="mail-outline" class="icon-email"></ion-icon>
+                                        <ion-icon name="person-outline" class="icon-nome-usuario"></ion-icon>
                                     </span>
                                 </div>
-                                <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail">
+                                <input type="text" name="nome-usuario" class="form-control" placeholder="Digite o nome de usuário">
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">

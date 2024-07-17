@@ -75,5 +75,7 @@
         </div>
     </div>
     @include('components.modals.consulta.modal-iniciar-consulta')
+    @include('components.modals.consulta.modal-editar-consulta')
+    @include('components.modals.consulta.modal-detalhes-consulta')
 </div>
 @endsection
