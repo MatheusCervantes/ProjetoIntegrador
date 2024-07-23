@@ -14,7 +14,7 @@ Route::get('/painel-medico/meu-perfil', function () {
     return view('meu-perfil');
 })->name('meu-perfil');
 
-Route::get('/painel-medico/meu-perfil', function () {
+Route::get('/painel-recepcionista/meu-perfil', function () {
     return view('meu-perfil');
 })->name('meu-perfil');
 
@@ -22,9 +22,21 @@ Route::get('/painel-adm/gestao-paciente', function () {
     return view('gestao-paciente');
 })->name('gestao-paciente');
 
+Route::get('/painel-recepcionista/gestao-paciente', function () {
+    return view('gestao-paciente');
+})->name('gestao-paciente');
+
 Route::get('/painel-adm/gestao-medico', function () {
     return view('gestao-medico');
 })->name('gestao-medico');
+
+Route::get('/painel-recepcionista/consultas-agendar', function () {
+    return view('consultas-agendar');
+})->name('consultas-agendar');
+
+Route::get('/painel-recepcionista/consultas-gerenciar', function () {
+    return view('consultas-gerenciar');
+})->name('consultas-gerenciar');
 
 //Rota dashboard painel-adm
 Route::get('/painel-adm', [DashboardController::class, 'index']);
@@ -79,6 +91,10 @@ Route::get('/painel-adm/relatorio', function () {
 Route::get('/painel-medico', function () {
     return view('painel-medico');
 })->name('painel-medico');
+
+Route::get('/painel-recepcionista', function () {
+    return view('painel-recepcionista');
+})->name('painel-recepcionista');
 
 Route::get('/painel-medico/agenda', function () {
     return view('agenda');

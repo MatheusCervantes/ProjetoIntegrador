@@ -15,29 +15,26 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
+                    <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
+                    <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
         <div class="collapse navbar-collapse justify-content-center d-lg-block" id="navbarResponsive">
             <ul class="navbar-nav mx-auto d-flex align-items-center pe-3">
-                <li class="nav-item {{ Request::is('painel-adm') ? 'active' : '' }}">
-                    <a class="nav-link" href="/painel-adm">Home</a>
+                <li class="nav-item {{ Request::is('painel-recepcionista') ? 'active' : '' }}">
+                    <a class="nav-link" href="/painel-recepcionista">Home</a>
                 </li>
-                <li class="nav-item dropdown {{ Request::is('painel-adm/gestao*') ? 'active' : '' }}">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGestao" role="button" data-bs-toggle="dropdown">Gestão </a>
-                    <ul class="dropdown-menu dropdown-menu-sm-only text-center text-sm-start text-md-start text-lg-start" aria-labelledby="navbarDropdownGestao">
-                        <li><a class="dropdown-item" href="/painel-adm/gestao-paciente">Paciente</a></li>
-                        <li><a class="dropdown-item" href="/painel-adm/gestao-medico">Médico</a></li>
-                        <li><a class="dropdown-item" href="/painel-adm/gestao-recepcionista">Recepcionista</a></li>
+                <li class="nav-item {{ Request::is('painel-recepcionista/gestao-paciente') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('gestao-paciente') }}">Pacientes</a>
+                </li>
+                <li class="nav-item dropdown {{ Request::is('painel-recepcionista/consultas*') ? 'active' : '' }}">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConsultas" role="button" data-bs-toggle="dropdown">Consultas </a>
+                    <ul class="dropdown-menu dropdown-menu-sm-only text-center text-sm-start text-md-start text-lg-start" aria-labelledby="navbarDropdownConsultas">
+                        <li><a class="dropdown-item" href="/painel-recepcionista/consultas-agendar">Agendar</a></li>
+                        <li><a class="dropdown-item" href="/painel-recepcionista/consultas-gerenciar">Gerenciar</a></li>
                     </ul>
-                </li>
-                <li class="nav-item {{ Request::is('painel-adm/financeiro') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('financeiro') }}">Financeiro</a>
-                </li>
-                <li class="nav-item {{ Request::is('painel-adm/relatorio') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('relatorio') }}">Relatório</a>
                 </li>
             </ul>
         </div>
@@ -47,22 +44,22 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
+                    <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
+                    <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    @include('components.modals.usuario.modal-editar-senha')
+    @include('components.modals.usuario.modal-editar-acesso')
 </nav>
 @endsection
 
 @push('scripts')
+<script src="/js/scripts.js"></script>
+<script src="/js/hjsCalendar.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<script src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/js/scripts.js"></script>
+<link rel="stylesheet" href="/css/hjsCalendar.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 @endpush
