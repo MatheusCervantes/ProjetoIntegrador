@@ -42,7 +42,7 @@
                                             <div class="col-xxl-3 col-xl-auto col-lg-4 col-md-6 col-sm-6 col-6">
                                                 <div class="form-group mb-3">
                                                     <label for="tipo-relatorio-dados" class="form-label">Tipo<span class="required-field">*</span></label>
-                                                    <ion-icon name="help-circle-outline" class="ps-2 cursor custom-tooltip" data-toggle="tooltip" data-placement="top" title="O tipo simples possui apenas alguns dados, enquanto o tipo completo inclui todos os dados."></ion-icon>
+                                                    <ion-icon name="help-circle-outline" class="ps-2 cursor" data-toggle="tooltip" data-placement="top" title="O tipo simples possui apenas alguns dados, enquanto o tipo completo inclui todos os dados."></ion-icon>
                                                     <select id="tipo-relatorio-dados" name="tipo-relatorio-dados" class="form-select" required>
                                                         <option disabled selected>Selecione o tipo...</option>
                                                         <option value="simples">Simples</option>

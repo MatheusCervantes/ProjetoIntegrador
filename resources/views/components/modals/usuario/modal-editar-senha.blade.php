@@ -1,4 +1,4 @@
-<div class="modal fade modal-md" id="modalEditarSenha" tabindex="-1" aria-labelledby="modalEditarSenhaLabel" aria-hidden="true">
+<div class="modal fade modal-md" data-bs-backdrop="static" data-bs-keyboard="false" id="modalEditarSenha" tabindex="-1" aria-labelledby="modalEditarSenhaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 450px; width: 100%;">
         <div class="modal-content">
             <div class="modal-header bg-light">

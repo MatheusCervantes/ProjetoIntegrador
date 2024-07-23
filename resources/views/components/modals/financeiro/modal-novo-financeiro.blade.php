@@ -1,4 +1,4 @@
-<div class="modal fade modal-lg" id="modalNovoFinanceiro" tabindex="-1" aria-labelledby="modalNovoFinanceiroLabel" aria-hidden="true">
+<div class="modal fade modal-lg" data-bs-backdrop="static" data-bs-keyboard="false" id="modalNovoFinanceiro" tabindex="-1" aria-labelledby="modalNovoFinanceiroLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" style="width:100%;max-width:800px;">
         <div class="modal-content">
             <div class="modal-header bg-body-tertiary">

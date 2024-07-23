@@ -176,6 +176,14 @@ ion-icon.icon-senha {
     font-size: 0.97rem;
 }
 
+.font-infos {
+    font-size: 1.10rem;
+}
+
+.font-atendimento {
+    font-size: 0.99rem;
+}
+
 #calendario-agenda {
     margin-top: 0.7rem;
 }
@@ -257,98 +265,34 @@ ion-icon.icon-senha {
     margin-top: 1.9rem !important;
 }
 
-#anamneseEditor {
-    height: 14vw;
-}
-
-#anamneseDetalhesEditor {
-    height: 14vw;
-}
-
+#anamneseEditor,
+#anamneseDetalhesEditor,
 #anamneseEditarEditor {
     height: 14vw;
 }
 
-#diagnosticoEditor {
-    height: 10vw;
-}
-
-#diagnosticoDetalhesEditor {
-    height: 10vw;
-}
-
+#diagnosticoEditor,
+#diagnosticoDetalhesEditor,
 #diagnosticoEditarEditor {
     height: 10vw;
 }
 
-#prescricoesEditor {
-    height: 14vw;
-}
-
-#prescricoesDetalhesEditor {
-    height: 14vw;
-}
-
+#prescricoesEditor,
+#prescricoesDetalhesEditor,
 #prescricoesEditarEditor {
     height: 14vw;
 }
 
-#examesEditor {
-    height: 14vw;
-}
-
-#examesDetalhesEditor {
-    height: 14vw;
-}
-
+#examesEditor,
+#examesDetalhesEditor,
 #examesEditarEditor {
     height: 14vw;
 }
 
-#atestadosEditor {
-    height: 14vw;
-}
-
-#atestadosDetalhesEditor {
-    height: 14vw;
-}
-
+#atestadosEditor,
+#atestadosDetalhesEditor,
 #atestadosEditarEditor {
     height: 14vw;
-}
-
-.bootstrap-tagsinput {
-    width: 100%;
-}
-
-.bootstrap-tagsinput input[type="text"] {
-    padding: 0.23vw;
-}
-
-.bootstrap-tagsinput .tag {
-    margin-right: 1vw;
-    color: #3c3c3c !important;
-    background-color: #e6f2ff;
-    padding: 0.5vw;
-    font-size: 1vw;
-    margin-top: 0.26vw;
-    margin-bottom: 0.26vw;
-    border-radius: 0.3vw;
-    font-weight: normal;
-}
-
-.bootstrap-tagsinput .tag [data-role="remove"] {
-    padding-left: 0.8vw;
-    cursor: pointer;
-    color: #3c3c3c;
-    font-size: 1vw;
-    font-weight: bold !important;
-}
-
-.bootstrap-tagsinput input {
-    color: #333 !important;
-    font-size: 1vw;
-    font-weight: normal;
 }
 
 .cursor {
@@ -358,10 +302,80 @@ ion-icon.icon-senha {
 .tooltip-inner {
     background-color: #dddddd !important;
     color: #000000 !important;
-    max-width: 25vw !important; 
-    text-align: left; 
+    max-width: 25vw !important;
+    text-align: left;
 }
 
 .tooltip-arrow::before {
     border-top-color: #dddddd !important;
+    border-bottom-color: #dddddd !important;
+}
+
+.avatar-md {
+    height: 5rem;
+    width: 5rem;
+}
+
+.badge-soft-danger {
+    color: #f56e6e !important;
+    background-color: rgba(245, 110, 110, .1);
+    font-size: 0.9rem !important;
+}
+
+.badge-soft-success {
+    color: #63ad6f !important;
+    background-color: rgba(99, 173, 111, .1);
+    font-size: 0.9rem !important;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.75rem;
+}
+
+.day-row {
+    margin-bottom: 10px;
+}
+
+.day-row .form-check {
+    width: 180px;
+}
+
+.day-row .time-container {
+    display: flex;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.input-group .form-control {
+    flex: 1;
+}
+
+.input-group-text {
+    width: auto;
+}
+
+@media (max-width: 576px) {
+
+    .day-row .form-check,
+    .day-row .time-container {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .day-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

@@ -15,10 +15,10 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li><a class="dropdown-item" href="#">Informações Profissionais</a></li>
-                    <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
-                    <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                    <li><button class="dropdown-item btnInfos font-resumo">Informações Profissionais<br>e de Atendimento</button></li>
+                    <li><button class="dropdown-item btnEditarAcesso font-resumo">Editar Acesso</button></li>
+                    <li><a class="dropdown-item font-resumo" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
+                    <li><a class="dropdown-item font-resumo" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -44,21 +44,23 @@
                     <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li><a class="dropdown-item" href="#">Informações Profissionais</a></li>
-                    <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
-                    <li><a class="dropdown-item" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
-                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                    <li><button class="dropdown-item btnInfos font-resumo">Informações Profissionais<br>e de Atendimento</button></li>
+                    <li><button class="dropdown-item btnEditarAcesso font-resumo">Editar Acesso</button></li>
+                    <li><a class="dropdown-item font-resumo" href="{{ route('meu-perfil') }}">Meu Perfil</a></li>
+                    <li><a class="dropdown-item font-resumo" href="#">Sair</a></li>
                 </ul>
             </div>
         </div>
     </div>
     @include('components.modals.usuario.modal-editar-acesso')
+    @include('components.modals.medico.modal-infos-prof-atend')
 </nav>
 @endsection
 
 @push('scripts')
 <script src="/js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>

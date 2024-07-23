@@ -34,7 +34,7 @@
                                 <div class="col-2">
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
-                                        <div class="text-danger font-resumo">Faltante</div>
+                                        <div class="text-danger font-resumo">Cancelado</div>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="col-2">
                                     <div class="d-flex align-items-center">
                                         <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
-                                        <div class="text-warning font-resumo">Desmarcado</div>
+                                        <div class="text-warning font-resumo">Reagendado</div>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                         <div class="card-body py-3">
                             <div class="row">
                                 <div class="col">
-                                    <div>Agendamentos</div>
+                                    <div>Atendimentos</div>
                                 </div>
                                 <div class="col-auto">
                                     <div>10</div>
@@ -132,7 +132,7 @@
                             <div class="row pt-2 ms-1">
                                 <div class="col d-flex align-items-center">
                                     <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
-                                    <div class="text-warning font-resumo">Desmarcados</div>
+                                    <div class="text-warning font-resumo">Reagendados</div>
                                 </div>
                                 <div class="col-auto">
                                     <div>2</div>
@@ -150,7 +150,7 @@
                             <div class="row pt-2 ms-1">
                                 <div class="col d-flex align-items-center">
                                     <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
-                                    <div class="text-danger font-resumo">Faltantes</div>
+                                    <div class="text-danger font-resumo">Cancelados</div>
                                 </div>
                                 <div class="col-auto">
                                     <div>0</div>

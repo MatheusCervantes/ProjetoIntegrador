@@ -29,7 +29,7 @@
                                 <div class="col text-primary fw-semibold">Nome Completo</div>
                                 <div class="col text-primary fw-semibold">Plano de Saúde</div>
                                 <div class="col text-primary fw-semibold">Última Consulta</div>
-                                <div class="col-2 text-primary fw-semibold">Ações</div>
+                                <div class="col-2 text-primary fw-semibold">Ação</div>
                             </div>
                         </div>
                         <div class="card-body py-0 ps-3 dados2 border-bottom hscroll">

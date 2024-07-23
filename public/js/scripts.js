@@ -3,7 +3,6 @@ $(document).ready(function () {
     $('.rg').mask('00.000.000-0');
     $('.tel').mask('(00) 00000-0000');
     $('.cep').mask('00000-000');
-    $('.crm').mask('0000000/AA');
 
     $('.btnNovoPaciente').click(function () {
         $('#modalNovoPaciente').modal('show');
@@ -311,6 +310,8 @@ $('.btnExcluirRecepcionista').on('click', function () {
 // Fim gestão recepcionista
 
 $(document).ready(function () {
+    $('.crm').mask('0000000/AA');
+
     $('.btnIniciarConsulta').click(function () {
         $('#modalIniciarConsulta').modal('show');
     });
@@ -329,6 +330,39 @@ $(document).ready(function () {
 
     $('.btnEditarAcesso').click(function () {
         $('#modalEditarAcesso').modal('show');
+    });
+
+    $('.btnInfos').click(function () {
+        $('#modalInfos').modal('show');
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.form-check-input').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const inputs = this.closest('.day-row').querySelectorAll('input[type="time"]');
+            inputs.forEach(input => {
+                input.disabled = !this.checked;
+            });
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('.btnCancelarConsulta').click(function () {
+        $('#modalCancelarConsulta').modal('show');
+    });
+
+    $('.btnAgendarConsulta').click(function () {
+        $('#modalAgendarConsulta').modal('show');
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('flexSwitchCheckDefault').addEventListener('change', function () {
+        var isChecked = this.checked;
+        document.getElementById('nome').disabled = !isChecked;
+        document.getElementById('telefone').disabled = !isChecked;
     });
 });
 
@@ -785,6 +819,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    var dataInput = document.getElementById('data-consulta2');
+    var dataAtual = new Date().toISOString().split('T')[0];
+    dataInput.value = dataAtual;
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     function formatarData(data) {
         const dia = String(data.getUTCDate()).padStart(2, '0');
         const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
@@ -818,7 +858,45 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('data-consulta').addEventListener('change', atualizarData);
 
     atualizarData();
-})
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    function formatarData2(data) {
+        const dia = String(data.getUTCDate()).padStart(2, '0');
+        const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
+        const ano = data.getUTCFullYear();
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    function dataPorExtenso2(data) {
+        const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+        const dia = data.getUTCDate();
+        const mes = meses[data.getUTCMonth()];
+        const ano = data.getUTCFullYear();
+        return `${dia} de ${mes} de ${ano}`;
+    }
+
+    function atualizarData2() {
+        const dataInput = document.getElementById('data-consulta2');
+        if (dataInput.value) {
+            const dataSelecionada = new Date(dataInput.value);
+            const textoDataFormatada = formatarData2(dataSelecionada);
+            const textoDataPorExtenso = dataPorExtenso2(dataSelecionada);
+
+            const h6Data = document.getElementById('data-calendario-consulta2');
+            h6Data.textContent = textoDataPorExtenso;
+
+            const dataColunas = document.getElementsByClassName('data-coluna-consulta2');
+            for (let i = 0; i < dataColunas.length; i++) {
+                dataColunas[i].innerHTML = `${textoDataFormatada}`;
+            }
+        }
+    }
+
+    document.getElementById('data-consulta2').addEventListener('change', atualizarData2);
+
+    atualizarData2();
+});
 
 $(document).ready(function () {
     // Função para verificar e exibir/ocultar o elemento
@@ -929,7 +1007,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("vicio-nao").addEventListener("click", function () {
         document.getElementById("info-vicio").style.display = "none";
     });
-    
+
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -967,7 +1045,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editar-vicio-nao").addEventListener("click", function () {
         document.getElementById("info-editar-vicio").style.display = "none";
     });
-    
+
 });
 
 $(document).ready(function () {
@@ -1083,7 +1161,7 @@ $(document).ready(function () {
             }
         }, 200);
     });
-});  
+});
 
 $(document).ready(function () {
     $('#nav-editar-anamnese-tab').on('click', function () {
@@ -1188,23 +1266,8 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
-/* API DO CID
-$(document).ready(function() {
-    var apiUrl = 'https://api.example.com/cid'; 
-
-    $.ajax({
-        url: apiUrl,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            var select = $('#cidSelect');
-            $.each(data, function(index, item) {
-                select.append($('<option></option>').val(item.code).text(item.description));
-            });
-        },
-        error: function() {
-            alert('Erro ao carregar a lista de CID.');
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    hjsCalendar(function (confirmTime) {
+        alert(confirmTime);
     });
 });
-*/
