@@ -38,51 +38,72 @@ Route::get('/painel-recepcionista/consultas-gerenciar', function () {
     return view('consultas-gerenciar');
 })->name('consultas-gerenciar');
 
-//Rota dashboard painel-adm
-Route::get('/painel-adm', [DashboardController::class, 'index']);
+//Criando rota de login
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
 
-//Rotas painel-adm gestão recepcionista
-Route::get('/painel-adm/gestao-recepcionista', [RecepcionistaController::class, 'index']);
+//Middleware para verificar se o tipo de usuário é admin
+Route::middleware(['auth', 'check.user.type:admin'])->group(function () {
+    //OBS, o método index foi removido, pois o método search já supri sua função
+    Route::get('/painel-adm', [DashboardController::class, 'index']);
 
-Route::post('/recepcionista/insert', [RecepcionistaController::class, 'store']);
+    //Rotas painel-adm gestão recepcionista
+    Route::post('/recepcionista/insert', [RecepcionistaController::class, 'store']);
 
-Route::get('/painel-adm/gestao-recepcionista/{id}', [RecepcionistaController::class, 'show']);
+    Route::get('/painel-adm/gestao-recepcionista/{id}', [RecepcionistaController::class, 'show']);
 
-Route::put('/painel-adm/gestao-recepcionista/edit/{id}', [RecepcionistaController::class, 'update_repcionista']);
+    Route::put('/painel-adm/gestao-recepcionista/edit/{id}', [RecepcionistaController::class, 'update_repcionista']);
 
-Route::delete('/painel-adm/gestao-recepcionista/delete/{id}', [RecepcionistaController::class, 'delete_repcionista']);
+    Route::delete('/painel-adm/gestao-recepcionista/delete/{id}', [RecepcionistaController::class, 'delete_repcionista']);
 
-Route::get('/painel-adm/gestao-recepcionista', [RecepcionistaController::class, 'search'])->name('recepcionistas.search');
+    Route::get('/painel-adm/gestao-recepcionista', [RecepcionistaController::class, 'search'])->name('recepcionistas.search');
 
-//Rotas painel-adm gestão paciente
-Route::get('/painel-adm/gestao-paciente', [PacienteController::class, 'index']);
+    //Rotas painel-adm gestão paciente
+    Route::post('/paciente/insert', [PacienteController::class, 'store']);
 
-Route::post('/paciente/insert', [PacienteController::class, 'store']);
+    Route::get('/painel-adm/gestao-paciente/{id}', [PacienteController::class, 'show']);
 
-Route::get('/painel-adm/gestao-paciente/{id}', [PacienteController::class, 'show']);
+    Route::put('/painel-adm/gestao-paciente/edit/{id}', [PacienteController::class, 'update_paciente']);
 
-Route::put('/painel-adm/gestao-paciente/edit/{id}', [PacienteController::class, 'update_paciente']);
+    Route::delete('/painel-adm/gestao-paciente/delete/{id}', [PacienteController::class, 'delete_paciente']);
 
-Route::delete('/painel-adm/gestao-paciente/delete/{id}', [PacienteController::class, 'delete_paciente']);
+    Route::get('/painel-adm/gestao-paciente', [PacienteController::class, 'search'])->name('pacientes.search');
 
-Route::get('/painel-adm/gestao-paciente', [PacienteController::class, 'search'])->name('pacientes.search');
+    //Rotas painel-adm gestão medico
+    Route::post('/medico/insert', [MedicoController::class, 'store']);
 
-//Rotas painel-adm gestão medico
-Route::get('/painel-adm/gestao-medico', [MedicoController::class, 'index']);
+    Route::get('/painel-adm/gestao-medico/{id}', [MedicoController::class, 'show']);
 
-Route::post('/medico/insert', [MedicoController::class, 'store']);
+    Route::put('/painel-adm/gestao-medico/edit/{id}', [MedicoController::class, 'update_medico']);
 
-Route::get('/painel-adm/gestao-medico/{id}', [MedicoController::class, 'show']);
+    Route::delete('/painel-adm/gestao-medico/delete/{id}', [MedicoController::class, 'delete_medico']);
 
-Route::put('/painel-adm/gestao-medico/edit/{id}', [MedicoController::class, 'update_medico']);
+    Route::get('/painel-adm/gestao-medico', [MedicoController::class, 'search'])->name('medicos.search');
 
-Route::delete('/painel-adm/gestao-medico/delete/{id}', [MedicoController::class, 'delete_medico']);
+    //Altera senha adm
+    Route::put('/painel-adm/alterar_senha', [UserController::class, 'alterar_senha_adm']);
 
-Route::get('/painel-adm/gestao-medico', [MedicoController::class, 'search'])->name('medicos.search');
+    //Rotas painel-adm financeiro
+    Route::post('/financeiro/insert', [FinanceiroController::class, 'store']);
 
-Route::get('/painel-adm/financeiro', function () {
-    return view('financeiro');
-})->name('financeiro');
+    Route::get('/painel-adm/financeiro/{id}', [FinanceiroController::class, 'show']);
+
+    Route::put('/painel-adm/financeiro/edit/{id}', [FinanceiroController::class, 'update_financeiro']);
+
+    Route::delete('/painel-adm/financeiro/delete/{id}', [FinanceiroController::class, 'delete_financeiro']);
+
+    Route::get('/painel-adm/financeiro', [FinanceiroController::class, 'search'])->name('financeiro.search');
+
+    Route::get('/api/financeiro-dados', [FinanceiroController::class, 'dadosParaGrafico']);
+});
+
+//Middleware para verificar se o tipo de usuário é medico
+Route::middleware(['auth', 'check.user.type:medico'])->group(function () {
+});
+
+//Middleware para verificar se o tipo de usuário é medico
+Route::middleware(['auth', 'check.user.type:recepcionista'])->group(function () {
+});
 
 Route::get('/painel-adm/relatorio', function () {
     return view('relatorio');
@@ -107,13 +128,3 @@ Route::get('/painel-medico/pacientes', function () {
 Route::get('/painel-medico/consultas', function () {
     return view('consultas');
 })->name('consultas');
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});

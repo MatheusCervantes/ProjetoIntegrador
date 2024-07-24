@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Recepcionista;
+use App\Models\recepcionista\Recepcionista;
 use App\Http\Controllers\UserController;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,18 +15,6 @@ class RecepcionistaController extends Controller
     public function __construct(UserController $userController)
     {
         $this->userController = $userController;
-    }
-
-    public function index(Request $request)
-    {
-        $search = $request->input('search');
-
-        if ($search) {
-            $recepcionistas = Recepcionista::where('nome_completo', 'like', '%' . $search . '%')->get();
-        } else {
-            $recepcionistas = Recepcionista::all();
-        }
-        return view('gestao-recepcionista', ['recepcionistas' => $recepcionistas]);
     }
 
     public function store(Request $request)
@@ -51,7 +39,7 @@ class RecepcionistaController extends Controller
             // Criando nome de usuário
             $nome = $validatedData['nome'];
             $partesNome = explode(" ", $nome);
-            $nomeuser = strtolower($partesNome[0]) . "." . strtolower(end($partesNome)) . random_int(0, 99);
+            $nomeuser = strtolower($partesNome[0]) . "." . strtolower(end($partesNome)) . random_int(0, 99999);
 
             // Criar o usuário
             $user = $this->userController->store($nomeuser, 'recepcionista');
@@ -78,8 +66,8 @@ class RecepcionistaController extends Controller
             return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Recepcionista cadastrado com sucesso!');
         } catch (ValidationException $e) {
             // Captura os erros de validação
-            return redirect()->back()->with('error', $e->validator->errors());
-            //return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
+            //return redirect()->back()->with('error', $e->validator->errors());
+            return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
             return redirect()->back()->with('error', 'Erro ao inserir o recepcionista. Por favor, tente novamente mais tarde.');
