@@ -1,4 +1,4 @@
-<div class="modal fade modal-lg" id="modalDetalhesPaciente" tabindex="-1" aria-labelledby="modalDetalhesPacienteLabel" aria-hidden="true">
+<div class="modal fade modal-lg" data-bs-backdrop="static" data-bs-keyboard="false" id="modalDetalhesPaciente" tabindex="-1" aria-labelledby="modalDetalhesPacienteLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-body-tertiary">

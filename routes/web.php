@@ -4,23 +4,39 @@ use App\Http\Controllers\admin\RecepcionistaController;
 use App\Http\Controllers\admin\PacienteController;
 use App\Http\Controllers\admin\MedicoController;
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\admin\FinanceiroController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
-})->name('login');
-
-Route::get('/cadastraadm', [UserController::class, 'cadastraradmin']);
+});
 
 Route::get('/painel-medico/meu-perfil', function () {
     return view('meu-perfil');
 })->name('meu-perfil');
 
-Route::get('/painel-medico/meu-perfil', function () {
+Route::get('/painel-recepcionista/meu-perfil', function () {
     return view('meu-perfil');
 })->name('meu-perfil');
+
+Route::get('/painel-adm/gestao-paciente', function () {
+    return view('gestao-paciente');
+})->name('gestao-paciente');
+
+Route::get('/painel-recepcionista/gestao-paciente', function () {
+    return view('gestao-paciente');
+})->name('gestao-paciente');
+
+Route::get('/painel-adm/gestao-medico', function () {
+    return view('gestao-medico');
+})->name('gestao-medico');
+
+Route::get('/painel-recepcionista/consultas-agendar', function () {
+    return view('consultas-agendar');
+})->name('consultas-agendar');
+
+Route::get('/painel-recepcionista/consultas-gerenciar', function () {
+    return view('consultas-gerenciar');
+})->name('consultas-gerenciar');
 
 //Criando rota de login
 Route::post('/login', [UserController::class, 'login']);
@@ -96,6 +112,10 @@ Route::get('/painel-adm/relatorio', function () {
 Route::get('/painel-medico', function () {
     return view('painel-medico');
 })->name('painel-medico');
+
+Route::get('/painel-recepcionista', function () {
+    return view('painel-recepcionista');
+})->name('painel-recepcionista');
 
 Route::get('/painel-medico/agenda', function () {
     return view('agenda');
