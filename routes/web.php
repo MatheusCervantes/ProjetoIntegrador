@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\PacienteController;
 use App\Http\Controllers\admin\MedicoController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\FinanceiroController;
+use App\Http\Controllers\admin\RelatorioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -97,6 +98,10 @@ Route::middleware(['auth', 'check.user.type:admin'])->group(function () {
     Route::get('/painel-adm/financeiro', [FinanceiroController::class, 'search'])->name('financeiro.search');
 
     Route::get('/api/financeiro-dados', [FinanceiroController::class, 'dadosParaGrafico']);
+
+    Route::get('/relatorio/financeiro', [RelatorioController::class, 'relatorio_financeiro'])->name('relatorio.financeiro');
+
+    Route::get('/painel-adm/gerar-relatorio');
 });
 
 //Middleware para verificar se o tipo de usuário é medico
