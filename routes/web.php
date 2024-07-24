@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\RecepcionistaController;
 use App\Http\Controllers\admin\PacienteController;
 use App\Http\Controllers\admin\MedicoController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\FinanceiroController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
