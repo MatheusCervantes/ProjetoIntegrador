@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\medico\Medicos;
 use App\Models\paciente\Pacientes;
-use App\Models\Recepcionista;
+use App\Models\recepcionista\Recepcionista;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-
         $countMedicos = Medicos::count();
         $countPacientes = Pacientes::count();
         $countRecepcionistas = Recepcionista::count();

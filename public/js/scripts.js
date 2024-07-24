@@ -33,15 +33,16 @@ $(document).ready(function () {
         $('#modalNovoFinanceiro').modal('show');
     });
 
-    $('.btnDetalhesFinanceiro').click(function () {
-        $('#modalDetalhesFinanceiro').modal('show');
-    });
-
-    $('.btnEditarFinanceiro').click(function () {
-        $('#modalEditarFinanceiro').modal('show');
+    $('.btnExcluirFinanceiro').click(function () {
+        $('#modalExcluirFinanceiro').modal('show');
     });
 
     $('.btnEditarSenha').click(function () {
+        $('#modalEditarSenha').modal('show');
+    });
+
+    $('#btn_mudar_senha').click(function () {
+        $('#firstpasswordModal').modal('hide');
         $('#modalEditarSenha').modal('show');
     });
 
@@ -310,6 +311,57 @@ $('.btnExcluirRecepcionista').on('click', function () {
 
 // Fim gestão recepcionista
 
+// Js painel financeiro
+$('.btnDetalhesFinanceiro').on('click', function () {
+    var id = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/financeiro/' + id,
+        method: 'GET',
+        success: function (data) {
+            $('#data-hora_financeiro').val(data.data_hora);
+            $('#movimentacao_financeiro').val(data.movimentacao);
+            $('#valor_financeiro').val(data.valor);
+            $('#tipo_financeiro').val(data.tipo);
+            $('#modalDetalhesFinanceiro').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalDetalhesFinanceiro .modal-body').html('Erro ao carregar dados.');
+            $('#modalDetalhesFinanceiro').modal('show');
+        }
+    });
+});
+
+$('.btnEditarFinanceiro').on('click', function () {
+    var id_edição = $(this).data('id');
+
+    $.ajax({
+        url: '/painel-adm/financeiro/' + id_edição,
+        method: 'GET',
+        success: function (data) {
+            $('#formEditarFinanceiro').attr('action', '/painel-adm/financeiro/edit/' + id_edição);
+            $('#data-hora_financeiro_edit').val(data.data_hora);
+            $('#movimentacao_financeiro_edit').val(data.movimentacao);
+            $('#valor_financeiro_edit').val(data.valor);
+            $('#tipo_financeiro_edit').val(data.tipo);
+            $('#modalEditarFinanceiro').modal('show');
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao carregar dados:', error);
+            $('#modalEditarFinanceiro .modal-body').html('Erro ao carregar dados.');
+            $('#modalEditarFinanceiro').modal('show');
+        }
+    });
+});
+
+$('.btnExcluirFinanceiro').on('click', function () {
+    var financeiroId = $(this).data('id');
+    var formAction = '/painel-adm/financeiro/delete/' + financeiroId;
+    $('#formExcluirFinanceiro').attr('action', formAction);
+});
+//Fim painel financeiro
+
 $(document).ready(function () {
     $('.btnIniciarConsulta').click(function () {
         $('#modalIniciarConsulta').modal('show');
@@ -343,6 +395,9 @@ $(document).ready(function () {
         $('#periodoDataRelatorioDados span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         $('#periodoDataRelatorioConsultas span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         $('#filtroDataRelatorio span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+
+        $('#startDate').val(start.format('YYYY-MM-DD'));
+        $('#endDate').val(end.format('YYYY-MM-DD'));
     }
 
     $('#filtroDataFinanceiro, #periodoDataRelatorioDados, #periodoDataRelatorioConsultas, #filtroDataRelatorio').daterangepicker({
@@ -371,8 +426,11 @@ $(document).ready(function () {
         }
     }, cb);
 
+    // Inicializa o daterangepicker e atualiza os campos ocultos
     cb(start, end);
 });
+
+
 
 $(document).ready(function () {
     var ctx = $("#grafico-consultas");
@@ -589,111 +647,113 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    var ctx = $("#grafico-financeiro-entradas");
-    var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-            datasets: [{
-                label: "Entradas",
-                lineTension: 0.3,
-                backgroundColor: "#4e73df",
-                hoverBackgroundColor: "#2e59d9",
-                borderColor: "#4e73df",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [7230, 9145, 10650, 8260, 1890],
-            },
-            {
-                label: "Saídas",
-                lineTension: 0.3,
-                backgroundColor: "#e74a3b",
-                hoverBackgroundColor: "#e74a3b",
-                borderColor: "#e74a3b",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(255, 99, 132, 1)",
-                pointBorderColor: "rgba(255, 99, 132, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
-                pointHoverBorderColor: "rgba(255, 99, 132, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [6125, 7300, 7980, 6490, 430],
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 10,
-                    right: 25,
-                    top: 6,
-                    bottom: 2
-                }
-            },
-            scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'date'
+    $.ajax({
+        url: '/api/financeiro-dados',
+        method: 'GET',
+        success: function (data) {
+            var ctx = document.getElementById('grafico-financeiro-entradas').getContext('2d');
+
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                    datasets: [{
+                        label: "Entradas",
+                        lineTension: 0.3,
+                        backgroundColor: "#4e73df",
+                        borderColor: "#4e73df",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        data: data.entradas,
                     },
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        maxTicksLimit: 5,
-                        padding: 10,
-                        callback: function (value, index, values) {
-                            return '$' + number_format(value);
+                    {
+                        label: "Saídas",
+                        lineTension: 0.3,
+                        backgroundColor: "#e74a3b",
+                        borderColor: "#e74a3b",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(255, 99, 132, 1)",
+                        pointBorderColor: "rgba(255, 99, 132, 1)",
+                        data: data.saidas,
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 6,
+                            bottom: 2
                         }
                     },
-                    gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false,
-                        borderDash: [2],
-                        zeroLineBorderDash: [2]
-                    }
-                }]
-            },
-            legend: {
-                display: false
-            },
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                titleMarginBottom: 10,
-                titleFontColor: '#6e707e',
-                titleFontSize: 14,
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                intersect: false,
-                mode: 'index',
-                caretPadding: 10,
-                callbacks: {
-                    label: function (tooltipItem, chart) {
-                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                callback: function (value, index, values) {
+                                    return '$' + number_format(value);
+                                }
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function (tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                            }
+                        }
                     }
                 }
-            }
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Erro na requisição:", error);
         }
     });
 });
+
+function number_format(number) {
+    return new Intl.NumberFormat().format(number);
+}
 
 $(document).ready(function () {
     moment.updateLocale('pt-br', {
@@ -929,7 +989,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("vicio-nao").addEventListener("click", function () {
         document.getElementById("info-vicio").style.display = "none";
     });
-    
+
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -967,7 +1027,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("editar-vicio-nao").addEventListener("click", function () {
         document.getElementById("info-editar-vicio").style.display = "none";
     });
-    
+
 });
 
 $(document).ready(function () {
@@ -1083,7 +1143,7 @@ $(document).ready(function () {
             }
         }, 200);
     });
-});  
+});
 
 $(document).ready(function () {
     $('#nav-editar-anamnese-tab').on('click', function () {

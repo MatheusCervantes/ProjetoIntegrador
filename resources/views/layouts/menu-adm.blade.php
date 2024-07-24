@@ -19,7 +19,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <li><button type="submit" class="dropdown-item">Sair</button></li>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -39,7 +42,7 @@
                         </ul>
                     </li>
                     <li class="nav-item {{ Request::is('painel-adm/financeiro') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('financeiro') }}">Financeiro</a>
+                        <a class="nav-link" href="/painel-adm/financeiro">Financeiro</a>
                     </li>
                     <li class="nav-item {{ Request::is('painel-adm/relatorio') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('relatorio') }}">Relatório</a>
@@ -54,7 +57,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li><button class="dropdown-item btnEditarSenha">Editar Senha</button></li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <li><button type="submit" class="dropdown-item">Sair</button></li>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -67,10 +73,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     <script src="/js/scripts.js"></script>
 @endpush

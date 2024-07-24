@@ -16,13 +16,17 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="data-hora" class="form-label">Data e Hora</label>
-                                <input type="datetime-local" class="form-control" id="data-hora" name="data-hora" readonly>
+                                <input type="datetime-local" class="form-control" id="data-hora_financeiro" name="data-hora" readonly>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="movimentacao" class="form-label">Movimentação</label>
-                                <input type="text" class="form-control" id="movimentacao" name="movimentacao" readonly>
+                                <select id="movimentacao_financeiro" class="form-select" name="movimentacao" required>
+                                    <option disabled selected>Selecione...</option>
+                                    <option value="entrada">Entrada</option>
+                                    <option value="saida">Saída</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-4">
@@ -30,7 +34,7 @@
                                 <label for="valor" class="form-label">Valor</label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
-                                    <input type="text" class="form-control" id="valor" name="valor" readonly>
+                                    <input type="text" class="form-control" id="valor_financeiro" name="valor" readonly>
                                 </div>
                             </div>
                         </div>
@@ -39,13 +43,13 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="tipo" class="form-label">Tipo</label>
-                                <input type="text" class="form-control" id="tipo" name="tipo" readonly>
+                                <input type="text" class="form-control" id="tipo_financeiro" name="tipo" readonly>
                             </div>
                         </div>
                         <div class="col-auto">
                             <div class="mb-3 mt-4 pt-1">
                                 <div class="form-check-inline">
-                                    <input class="form-check-input me-1" type="checkbox" name="tipoDespesa" id="despesaFixa" value="fixa" disabled>
+                                    <input class="form-check-input me-1" type="checkbox" name="tipoDespesa" id="despesaFixa_financeiro" value="fixa" disabled>
                                     <label class="form-check-label me-2" for="despesaFixa">Despesa Fixa</label>
                                 </div>
                             </div>
@@ -54,11 +58,11 @@
                     <div class="row mb-3 d-none" id="recorrenciaDespesa-detalhes">
                         <div class="col">
                             <label for="recorrencia" class="form-label">Recorrência (em dias)</label>
-                            <input type="number" class="form-control" id="recorrencia" name="recorrencia" readonly>
+                            <input type="number" class="form-control" id="recorrencia_financeiro" name="recorrencia" disabled>
                         </div>
                         <div class="col">
                             <label for="inicioRecorrencia" class="form-label">A partir de</label>
-                            <input type="date" class="form-control" id="inicioRecorrencia" name="inicioRecorrencia" readonly>
+                            <input type="date" class="form-control" id="inicioRecorrencia_financeiro" name="inicioRecorrencia" disabled>
                         </div>
                     </div>
                 </form>

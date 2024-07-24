@@ -17,18 +17,6 @@ class MedicoController extends Controller
         $this->userController = $userController;
     }
 
-    public function index(Request $request)
-    {
-        $search = $request->input('search');
-
-        if ($search) {
-            $medicos = Medicos::where('nome_completo', 'like', '%' . $search . '%')->get();
-        } else {
-            $medicos = Medicos::all();
-        }
-        return view('gestao-medico', ['medicos' => $medicos]);
-    }
-
     public function store(Request $request)
     {
         try {
@@ -51,7 +39,7 @@ class MedicoController extends Controller
             // Criando nome de usuário
             $nome = $validatedData['nome'];
             $partesNome = explode(" ", $nome);
-            $nomeuser = strtolower($partesNome[0]) . "." . strtolower(end($partesNome)) . random_int(0, 99);
+            $nomeuser = strtolower($partesNome[0]) . "." . strtolower(end($partesNome)) . random_int(0, 99999);
 
             // Criar o usuário
             $user = $this->userController->store($nomeuser, 'medico');

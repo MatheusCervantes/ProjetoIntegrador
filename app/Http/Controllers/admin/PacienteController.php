@@ -13,18 +13,6 @@ use Illuminate\Database\QueryException;
 class PacienteController extends Controller
 {
 
-    public function index(Request $request)
-    {
-        $search = $request->input('search');
-
-        if ($search) {
-            $pacientes = Pacientes::where('nome_completo', 'like', '%' . $search . '%')->get();
-        } else {
-            $pacientes = Pacientes::all();
-        }
-        return view('gestao-paciente', ['pacientes' => $pacientes]);
-    }
-
     public function store(Request $request)
     {
         try {
