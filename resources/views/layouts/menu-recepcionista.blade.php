@@ -62,4 +62,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <link rel="stylesheet" href="/css/hjsCalendar.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/21.2.5/css/dx.light.css">
+<script src="https://cdn3.devexpress.com/jslib/21.2.5/js/jquery.min.js"></script>
+<script src="https://cdn3.devexpress.com/jslib/21.2.5/js/jszip.min.js"></script>
+<script src="https://cdn3.devexpress.com/jslib/21.2.5/js/dx.all.js"></script>
+<script src="https://cdn3.devexpress.com/jslib/21.2.5/js/localization/dx.messages.pt.js"></script>
 @endpush
