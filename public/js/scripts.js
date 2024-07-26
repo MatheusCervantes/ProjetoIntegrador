@@ -1331,3 +1331,63 @@ document.addEventListener('DOMContentLoaded', function () {
         alert(confirmTime);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    DevExpress.localization.locale('pt-br');
+
+    var resourcesData = [
+        { text: "Luzia Campos", id: 1, color: "#cb6bb2" },
+        { text: "Marcelo Alves", id: 2, color: "#56ca85" },
+        { text: "Guilherme Araújo", id: 3, color: "#1e90ff" }
+    ];
+
+    var data = [
+        { text: "João da Silva", ownerId: [2], startDate: new Date(2024, 6, 24, 7, 30), endDate: new Date(2024, 6, 24, 8, 0) },
+        { text: "Maria Oliveira", ownerId: [1], startDate: new Date(2024, 6, 24, 9, 15), endDate: new Date(2024, 6, 24, 9, 30) },
+        { text: "Thiago Bastos", ownerId: [3], startDate: new Date(2024, 6, 24, 9, 30), endDate: new Date(2024, 6, 24, 10, 0) }
+    ];
+
+    $("#scheduler").dxScheduler({
+        dataSource: data,
+        views: ["timelineDay"],
+        currentView: "timelineDay",
+        currentDate: new Date(),
+        firstDayOfWeek: 0,
+        startDayHour: 7,
+        endDayHour: 20,
+        cellDuration: 30,
+        groups: ["ownerId"],
+        resources: [{
+            fieldExpr: "ownerId",
+            allowMultiple: true,
+            dataSource: resourcesData,
+            label: "Owner",
+            useColorAsDefault: true
+        }],
+        editing: {
+            allowAdding: false,   
+            allowDeleting: false, 
+            allowDragging: false, 
+            allowResizing: false, 
+            allowUpdating: false  
+        },
+        height: 470,
+        resourceCellTemplate: function(cellData, cellIndex, cellElement) {
+            var color = cellData.color;
+            var text = cellData.text;
+
+            cellElement.append(
+                `<div class="dx-scheduler-group-header-content">
+                    <span class="owner-icon" style="background-color: ${color};"></span>
+                    ${text}
+                </div>`
+            );
+        },
+        onAppointmentDblClick: function(e) {
+            e.cancel = true; 
+        },
+        onAppointmentFormOpening: function(e) {
+            e.cancel = true;
+        }
+    });
+});
