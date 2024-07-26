@@ -81,6 +81,108 @@ $(document).ready(function () {
     });
 });
 
+//Informações médico
+$(document).on('click', '.btnInfos', function () {
+    $.ajax({
+        url: '/medico/info/preencher',
+        type: 'GET',
+        success: function (response) {
+            if (response.error) {
+                return;
+            }
+
+            // Preencher os campos do formulário com os dados recebidos
+            $('#crm').val(response.crm || '');
+            $('#especialidades').val(response.especialidades || '');
+            $('#areas-atuacao').val(response.atuacao || '');
+            $('#duracao-media').val(response.duracao_consulta || '');
+            $('#intervalo').val(response.intevalo_consulta || '');
+            $('#valor').val(response.valor_consulta || '');
+            $('#planos-saude').val(response.plano_saude || '');
+
+            // Atualiza os dias e horários
+            var dias = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+            dias.forEach(function (dia) {
+                if (response[dia]) {
+                    $('#' + dia).prop('checked', true);
+                    $('#' + dia + '_inicio').val(response[dia + '_inicio'] || '').prop('disabled', false);
+                    $('#' + dia + '_fim').val(response[dia + '_fim'] || '').prop('disabled', false);
+                    $('#' + dia + '_almoco_inicio').val(response[dia + '_almoco_inicio'] || '').prop('disabled', false);
+                    $('#' + dia + '_almoco_fim').val(response[dia + '_almoco_fim'] || '').prop('disabled', false);
+                } else {
+                    $('#' + dia).prop('checked', false);
+                    $('#' + dia + '_inicio').val('').prop('disabled', true);
+                    $('#' + dia + '_fim').val('').prop('disabled', true);
+                    $('#' + dia + '_almoco_inicio').val('').prop('disabled', true);
+                    $('#' + dia + '_almoco_fim').val('').prop('disabled', true);
+                }
+            });
+        },
+        error: function (xhr) {
+            if (xhr.status !== 404) {
+            }
+        }
+    });
+});
+
+//
+$('#btn_cadastrar_informacao').click(function () {
+    $('#modalInfos').modal('show');
+    $('#firstpasswordModal').modal('hide');
+});
+
+//Auto-preencher usuário
+$('#btn_mudar_senha_medico, #btn_mudar_senha_medico2').click(function () {
+    $('#firstpasswordModal').modal('hide');
+    $('#modalEditarAcesso').modal('show');
+
+    // Solicitação AJAX para obter o nome do usuário
+    $.ajax({
+        url: '/painel-medico/usuario_logado',
+        method: 'GET',
+        success: function (response) {
+            // Define o valor no campo do modal
+            $('#nome-usuario').val(response.usuario);
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao buscar dados do usuário:', error);
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#btnMeuPerfil').click(function (event) {
+        event.preventDefault(); // Previne o comportamento padrão do link
+        window.location.href = '/painel-medico/meu-perfil'; // Redireciona para a página
+
+        // Após redirecionar, use AJAX para obter e preencher os dados
+        $.ajax({
+            url: '/painel-medico/obter-perfil',
+            type: 'GET',
+            success: function (response) {
+                console.log('Dados recebidos:', response);
+                // Preenche os campos do formulário com os dados recebidos
+                $('#nome').val(response.medico.nome_completo);
+                $('#sexo').val(response.medico.sexo);
+                $('#cpf').val(response.medico.cpf);
+                $('#rg').val(response.medico.rg);
+                $('#data-nasc').val(response.medico.data_nascimento);
+                $('#email').val(response.medico.email);
+                $('#tel').val(response.medico.telefone);
+                $('#rua').val(response.medico.rua);
+                $('#num').val(response.medico.numero);
+                $('#complemento').val(response.medico.complemento);
+                $('#cidade').val(response.medico.cidade);
+                $('#estado').val(response.medico.estado);
+                $('#cep').val(response.medico.cep);
+            },
+            error: function () {
+                alert('Erro na requisição AJAX.');
+            }
+        });
+    });
+});
+
 //JS painel-adm gestão paciente
 $('.btnDetalhesPaciente').on('click', function () {
     var id = $(this).data('id');
@@ -394,7 +496,10 @@ document.addEventListener("DOMContentLoaded", function () {
         checkbox.addEventListener('change', function () {
             const inputs = this.closest('.day-row').querySelectorAll('input[type="time"]');
             inputs.forEach(input => {
-                input.disabled = !this.checked;
+                if (!this.checked) {
+                    input.value = '';  // Limpa o campo
+                }
+                input.disabled = !this.checked;  // Habilita ou desabilita o campo
             });
         });
     });
@@ -1329,5 +1434,65 @@ $(document).ready(function () {
 document.addEventListener('DOMContentLoaded', function () {
     hjsCalendar(function (confirmTime) {
         alert(confirmTime);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    DevExpress.localization.locale('pt-br');
+
+    var resourcesData = [
+        { text: "Luzia Campos", id: 1, color: "#cb6bb2" },
+        { text: "Marcelo Alves", id: 2, color: "#56ca85" },
+        { text: "Guilherme Araújo", id: 3, color: "#1e90ff" }
+    ];
+
+    var data = [
+        { text: "João da Silva", ownerId: [2], startDate: new Date(2024, 6, 24, 7, 30), endDate: new Date(2024, 6, 24, 8, 0) },
+        { text: "Maria Oliveira", ownerId: [1], startDate: new Date(2024, 6, 24, 9, 15), endDate: new Date(2024, 6, 24, 9, 30) },
+        { text: "Thiago Bastos", ownerId: [3], startDate: new Date(2024, 6, 24, 9, 30), endDate: new Date(2024, 6, 24, 10, 0) }
+    ];
+
+    $("#scheduler").dxScheduler({
+        dataSource: data,
+        views: ["timelineDay"],
+        currentView: "timelineDay",
+        currentDate: new Date(),
+        firstDayOfWeek: 0,
+        startDayHour: 7,
+        endDayHour: 20,
+        cellDuration: 30,
+        groups: ["ownerId"],
+        resources: [{
+            fieldExpr: "ownerId",
+            allowMultiple: true,
+            dataSource: resourcesData,
+            label: "Owner",
+            useColorAsDefault: true
+        }],
+        editing: {
+            allowAdding: false,   
+            allowDeleting: false, 
+            allowDragging: false, 
+            allowResizing: false, 
+            allowUpdating: false  
+        },
+        height: 470,
+        resourceCellTemplate: function(cellData, cellIndex, cellElement) {
+            var color = cellData.color;
+            var text = cellData.text;
+
+            cellElement.append(
+                `<div class="dx-scheduler-group-header-content">
+                    <span class="owner-icon" style="background-color: ${color};"></span>
+                    ${text}
+                </div>`
+            );
+        },
+        onAppointmentDblClick: function(e) {
+            e.cancel = true; 
+        },
+        onAppointmentFormOpening: function(e) {
+            e.cancel = true;
+        }
     });
 });

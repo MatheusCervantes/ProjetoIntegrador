@@ -6,6 +6,7 @@
 /public/img/perfil
 /storage/*.key
 /vendor
+/public/img/perfil
 .env
 .env.backup
 .env.production

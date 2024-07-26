@@ -1,20 +1,17 @@
 <?php
 
-use App\Http\Controllers\admin\RecepcionistaController;
-use App\Http\Controllers\admin\PacienteController;
-use App\Http\Controllers\admin\MedicoController;
-use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\RecepcionistaController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\MedicoController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\admin\FinanceiroController;
+use App\Http\Controllers\admin\RelatorioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
-});
-
-Route::get('/painel-medico/meu-perfil', function () {
-    return view('meu-perfil');
-})->name('meu-perfil');
+})->name('login');
 
 Route::get('/painel-recepcionista/meu-perfil', function () {
     return view('meu-perfil');
@@ -43,11 +40,12 @@ Route::get('/painel-recepcionista/consultas-gerenciar', function () {
 //Criando rota de login
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/cadastraradm', [UserController::class, 'cadastraradmin']);
 
 //Middleware para verificar se o tipo de usuário é admin
 Route::middleware(['auth', 'check.user.type:admin'])->group(function () {
     //OBS, o método index foi removido, pois o método search já supri sua função
-    Route::get('/painel-adm', [DashboardController::class, 'index']);
+    Route::get('/painel-adm', [DashboardController::class, 'index_adm']);
 
     //Rotas painel-adm gestão recepcionista
     Route::post('/recepcionista/insert', [RecepcionistaController::class, 'store']);
@@ -97,10 +95,30 @@ Route::middleware(['auth', 'check.user.type:admin'])->group(function () {
     Route::get('/painel-adm/financeiro', [FinanceiroController::class, 'search'])->name('financeiro.search');
 
     Route::get('/api/financeiro-dados', [FinanceiroController::class, 'dadosParaGrafico']);
+
+    Route::get('/relatorio/financeiro', [RelatorioController::class, 'relatorio_financeiro'])->name('relatorio.financeiro');
+
+    Route::get('/painel-adm/gerar-relatorio');
 });
 
 //Middleware para verificar se o tipo de usuário é medico
 Route::middleware(['auth', 'check.user.type:medico'])->group(function () {
+    Route::get('/painel-medico', [DashboardController::class, 'index_medico']);
+
+    Route::get('/painel-medico/usuario_logado', [DashboardController::class, 'usuario_logado']);
+
+    Route::get('/painel-medico/meu-perfil', [MedicoController::class, 'perfil_medico'])->name('meu-perfil');
+
+    Route::get('/painel-medico/obter-perfil', [MedicoController::class, 'obterPerfil']);
+
+    Route::put('/painel-medico/salvar-perfil', [MedicoController::class, 'salvarPerfil'])->name('salvarPerfil');
+
+    Route::post('/medico/insert/info', [MedicoController::class, 'salvarinformacao']);
+    
+    Route::get('/medico/info/preencher', [MedicoController::class, 'listarinformacao']);
+
+    //Altera senha medico
+    Route::put('/painel-medico/alterar_senha', [UserController::class, 'alterar_usuario_medico']);
 });
 
 //Middleware para verificar se o tipo de usuário é medico
@@ -110,10 +128,6 @@ Route::middleware(['auth', 'check.user.type:recepcionista'])->group(function () 
 Route::get('/painel-adm/relatorio', function () {
     return view('relatorio');
 })->name('relatorio');
-
-Route::get('/painel-medico', function () {
-    return view('painel-medico');
-})->name('painel-medico');
 
 Route::get('/painel-recepcionista', function () {
     return view('painel-recepcionista');

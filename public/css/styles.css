@@ -345,7 +345,7 @@ ion-icon.icon-senha {
 }
 
 .day-row .form-check {
-    width: 180px;
+    width: 27.84%;
 }
 
 .day-row .time-container {
@@ -378,4 +378,123 @@ ion-icon.icon-senha {
         display: flex;
         flex-wrap: wrap;
     }
+}
+
+#scheduler {
+    border-radius: 0.4rem;
+    overflow: hidden;
+    height: auto !important;
+}
+
+#scheduler table {
+    margin-top: 0 !important;
+}
+
+#scheduler tbody {
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+#scheduler .dx-scheduler-appointment {
+    border-left: 0;
+    border-right: 0;
+}
+
+#scheduler .dx-scheduler-cell-sizes-horizontal {
+    width: 160px !important;
+}
+
+#scheduler .dx-scheduler-cell-sizes-vertical {
+    height: 75px !important;
+}
+
+#scheduler .dx-widget {
+    border-color: white !important;
+}
+
+#scheduler .dx-toolbar {
+    background-color: white !important;
+    padding-left: 6px !important;
+    padding-top: 6.5px !important;
+}
+
+#scheduler .dx-toolbar-after {
+    display: none !important;
+}
+
+#scheduler .dx-button {
+    border-color: #ccc !important;
+}
+
+#scheduler .dx-button-content {
+    background-color: #f8f9fa !important;
+}
+
+#scheduler .dx-scheduler-group-header {
+    width: 200px !important;
+    min-height: 75px !important;
+    position: relative;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 0;
+    margin: 0;
+}
+
+#scheduler .dx-scheduler-group-header-content {
+    height: 60px !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#scheduler .dx-scheduler-group-row {
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+#scheduler .dx-scheduler-date-table {
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+#scheduler .dx-scheduler-date-table-row {
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+#scheduler .dx-scheduler-date-table-scrollable {
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+#scheduler .dx-scheduler-header-panel-empty-cell {
+    margin-top: 0 !important;
+}
+
+#scheduler .dx-scheduler-header-panel-container {
+    border: 1px solid #e0e0e0; 
+    border-bottom: none;
+}
+
+#scheduler .dx-scheduler-work-space {
+    padding: 16px; 
+    height: auto !important;
+}
+
+#scheduler .dx-scheduler-work-space-flex-container {
+    border: 1px solid #e0e0e0; 
+    border-top: none;
+    height: auto !important;
+    min-height: 75px !important;
+}
+
+.owner-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px; 
+    vertical-align: middle;
 }

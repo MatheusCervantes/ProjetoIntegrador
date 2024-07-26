@@ -29,8 +29,8 @@
                                 <label for="movimentacao" class="form-label">Movimentação</label>
                                 <select id="movimentacao" class="form-select" name="movimentacao" required>
                                     <option disabled selected>Selecione...</option>
-                                    <option value="entrada">Entrada</option>
-                                    <option value="saida">Saída</option>
+                                    <option value="Entrada">Entrada</option>
+                                    <option value="Saída">Saída</option>
                                 </select>
                             </div>
                         </div>
