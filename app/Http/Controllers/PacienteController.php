@@ -81,63 +81,73 @@ class PacienteController extends Controller
 
     public function update_paciente(Request $request, $id)
     {
-        // Validar os dados do formulário
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'sexo' => 'required|string',
-            'cpf' => 'required|string|max:14|unique:pacientes,cpf,'.$id,
-            'rg' => 'required|string|max:20|unique:pacientes',
-            'data_nasc' => 'required|date',
-            'email' => 'required|string|email|max:255',
-            'tel' => 'required|string|max:20',
-            'rua' => 'required|string|max:255',
-            'num' => 'required|integer|min:1',
-            'complemento' => 'nullable|string|max:255',
-            'cidade' => 'required|string|max:255',
-            'estado' => 'required|string|max:2',
-            'cep' => 'required|string|max:10',
-        ]);
-
-        // Atualizar dados do paciente
-        $paciente = Pacientes::findOrFail($id);
-        $paciente->nome_completo = $request->input('nome');
-        $paciente->sexo = $request->input('sexo');
-        $paciente->cpf = $request->input('cpf');
-        $paciente->rg = $request->input('rg');
-        $paciente->data_nascimento = $request->input('data_nasc');
-        $paciente->email = $request->input('email');
-        $paciente->telefone = $request->input('tel');
-        $paciente->rua = $request->input('rua');
-        $paciente->numero = $request->input('num');
-        $paciente->complemento = $request->input('complemento');
-        $paciente->cidade = $request->input('cidade');
-        $paciente->estado = $request->input('estado');
-        $paciente->cep = $request->input('cep');
-        $paciente->save();
-
-        // Verificar se foi selecionado um plano de saúde
-        if ($request->has('plano-saude') && $request->input('plano-saude') === 'true') {
-            // Validar os dados do plano de saúde
+        try {
+            // Validação dos dados de entrada
+            // Validar os dados do formulário
             $request->validate([
-                'nome_plano' => 'required|string|max:255',
-                'numero_cartao' => 'required|string|max:255',
+                'nome' => 'required|string|max:255',
+                'sexo' => 'required|in:Masculino,Feminino',
+                'cpf' => 'required|string|max:14|unique:pacientes,cpf,' . $id,
+                'rg' => 'required|string|max:20|unique:pacientes,rg,' . $id,
+                'data_nasc' => 'required|date|before_or_equal:' . now()->format('Y-m-d'),
+                'email' => 'required|email|unique:pacientes,email,' . $id,
+                'tel' => 'required|string|max:20',
+                'rua' => 'required|string|max:255',
+                'num' => 'required|integer|min:1',
+                'cidade' => 'required|string|max:255',
+                'estado' => 'required|string|max:255',
+                'cep' => 'required|string|max:10',
             ]);
 
-            // Atualizar ou criar o plano de saúde associado
-            $planoSaude = Plano_saude::updateOrCreate(
-                ['paciente_id' => $id],
-                [
-                    'nome_plano' => $request->input('nome_plano'),
-                    'nro_plano' => $request->input('numero_cartao'),
-                ]
-            );
-        } else {
-            // Se não foi selecionado plano de saúde, remover se existir
-            Plano_saude::where('paciente_id', $id)->delete();
-        }
+            // Atualizar dados do paciente
+            $paciente = Pacientes::findOrFail($id);
+            $paciente->nome_completo = $request->input('nome');
+            $paciente->sexo = $request->input('sexo');
+            $paciente->cpf = $request->input('cpf');
+            $paciente->rg = $request->input('rg');
+            $paciente->data_nascimento = $request->input('data_nasc');
+            $paciente->email = $request->input('email');
+            $paciente->telefone = $request->input('tel');
+            $paciente->rua = $request->input('rua');
+            $paciente->numero = $request->input('num');
+            $paciente->complemento = $request->input('complemento');
+            $paciente->cidade = $request->input('cidade');
+            $paciente->estado = $request->input('estado');
+            $paciente->cep = $request->input('cep');
+            $paciente->save();
 
-        // Redirecionar ou retornar resposta de sucesso
-        return redirect('/painel-adm/gestao-paciente')->with('success', 'Paciente atualizado com sucesso!');
+            // Verificar se foi selecionado um plano de saúde
+            if ($request->has('plano-saude') && $request->input('plano-saude') === 'true') {
+                // Validar os dados do plano de saúde
+                $request->validate([
+                    'nome_plano' => 'required|string|max:255',
+                    'numero_cartao' => 'required|string|max:255',
+                ]);
+
+                // Atualizar ou criar o plano de saúde associado
+                $planoSaude = Plano_saude::updateOrCreate(
+                    ['paciente_id' => $id],
+                    [
+                        'nome_plano' => $request->input('nome_plano'),
+                        'nro_plano' => $request->input('numero_cartao'),
+                    ]
+                );
+            } else {
+                // Se não foi selecionado plano de saúde, remover se existir
+                Plano_saude::where('paciente_id', $id)->delete();
+            }
+
+            // Redirecionar ou retornar resposta de sucesso
+            return redirect('/painel-adm/gestao-paciente')->with('success', 'Paciente atualizado com sucesso!');
+        } catch (ValidationException $e) {
+            // Captura os erros de validação
+            //return redirect()->back()->with('error', $e->validator->errors());
+            return redirect()->back()->with('error', 'Já existe um paciente com este CPF, RG, email ou número do cartão do plano de saúde. Por favor, verifique os dados e tente novamente.');
+        } catch (\Exception $e) {
+            // Captura outros tipos de exceção
+            //return redirect()->back()->with('error', $e->getMessage())->withInput();
+            return redirect()->back()->with('error', 'Erro ao alterar o paciente. Por favor, tente novamente mais tarde.');
+        }
     }
 
     public function delete_paciente($id)

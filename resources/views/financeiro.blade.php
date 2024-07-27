@@ -157,7 +157,7 @@
                                 <div class="card-body py-0 ps-3 dados border-bottom hscroll">
                                     @if ($financeiro->count() > 0)
                                         @foreach ($financeiro as $item)
-                                            @if ($item->movimentacao == 'entrada')
+                                            @if ($item->movimentacao == 'Entrada')
                                                 <div class="row pt-3 pb-3 border-bottom border-left-success">
                                                     <div class="col-2">
                                                         <div>{{ \Carbon\Carbon::parse($item->data_hora)->format('d/m/Y') }}
@@ -206,7 +206,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @elseif ($item->movimentacao == 'saida')
+                                            @elseif ($item->movimentacao == 'Saída')
                                                 <div class="row pt-3 pb-3 border-left-danger">
                                                     <div class="col-2">
                                                         <div>{{ \Carbon\Carbon::parse($item->data_hora)->format('d/m/Y') }}

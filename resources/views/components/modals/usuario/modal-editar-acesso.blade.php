@@ -9,6 +9,11 @@
             </div>
             <div class="modal-body mx-5 py-4">
                 <form id="formEditarAcesso" action="/painel-medico/alterar_senha" method="POST">
+                    @if (session('error_senha'))
+                        <div class="alert alert-danger">
+                            {{ session('error_senha') }}
+                        </div>
+                    @endif
                     @method('PUT')
                     @csrf
                     <div class="row">
@@ -62,7 +67,7 @@
                                         class="required-field">*</span></label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="confirm-nova-senha"
-                                        name="confirm-nova-senha" required>
+                                        name="confirm_nova_senha" required>
                                     <button class="btn btn-sm btn-outline-light text-dark border-secondary-subtle"
                                         type="button" id="mostrarConfirmNovaSenha">
                                         <ion-icon name="eye-outline" class="pt-2 px-1 font-nome-agenda"></ion-icon>

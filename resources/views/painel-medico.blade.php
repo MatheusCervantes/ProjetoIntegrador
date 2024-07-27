@@ -68,6 +68,13 @@
                         <button type="button" class="btn-close pt-1" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                @if (session('error_senha'))
+                    <script>
+                        $(document).ready(function() {
+                            $('#modalEditarAcesso').modal('show');
+                        });
+                    </script>
+                @endif
                 <div class="row">
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-6 col-sm-6 col-xs-12 mb-4">
                         <div class="card shadow-sm">
