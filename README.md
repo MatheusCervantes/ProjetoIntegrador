@@ -3,12 +3,12 @@
 </h1>
 
 <p align="center">
-  <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#%EF%B8%8F-imagens">Imagens</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#%EF%B8%8F-instalação-e-uso">Instalação e Uso</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-desenvolvedores">Desenvolvedores</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-imagens">Imagens</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-instalação-e-uso">Instalação e Uso</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-desenvolvedores">Desenvolvedores</a>&nbsp;&nbsp;|&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
 
