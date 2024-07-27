@@ -130,8 +130,7 @@ class FinanceiroController extends Controller
                 ->where('movimentacao', 'saida')
                 ->sum('valor');
             // Soma geral dos valores no mês atual
-            $totalGeral = Financeiro::whereBetween(DB::raw('DATE(data_hora)'), [$dataInicio, $dataFim])
-                ->sum('valor');
+            $totalGeral = $totalEntrada - $totalSaida;
 
             return view('financeiro', [
                 'financeiro' => $financeiro,

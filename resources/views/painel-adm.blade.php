@@ -53,6 +53,13 @@
                         <button type="button" class="btn-close pt-1" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                @if (session('error_senha'))
+                    <script>
+                        $(document).ready(function() {
+                            $('#modalEditarSenha').modal('show');
+                        });
+                    </script>
+                @endif
                 <div class="row">
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-4">
                         <div class="card border-left-primary shadow-sm h-100 py-2">

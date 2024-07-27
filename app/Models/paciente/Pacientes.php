@@ -10,6 +10,8 @@ class Pacientes extends Model
 {
     use HasFactory;
 
+    protected $table = 'pacientes';
+
     protected $fillable = [
         'nome_completo',
         'sexo',
