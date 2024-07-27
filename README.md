@@ -5,8 +5,9 @@
 <p align="center">
   <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#%EF%B8%8F-instalação-e-uso">Instalação e Uso</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#%EF%B8%8F-imagens">Imagens</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-instalação-e-uso">Instalação e Uso</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-desenvolvedores">Desenvolvedores</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
@@ -16,10 +17,23 @@ Consiste em um sistema para gerenciamento de consultório médico que integra e 
 
 ## 🚀 Tecnologias 
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+As seguintes tecnologias foram utilizadas no desenvolvimento desse projeto:
 
-- Laravel
-  
+- [Laravel Framework](https://laravel.com/)
+
+## 🖼️ Imagens
+
+Abaixo algumas imagens para demonstração:
+
+| Tela de Login | Painel Administrador | Painel Médico | Painel Recepcionista |
+|---|---|---|---|
+| ![tela-login](https://github.com/user-attachments/assets/d4ca851e-b4d4-4ce1-a021-db62cab33d4c)  | ![painel-admin](https://github.com/user-attachments/assets/29b84ab5-c4ad-4188-ad84-a9e75c18524e)  | ![painel-medico](https://github.com/user-attachments/assets/c018a94f-6bcb-4c3e-932f-713479247554)  | ![painel-recepcionista](https://github.com/user-attachments/assets/eeb6b34a-08ab-44f9-b041-daa0aa963afc)  |
+
+## 📄 Documentação
+
+- [Pré-Projeto]()
+- [Diagrama de Classes e Diagrama de Casos de Uso]()
+
 ## ⚙️ Instalação e Uso
 1. Clone o projeto: ```git clone https://github.com/MatheusCervantes/ProjetoIntegrador.git``` 
 2. Navegue até o diretório do projeto: ```cd ProjetoIntegrador```
@@ -29,12 +43,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 6. Gere a chave de aplicativo: ```php artisan key:generate```
 7. Execute as migrações do banco de dados para criar as tabelas necessárias: ```php artisan migrate```
 8. Após a instalação e configuração, você pode iniciar o servidor de desenvolvimento local com o seguinte comando: ```php artisan serve```
-
-## 🖼️ Imagens
-
-| Tela de Login | Painel Administrador | Painel Médico | Painel Recepcionista |
-|---|---|---|---|
-| ![tela-login](https://github.com/user-attachments/assets/d4ca851e-b4d4-4ce1-a021-db62cab33d4c)  | ![painel-admin](https://github.com/user-attachments/assets/29b84ab5-c4ad-4188-ad84-a9e75c18524e)  | ![painel-medico](https://github.com/user-attachments/assets/c018a94f-6bcb-4c3e-932f-713479247554)  | ![painel-recepcionista](https://github.com/user-attachments/assets/eeb6b34a-08ab-44f9-b041-daa0aa963afc)  |
 
 ## 🧑‍💻 Desenvolvedores
 - <a href="https://github.com/camilymilsoni">Camily Milsoni</a>
