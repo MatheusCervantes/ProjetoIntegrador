@@ -67,7 +67,7 @@ class UserController extends Controller
 
             if ($user->type === 'admin') {
                 if ($user->firstlogin == true) {
-                    return redirect('/painel-adm')->with('warn', 'Atualize sua senha.');
+                    return redirect('/painel-adm')->with('warn', 'É necessário atualizar a sua senha.');
                 } else {
                     return redirect('/painel-adm');
                 }
@@ -77,12 +77,12 @@ class UserController extends Controller
                 $informacaoprof = InformacaoProfissional::where('medico_id', $medico->id)->first();
                 if ($user->firstlogin == true) {
                     if (!$informacaoprof) {
-                        return redirect('/painel-medico')->with('warn', 'Atualize sua senha')->with('warn2', 'Adicione suas informações profissionais, para utilizar o sistema.');
+                        return redirect('/painel-medico')->with('warn', 'É necessário atualizar a sua senha.')->with('warn2', 'É necessário cadastrar as suas informações profissionais.');
                     }
-                    return redirect('/painel-medico')->with('warn', 'Atualize sua senha');
+                    return redirect('/painel-medico')->with('warn', 'É necessário atualizar a sua senha.');
                 } else {
                     if (!$informacaoprof) {
-                        return redirect('/painel-medico')->with('warn', '.')->with('warn2', 'Adicionar suas informações profissionais, para utilizar o sistema.');
+                        return redirect('/painel-medico')->with('warn', '.')->with('warn2', 'É necessário cadastrar as suas informações profissionais.');
                     }
                     return redirect('/painel-medico');
                 }
@@ -91,7 +91,7 @@ class UserController extends Controller
                 return redirect('');
             }
         } else {
-            return redirect('/')->with('msg', 'Os dados fornecidos são inválidos. Por favor, verifique seu login e/ou senha e tente novamente.');
+            return redirect('/')->with('msg', 'Os dados fornecidos são inválidos. Verifique seu login e/ou senha e tente novamente.');
         }
     }
 

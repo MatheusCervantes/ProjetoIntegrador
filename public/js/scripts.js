@@ -1496,3 +1496,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var exitButtons = document.querySelectorAll('.exit-button');
+
+    exitButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var messageBox = this.closest('.message-box');
+            if (messageBox) {
+                messageBox.remove();
+            }
+        });
+    });
+});

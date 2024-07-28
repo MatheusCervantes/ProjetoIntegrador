@@ -35,7 +35,7 @@ class FinanceiroController extends Controller
             return redirect()->back()->with('error', 'Erro ao cadastrar movimentação financeira.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao inserir movimentação financeira. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao inserir movimentação financeira. Por favor, tente novamente.');
         }
     }
 
@@ -74,7 +74,7 @@ class FinanceiroController extends Controller
         } catch (\Exception $e) {
             // Captura outros tipos de exceções e redireciona com uma mensagem genérica
             return redirect()->back()
-                ->with('error', 'Erro ao atualizar movimentação financeira. Por favor, tente novamente mais tarde.');
+                ->with('error', 'Erro ao atualizar movimentação financeira. Por favor, tente novamente.');
         }
     }
 
@@ -130,8 +130,7 @@ class FinanceiroController extends Controller
                 ->where('movimentacao', 'saida')
                 ->sum('valor');
             // Soma geral dos valores no mês atual
-            $totalGeral = Financeiro::whereBetween(DB::raw('DATE(data_hora)'), [$dataInicio, $dataFim])
-                ->sum('valor');
+            $totalGeral = $totalEntrada - $totalSaida;
 
             return view('financeiro', [
                 'financeiro' => $financeiro,

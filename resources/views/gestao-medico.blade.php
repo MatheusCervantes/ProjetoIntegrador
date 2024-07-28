@@ -30,15 +30,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show text-center d-flex justify-content-center align-items-center align-middle" role="alert">
-                        <h4 class="pt-1">{{ session('error') }}</h4>
-                        <button type="button" class="btn-close align-middle" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-error">
+                        <i class="fa fa-ban fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('error') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show text-center d-flex justify-content-center align-items-center" role="alert">
-                        <h4 class="pt-2">{{ session('success') }}</h4>
-                        <button type="button" class="btn-close pt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-success">
+                        <i class="fa fa-check fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('success') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     <div class="card shadow-sm mb-4">
@@ -53,19 +55,19 @@
                         <div class="card-body py-0 ps-3 dados border-bottom hscroll">
                             @if ($medicos->count() > 0)
                             @foreach ($medicos as $medico)
-                            <div class="row pt-3 pb-3 recepcionista-item">
+                            <div class="row pt-3 pb-3 border-bottom">
                                 <div class="col">{{ $medico->nome_completo }}</div>
                                 <div class="col">{{ $medico->cpf }}</div>
                                 <div class="col">{{ $medico->telefone }}</div>
                                 <div class="col-2">
                                     <div class="d-flex flex-row">
-                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesMedico" data-toggle="modal" data-target="#modalDetalhesMedico" data-id="{{ $medico->id }}" title="Exibir Detalhes do Médico">
+                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesMedico" data-toggle="tooltip" data-target="#modalDetalhesMedico" data-id="{{ $medico->id }}" title="Exibir Detalhes do Médico">
                                             <ion-icon name="information-circle-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarMedico" data-toggle="modal" data-target="#modalEditarMedico" data-id="{{ $medico->id }}" title="Editar Médico">
+                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarMedico" data-toggle="tooltip" data-target="#modalEditarMedico" data-id="{{ $medico->id }}" title="Editar Médico">
                                             <ion-icon name="create-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirMedico" data-toggle="modal" data-target="#modalExcluirMedico" data-id="{{ $medico->id }}" title="Excluir Médico">
+                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirMedico" data-toggle="tooltip" data-target="#modalExcluirMedico" data-id="{{ $medico->id }}" title="Excluir Médico">
                                             <ion-icon name="trash-outline" class="fs-5"></ion-icon>
                                         </button>
                                     </div>
@@ -73,7 +75,7 @@
                             </div>
                             @endforeach
                             @else
-                            <p class="text-center text-muted my-4">Nenhum médico encontrado</p>
+                            <p class="text-center text-muted my-4">Nenhum médico encontrado.</p>
                             @endif
                         </div>
                     </div>

@@ -70,7 +70,7 @@ class RecepcionistaController extends Controller
             return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao inserir o recepcionista. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao inserir o recepcionista. Por favor, tente novamente.');
         }
     }
 
@@ -106,14 +106,14 @@ class RecepcionistaController extends Controller
             return redirect()->back()->with('error', 'Já existe um recepcionista com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao atualizar o recepcionista. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao atualizar o recepcionista. Por favor, tente novamente.');
         }
     }
 
     public function delete_repcionista($id)
     {
         Recepcionista::findOrFail($id)->delete();
-        return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Cadastro deletado com sucesso!');
+        return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Recepcionista deletado com sucesso!');
     }
 
     public function search(Request $request)

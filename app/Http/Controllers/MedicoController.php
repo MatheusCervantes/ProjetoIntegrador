@@ -72,7 +72,7 @@ class MedicoController extends Controller
             //return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao inserir o médico. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao inserir o médico. Por favor, tente novamente.');
         }
     }
 
@@ -107,14 +107,14 @@ class MedicoController extends Controller
             //return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao atualizar o médico. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao atualizar o médico. Por favor, tente novamente.');
         }
     }
 
     public function delete_medico($id)
     {
         Medicos::findOrFail($id)->delete();
-        return redirect('/painel-adm/gestao-medico')->with('success', 'Cadastro deletado com sucesso!');
+        return redirect('/painel-adm/gestao-medico')->with('success', 'Médico deletado com sucesso!');
     }
 
     public function search(Request $request)
@@ -249,7 +249,7 @@ class MedicoController extends Controller
             return redirect()->back()->with('error', $e->validator->errors());
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao atualizar as informações. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao atualizar as informações. Por favor, tente novamente.');
         }
     }
 

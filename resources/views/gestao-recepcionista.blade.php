@@ -30,15 +30,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show text-center d-flex justify-content-center align-items-center align-middle" role="alert">
-                        <h4 class="pt-1">{{ session('error') }}</h4>
-                        <button type="button" class="btn-close align-middle" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-error">
+                        <i class="fa fa-ban fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('error') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show text-center d-flex justify-content-center align-items-center" role="alert">
-                        <h4 class="pt-2">{{ session('success') }}</h4>
-                        <button type="button" class="btn-close pt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-success">
+                        <i class="fa fa-check fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('success') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     <div class="card shadow-sm mb-4">
@@ -53,19 +55,19 @@
                         <div class="card-body py-0 ps-3 dados border-bottom hscroll">
                             @if ($recepcionistas->count() > 0)
                             @foreach ($recepcionistas as $recepcionista)
-                            <div class="row pt-3 pb-3 recepcionista-item">
+                            <div class="row pt-3 pb-3 border-bottom">
                                 <div class="col">{{ $recepcionista->nome_completo }}</div>
                                 <div class="col">{{ $recepcionista->cpf }}</div>
                                 <div class="col">{{ $recepcionista->telefone }}</div>
                                 <div class="col-2">
                                     <div class="d-flex flex-row">
-                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesRecepcionista" data-toggle="modal" data-target="#modalDetalhesRecepcionista" data-id="{{ $recepcionista->id }}" title="Exibir Detalhes do Recepcionista">
+                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesRecepcionista" data-toggle="tooltip" data-target="#modalDetalhesRecepcionista" data-id="{{ $recepcionista->id }}" title="Exibir Detalhes do Recepcionista">
                                             <ion-icon name="information-circle-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarRecepcionista" data-toggle="modal" data-target="#modalEditarRecepcionista" data-id="{{ $recepcionista->id }}" title="Editar Recepcionista">
+                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarRecepcionista" data-toggle="tooltip" data-target="#modalEditarRecepcionista" data-id="{{ $recepcionista->id }}" title="Editar Recepcionista">
                                             <ion-icon name="create-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirRecepcionista" data-toggle="modal" data-target="#modalExcluirRecepcionista" data-id="{{ $recepcionista->id }}" title="Excluir Recepcionista">
+                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirRecepcionista" data-toggle="tooltip" data-target="#modalExcluirRecepcionista" data-id="{{ $recepcionista->id }}" title="Excluir Recepcionista">
                                             <ion-icon name="trash-outline" class="fs-5"></ion-icon>
                                         </button>
                                     </div>
@@ -73,7 +75,7 @@
                             </div>
                             @endforeach
                             @else
-                            <p class="text-center text-muted my-4">Nenhum recepcionista encontrado</p>
+                            <p class="text-center text-muted my-4">Nenhum recepcionista encontrado.</p>
                             @endif
                         </div>
                     </div>

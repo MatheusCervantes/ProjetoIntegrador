@@ -79,7 +79,7 @@
                         <div class="col-3">
                             <div class="mb-3">
                                 <label for="complemento_recepcionista" class="form-label">Complemento</label>
-                                <input type="text" class="form-control" id="complemento_recepcionista" name="complemento" readonly>
+                                <input type="text" class="form-control" id="complemento_recepcionista" name="complemento" placeholder="Opcional" readonly>
                             </div>
                         </div>
                     </div>
