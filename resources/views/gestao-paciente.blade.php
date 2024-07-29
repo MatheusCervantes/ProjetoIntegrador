@@ -30,15 +30,17 @@
             <div class="row">
                 <div class="col-lg-12">
                     @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show text-center d-flex justify-content-center align-items-center align-middle" role="alert">
-                        <h4 class="pt-1">{{ session('error') }}</h4>
-                        <button type="button" class="btn-close align-middle" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-error">
+                        <i class="fa fa-ban fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('error') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show text-center d-flex justify-content-center align-items-center" role="alert">
-                        <h4 class="pt-2">{{ session('success') }}</h4>
-                        <button type="button" class="btn-close pt-1" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="message-box message-box-success">
+                        <i class="fa fa-check fa-1x"></i>
+                        <span class="message-text"><strong>{{ session('success') }}</strong></span>
+                        <i class="fa fa-times fa-1x exit-button cursor"></i>
                     </div>
                     @endif
                     <div class="card shadow-sm mb-4">
@@ -50,8 +52,8 @@
                                 <div class="col-2 text-primary fw-semibold">Ações</div>
                             </div>
                         </div>
-                        @if ($pacientes->count() > 0)
                         <div class="card-body py-0 ps-3 dados border-bottom hscroll">
+                            @if ($pacientes->count() > 0)
                             @foreach ($pacientes as $paciente)
                             <div class="row pt-3 pb-3 border-bottom">
                                 <div class="col">{{ $paciente->nome_completo }}</div>
@@ -59,13 +61,13 @@
                                 <div class="col">{{ $paciente->telefone }}</div>
                                 <div class="col-2">
                                     <div class="d-flex flex-row">
-                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesPaciente" data-toggle="modal" data-target="#modalDetalhesPaciente" data-id="{{ $paciente->id }}" title="Exibir Detalhes do Paciente">
+                                        <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesPaciente" data-toggle="tooltip" data-target="#modalDetalhesPaciente" data-id="{{ $paciente->id }}" title="Exibir Detalhes do Paciente">
                                             <ion-icon name="information-circle-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarPaciente" data-toggle="modal" data-target="#modalEditarPaciente" data-id="{{ $paciente->id }}" title="Editar Paciente">
+                                        <button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarPaciente" data-toggle="tooltip" data-target="#modalEditarPaciente" data-id="{{ $paciente->id }}" title="Editar Paciente">
                                             <ion-icon name="create-outline" class="fs-5"></ion-icon>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirPaciente" data-toggle="modal" data-target="#modalExcluirPaciente" data-id="{{ $paciente->id }}" title="Excluir Paciente">
+                                        <button type="button" class="btn btn-sm btn-danger d-flex justify-content-center align-items-center btnExcluirPaciente" data-toggle="tooltip" data-target="#modalExcluirPaciente" data-id="{{ $paciente->id }}" title="Excluir Paciente">
                                             <ion-icon name="trash-outline" class="fs-5"></ion-icon>
                                         </button>
                                     </div>
@@ -73,7 +75,7 @@
                             </div>
                             @endforeach
                             @else
-                            <p class="text-center text-muted my-4">Nenhum paciente encontrado</p>
+                            <p class="text-center text-muted my-4">Nenhum paciente encontrado.</p>
                             @endif
                         </div>
                     </div>

@@ -10,7 +10,7 @@
                         <ion-icon name="warning-outline" class="fs-2 fw-semibold text-warning"></ion-icon>
                     </div>
                 </div>
-                <div class="modal-body m-auto py-4">
+                <div class="modal-body m-auto py-4 text-center">
                     Tem certeza que deseja excluir este médico?
                 </div>
                 <div class="modal-footer bg-body-tertiary">

@@ -69,7 +69,7 @@ class PacienteController extends Controller
             return redirect()->back()->with('error', 'Já existe um paciente com este CPF, RG, email ou número do cartão do plano de saúde. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
-            return redirect()->back()->with('error', 'Erro ao inserir o paciente. Por favor, tente novamente mais tarde.');
+            return redirect()->back()->with('error', 'Erro ao inserir o paciente. Por favor, tente novamente.');
         }
     }
 
@@ -153,7 +153,7 @@ class PacienteController extends Controller
     public function delete_paciente($id)
     {
         Pacientes::findOrFail($id)->delete();
-        return redirect('/painel-adm/gestao-paciente')->with('success', 'Cadastro deletado com sucesso!');
+        return redirect('/painel-adm/gestao-paciente')->with('success', 'Paciente deletado com sucesso!');
     }
 
     public function search(Request $request)
