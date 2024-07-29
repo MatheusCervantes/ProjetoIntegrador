@@ -22,7 +22,7 @@
                         <div class="col-4">
                             <div class="mb-3">
                                 <label for="movimentacao" class="form-label">Movimentação</label>
-                                <select id="movimentacao_financeiro" class="form-select" name="movimentacao" required>
+                                <select id="movimentacao_financeiro" class="form-select" name="movimentacao" required disabled>
                                     <option disabled selected>Selecione...</option>
                                     <option value="Entrada">Entrada</option>
                                     <option value="Saída">Saída</option>
