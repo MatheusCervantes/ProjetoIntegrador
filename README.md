@@ -1,55 +1,53 @@
-# Projeto Integrador
+<h1 align="center">
+  :stethoscope: Sistema para Gerenciamento de Consultório Médico
+</h1>
 
-Este é o repositório do Projeto Integrador.
+<p align="center">
+  <a href="#-sobre-o-projeto">Sobre o Projeto</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-imagens">Imagens</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-documentação">Documentação</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-instalação-e-uso">Instalação e Uso</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-desenvolvedores">Desenvolvedores</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
+</p>
 
-## Instalação
+## 💻 Sobre o Projeto
+Consiste em um sistema para gerenciamento de consultório médico que integra e otimiza processos administrativos e clínicos em uma plataforma web. O sistema permite a gestão completa de pacientes, agendamento de consultas, registro de prontuários e controle financeiro, visando melhorar a eficiência e a qualidade dos serviços prestados.
 
-Para começar, siga estas etapas:
+## 🚀 Tecnologias 
 
-1. Clone o repositório:
+As seguintes tecnologias foram utilizadas no desenvolvimento desse projeto:
 
-    ```bash
-    git clone https://github.com/MatheusCervantes/ProjetoIntegrador.git
-    ```
+- [Laravel Framework](https://laravel.com/)
 
-2. Navegue até o diretório do projeto:
+## 🖼️ Imagens
 
-    ```bash
-    cd ProjetoIntegrador
-    ```
+Abaixo algumas imagens para demonstração:
 
-3. Instale as dependências do Composer:
+| Tela de Login | Painel Administrador | Painel Médico | Painel Recepcionista |
+|---|---|---|---|
+| ![tela-login](https://github.com/user-attachments/assets/d4ca851e-b4d4-4ce1-a021-db62cab33d4c)  | ![painel-admin](https://github.com/user-attachments/assets/29b84ab5-c4ad-4188-ad84-a9e75c18524e)  | ![painel-medico](https://github.com/user-attachments/assets/c018a94f-6bcb-4c3e-932f-713479247554)  | ![painel-recepcionista](https://github.com/user-attachments/assets/eeb6b34a-08ab-44f9-b041-daa0aa963afc)  |
 
-    ```bash
-    composer install
-    ```
+## 📄 Documentação
 
-4. Copie o arquivo de ambiente de exemplo `.env.example` para `.env`:
+- [Pré-Projeto](https://github.com/MatheusCervantes/ProjetoIntegrador/blob/main/Pr%C3%A9-Projeto_%20Sistema%20para%20Gerenciamento%20de%20Consult%C3%B3rio%20M%C3%A9dico.pdf)
+- [Diagrama de Classes e Diagrama de Casos de Uso]()
 
-    ```bash
-    cp .env.example .env
-    ```
+## ⚙️ Instalação e Uso
+1. Clone o projeto: ```git clone https://github.com/MatheusCervantes/ProjetoIntegrador.git``` 
+2. Navegue até o diretório do projeto: ```cd ProjetoIntegrador```
+3. Instale as dependências do Composer: ```composer install```
+4. Copie o arquivo de ambiente de exemplo *__.env.example__* para *__.env__*: ```cp .env.example .env```
+5. Configure o arquivo *__.env__* com as informações do seu banco de dados.
+6. Gere a chave de aplicativo: ```php artisan key:generate```
+7. Execute as migrações do banco de dados para criar as tabelas necessárias: ```php artisan migrate```
+8. Após a instalação e configuração, você pode iniciar o servidor de desenvolvimento local com o seguinte comando: ```php artisan serve```
 
-5. Gere a chave de aplicativo:
+## 🧑‍💻 Desenvolvedores
+- <a href="https://github.com/camilymilsoni">Camily Milsoni</a>
+- <a href="https://github.com/MatheusCervantes">Matheus Cervantes</a>
 
-    ```bash
-    php artisan key:generate
-    ```
+## 📝 Licença
 
-6. Configure o arquivo `.env` com as informações do seu banco de dados.
-
-7. Execute as migrações do banco de dados para criar as tabelas necessárias:
-
-    ```bash
-    php artisan migrate
-    ```
-
-## Uso
-
-Após a instalação e configuração, você pode iniciar o servidor de desenvolvimento local executando o seguinte comando:
-
-```bash
-php artisan serve
-```
-
-Isso iniciará um servidor de desenvolvimento local em `http://localhost:8000`, onde você poderá acessar seu aplicativo no navegador.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.

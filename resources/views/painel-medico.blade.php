@@ -69,14 +69,22 @@
                 <i class="fa fa-times fa-1x exit-button cursor"></i>
             </div>
             @endif
-            <div class="row">
-                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-6 col-sm-6 col-xs-12 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 text-primary">Resumo da Agenda</h6>
-                        </div>
-                        <div class="card-body">
-                            <div id="calendario-dashboard"></div>
+                @if (session('error_senha'))
+                    <script>
+                        $(document).ready(function() {
+                            $('#modalEditarAcesso').modal('show');
+                        });
+                    </script>
+                @endif
+                <div class="row">
+                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-6 col-sm-6 col-xs-12 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 text-primary">Resumo da Agenda</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="calendario-dashboard"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             </div>
-            @if (session('warn'))
+                @if (session('warn'))
             <div class="modal fade" id="firstpasswordModal" tabindex="-1" role="dialog" aria-labelledby="firstpasswordModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -56,17 +56,25 @@
                 <i class="fa fa-times fa-1x exit-button cursor"></i>
             </div>
             @endif
-            <div class="row">
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-4">
-                    <div class="card border-left-primary shadow-sm h-100 py-2">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <div class="text-primary text-uppercase mb-1">Pacientes Cadastrados</div>
-                                    <div class="h5 mb-0 text-gray-800">{{ $countPacientes }}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <ion-icon name="person-outline" class="fs-2 text-secondary mt-1"></ion-icon>
+                @if (session('error_senha'))
+                    <script>
+                        $(document).ready(function() {
+                            $('#modalEditarSenha').modal('show');
+                        });
+                    </script>
+                @endif
+                <div class="row">
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-4">
+                        <div class="card border-left-primary shadow-sm h-100 py-2">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="text-primary text-uppercase mb-1">Pacientes Cadastrados</div>
+                                        <div class="h5 mb-0 text-gray-800">{{ $countPacientes }}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <ion-icon name="person-outline" class="fs-2 text-secondary mt-1"></ion-icon>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -108,14 +108,17 @@ class UserController extends Controller
 
             // Verifica se a senha atual está correta
             if (hash('sha512', $request->senha_atual) !== $usuario->password) {
-                return redirect('/painel-adm')->with('msg', 'Senha atual inválida.');
+                return redirect('/painel-adm')->with('error_senha', 'Senha atual incorreta. Por favor, verifique e tente novamente.');
             }
 
-            // Atualiza a senha
+            // Verifica se a nova senha e a confirmação são iguais
+            if ($request->nova_senha !== $request->confirm_nova_senha) {
+                return redirect('/painel-adm')->with('error_senha', 'As senhas novas não coincidem. Por favor, verifique se os campos "Nova Senha" e "Confirmar Nova Senha" são iguais.');
+            }
+
             $usuario->password = hash('sha512', $request->nova_senha);
             $usuario->firstlogin = false;
             $usuario->save(); // Salva as alterações
-
             return redirect('/painel-adm')->with('success', 'Senha alterada com sucesso.');
         } catch (QueryException $qe) {
             // Trata exceções relacionadas a consultas SQL
@@ -133,15 +136,19 @@ class UserController extends Controller
 
             // Verifica se a senha atual está correta
             if (hash('sha512', $request->senha_atual) !== $usuario->password) {
-                return redirect('/painel-medico')->with('msg', 'Senha atual inválida.');
+                return redirect('/painel-medico')->with('error_senha', 'Por favor, verifique se digitou a senha atual corretamente.');
             }
 
-            // Atualiza a senha
+            // Verifica se a nova senha e a confirmação são iguais
+            if ($request->nova_senha !== $request->confirm_nova_senha) {
+                return redirect('/painel-medico')->with('error_senha', "As senhas novas não coincidem. Por favor, verifique se os campos 'Nova Senha' e 'Confirmar Nova Senha' são iguais.");
+            }
+
+
             $usuario->username = $request->nome_usuario;
             $usuario->password = hash('sha512', $request->nova_senha);
             $usuario->firstlogin = false;
             $usuario->save(); // Salva as alterações
-
             return redirect('/painel-medico')->with('success', 'Senha alterada com sucesso.');
         } catch (QueryException $qe) {
             // Trata exceções relacionadas a consultas SQL

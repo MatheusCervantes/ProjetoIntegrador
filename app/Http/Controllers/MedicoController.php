@@ -68,8 +68,8 @@ class MedicoController extends Controller
             return redirect('/painel-adm/gestao-medico')->with('success', 'Médico cadastrado com sucesso!');
         } catch (ValidationException $e) {
             // Captura os erros de validação
-            return redirect()->back()->with('error', $e->validator->errors());
-            //return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
+            //return redirect()->back()->with('error', $e->validator->errors());
+            return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
             return redirect()->back()->with('error', 'Erro ao inserir o médico. Por favor, tente novamente.');
@@ -103,8 +103,8 @@ class MedicoController extends Controller
             return redirect('/painel-adm/gestao-medico')->with('success', 'Médico atualizado com sucesso!');
         } catch (ValidationException $e) {
             // Captura os erros de validação
-            return redirect()->back()->with('error', $e->validator->errors());
-            //return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
+            //return redirect()->back()->with('error', $e->validator->errors());
+            return redirect()->back()->with('error', 'Já existe um médico com este CPF, RG ou email. Por favor, verifique os dados e tente novamente.');
         } catch (\Exception $e) {
             // Captura outros tipos de exceção
             return redirect()->back()->with('error', 'Erro ao atualizar o médico. Por favor, tente novamente.');
