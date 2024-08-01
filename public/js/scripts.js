@@ -150,6 +150,26 @@ $('#btn_mudar_senha_medico, #btn_mudar_senha_medico2').click(function () {
     });
 });
 
+//Auto-preencher usuário recepcionista
+$('#btn_mudar_senha_recepcionista').click(function () {
+    $('#firstpasswordModal').modal('hide');
+    $('#modalEditarAcesso').modal('show');
+    $('formEditarAcesso').attr('action', '/painel-recepcionista/alterar_senha');
+
+    // Solicitação AJAX para obter o nome do usuário
+    $.ajax({
+        url: '/painel-recepcionista/usuario_logado',
+        method: 'GET',
+        success: function (response) {
+            // Define o valor no campo do modal
+            $('#nome-usuario').val(response.usuario);
+        },
+        error: function (xhr, status, error) {
+            console.error('Erro ao buscar dados do usuário:', error);
+        }
+    });
+});
+
 $(document).ready(function () {
     $('#btnMeuPerfil').click(function (event) {
         event.preventDefault(); // Previne o comportamento padrão do link
@@ -186,9 +206,17 @@ $(document).ready(function () {
 //JS painel-adm gestão paciente
 $('.btnDetalhesPaciente').on('click', function () {
     var id = $(this).data('id');
+    var currentUrl = window.location.pathname;
+    var ajaxUrl;
+
+    if (currentUrl === "/painel-recepcionista/gestao-paciente") {
+        ajaxUrl = '/painel-recepcionista/gestao-paciente/' + id;
+    } else {
+        ajaxUrl = '/painel-adm/gestao-paciente/' + id;
+    }
 
     $.ajax({
-        url: '/painel-adm/gestao-paciente/' + id,
+        url: ajaxUrl,
         method: 'GET',
         success: function (data) {
             $('#nome_paciente').val(data.nome_completo);
@@ -226,13 +254,23 @@ $('.btnDetalhesPaciente').on('click', function () {
 
 $('.btnEditarPaciente').on('click', function () {
     var id_edição = $(this).data('id');
+    var currentUrl = window.location.pathname;
+    var ajaxUrl;
+
+    if (currentUrl === "/painel-recepcionista/gestao-paciente") {
+        ajaxUrl = '/painel-recepcionista/gestao-paciente/' + id_edição;
+        actionUrl = '/painel-recepcionista/gestao-paciente/edit/' + id_edição;
+    } else {
+        ajaxUrl = '/painel-adm/gestao-paciente/' + id_edição;
+        actionUrl = '/painel-adm/gestao-paciente/edit/' + id_edição;
+    }
 
     $.ajax({
-        url: '/painel-adm/gestao-paciente/' + id_edição,
+        url: ajaxUrl,
         method: 'GET',
         success: function (data) {
             console.log(data);
-            $('#formEditarPaciente').attr('action', '/painel-adm/gestao-paciente/edit/' + id_edição);
+            $('#formEditarPaciente').attr('action', actionUrl);
             $('#nome_paciente_edit').val(data.nome_completo);
             $('#sexo_paciente_edit').val(data.sexo).change();
             $('#cpf_paciente_edit').val(data.cpf);
@@ -491,6 +529,309 @@ $(document).ready(function () {
     });
 });
 
+$('#lista_medicos').on('change', function () {
+    var medicoId = $(this).val();
+    var data = $('#data-consulta').val();
+
+    $.ajax({
+        url: '/listar_consulta/' + medicoId + '/' + data,
+        method: 'GET',
+        success: function (data) {
+            $('#consulta-list').empty();
+
+            if (data.length === 0) {
+                $('#consulta-list').append('<p class="text-center pt-3" >Nenhuma consulta encontrada.</p>');
+            } else {
+                data.forEach(function (consulta) {
+                    var statusHtml = '';
+                    var confirmBtn = '';
+                    var reagendarBtn = '';
+                    var cancelarBtn = '';
+                    var cadastroBtn = '';
+
+                    switch (consulta.status) {
+                        case 'pendente':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="me-2 font-bullet"></ion-icon>
+                                    <div class="font-resumo">Pendente</div>
+                                </div>
+                            `;
+                            confirmBtn = '';
+                            reagendarBtn = '';
+                            cancelarBtn = '';
+                            cadastroBtn = consulta.paciente_id ? 'disabled' : '';
+                            break;
+                        case 'cancelado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
+                                    <div class="text-danger font-resumo">Cancelado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                        case 'reagendado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
+                                    <div class="text-warning font-resumo">Reagendado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                        case 'confirmado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-primary me-2 font-bullet"></ion-icon>
+                                    <div class="text-primary font-resumo">Confirmado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = '';
+                            cadastroBtn = consulta.paciente_id ? 'disabled' : '';
+                            break;
+                        default:
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-secondary me-2 font-bullet"></ion-icon>
+                                    <div class="text-secondary font-resumo">Desconhecido</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                    }
+
+                    var consultaHtml = `
+                    <div class="row pt-3 pb-3 border-bottom">
+                        <div class="col data-coluna-consulta2">${consulta.data_consulta}</div>
+                        <div class="col">${consulta.hora_consulta}</div>
+                        <div class="col">${consulta.nome_paciente}</div>
+                        <div class="col">${consulta.telefone_paciente}</div>
+                        <div class="col">
+                            ${statusHtml}
+                        </div>
+                        <div class="col-2">
+                            <div class="d-flex flex-row">
+                                <button type="button" class="btn btn-sm btn-primary me-2 d-flex justify-content-center align-items-center btnConfirmaConsulta" data-toggle="tooltip" title="Confirmar Consulta" date-id="${consulta.id}" ${confirmBtn}>
+                                    <ion-icon name="checkmark-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm text-white btn-warning me-2 d-flex justify-content-center align-items-center btnReagendarConsulta" data-toggle="tooltip" title="Reagendar Consulta" date-id="${consulta.id}" ${reagendarBtn}>
+                                    <ion-icon name="calendar-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger me-2 d-flex justify-content-center align-items-center btnCancelarConsulta" data-toggle="tooltip" title="Cancelar Consulta" date-id="${consulta.id}" ${cancelarBtn}>
+                                    <ion-icon name="close-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnCadastrarPacienteConsulta" data-toggle="tooltip" title="Efetuar Cadastro do Paciente" date-id="${consulta.id}" date-nome="${consulta.nome_paciente}" date-telefone="${consulta.telefone_paciente}" ${cadastroBtn}>
+                                    <ion-icon name="person-add-outline" class="fs-5"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    $('#consulta-list').append(consultaHtml);
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Erro ao carregar consultas:', error);
+        }
+    });
+});
+
+$('#btnPesquisarConsulta').on('click', function () {
+    var medicoId = $('#lista_medicos').val();
+    var data = $('#data-consulta').val();
+    var search = $('#pesquisar_consulta').val();
+
+    // Verifica se os valores são válidos
+    if (!medicoId || !data) {
+        alert('Por favor, preencha o ID do médico e a data.');
+        return;
+    }
+
+    $.ajax({
+        url: '/listar_consulta_pesquisa/' + medicoId + '/' + data,
+        method: 'GET',
+        success: function (data) {
+            $('#consulta-list').empty();
+
+            if (data.length === 0) {
+                $('#consulta-list').append('<p class="text-center pt-3">Nenhuma consulta encontrada.</p>');
+            } else {
+                data.forEach(function (consulta) {
+                    var statusHtml = '';
+                    var confirmBtn = '';
+                    var reagendarBtn = '';
+                    var cancelarBtn = '';
+                    var cadastroBtn = '';
+
+                    switch (consulta.status) {
+                        case 'pendente':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="me-2 font-bullet"></ion-icon>
+                                    <div class="font-resumo">Pendente</div>
+                                </div>
+                            `;
+                            confirmBtn = '';
+                            reagendarBtn = '';
+                            cancelarBtn = '';
+                            cadastroBtn = consulta.paciente_id ? 'disabled' : '';
+                            break;
+                        case 'cancelado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-danger me-2 font-bullet"></ion-icon>
+                                    <div class="text-danger font-resumo">Cancelado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                        case 'reagendado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-warning me-2 font-bullet"></ion-icon>
+                                    <div class="text-warning font-resumo">Reagendado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                        case 'confirmado':
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-primary me-2 font-bullet"></ion-icon>
+                                    <div class="text-primary font-resumo">Confirmado</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = '';
+                            cadastroBtn = consulta.paciente_id ? 'disabled' : '';
+                            break;
+                        default:
+                            statusHtml = `
+                                <div class="d-flex align-items-center">
+                                    <ion-icon name="ellipse" class="text-secondary me-2 font-bullet"></ion-icon>
+                                    <div class="text-secondary font-resumo">Desconhecido</div>
+                                </div>
+                            `;
+                            confirmBtn = 'disabled';
+                            reagendarBtn = 'disabled';
+                            cancelarBtn = 'disabled';
+                            cadastroBtn = 'disabled';
+                            break;
+                    }
+
+                    var consultaHtml = `
+                    <div class="row pt-3 pb-3 border-bottom">
+                        <div class="col data-coluna-consulta2">${consulta.data_consulta}</div>
+                        <div class="col">${consulta.hora_consulta}</div>
+                        <div class="col">${consulta.nome_paciente}</div>
+                        <div class="col">${consulta.telefone_paciente}</div>
+                        <div class="col">
+                            ${statusHtml}
+                        </div>
+                        <div class="col-2">
+                            <div class="d-flex flex-row">
+                                <button type="button" class="btn btn-sm btn-primary me-2 d-flex justify-content-center align-items-center btnConfirmaConsulta" data-toggle="tooltip" title="Confirmar Consulta" date-id="${consulta.id}" ${confirmBtn}>
+                                    <ion-icon name="checkmark-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm text-white btn-warning me-2 d-flex justify-content-center align-items-center btnReagendarConsulta" data-toggle="tooltip" title="Reagendar Consulta" date-id="${consulta.id}" ${reagendarBtn}>
+                                    <ion-icon name="calendar-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger me-2 d-flex justify-content-center align-items-center btnCancelarConsulta" data-toggle="tooltip" title="Cancelar Consulta" date-id="${consulta.id}" ${cancelarBtn}>
+                                    <ion-icon name="close-outline" class="fs-5"></ion-icon>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnCadastrarPacienteConsulta" data-toggle="tooltip" title="Efetuar Cadastro do Paciente" date-id="${consulta.id}" date-nome="${consulta.nome_paciente}" date-telefone="${consulta.telefone_paciente}" ${cadastroBtn}>
+                                    <ion-icon name="person-add-outline" class="fs-5"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    $('#consulta-list').append(consultaHtml);
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Erro ao carregar consultas:', error);
+        }
+    });
+});
+
+$('.btnConfirmaConsulta').on('click', function () {
+    var consultaId = $(this).data('id'); // Obtém o ID da consulta do data-id
+
+    $.ajax({
+        url: '/confirmarConsulta/' + consultaId,
+        method: 'GET',
+        success: function (response) {
+            // Atualize a interface do usuário conforme necessário
+            alert('Consulta confirmada com sucesso!');
+            // Recarregue a lista de consultas ou atualize o estado da consulta
+            $('#lista_medicos').trigger('change'); // Ou qualquer outro método para atualizar a lista
+        },
+        error: function (error) {
+            console.error('Erro ao confirmar consulta:', error);
+        }
+    });
+});
+
+$('.btnReagendarConsulta').on('click', function () {
+    var consultaId = $(this).data('id'); // Obtém o ID da consulta do data-id
+    $.ajax({
+        url: '/reagendarConsulta/' + consultaId,
+        method: 'POST',
+        success: function (response) {
+            // Atualize a interface do usuário conforme necessário
+            alert('Consulta reagendada com sucesso!');
+            // Recarregue a lista de consultas ou atualize o estado da consulta
+            $('#lista_medicos').trigger('change'); // Ou qualquer outro método para atualizar a lista
+        },
+        error: function (error) {
+            console.error('Erro ao reagendar consulta:', error);
+        }
+    });
+});
+
+$('.btnCancelarConsulta').on('click', function () {
+    var consultaId = $(this).data('id'); // Obtém o ID da consulta do data-id
+    $.ajax({
+        url: '/cancelarConsulta/' + consultaId,
+        method: 'POST',
+        success: function (response) {
+            // Atualize a interface do usuário conforme necessário
+            alert('Consulta cancelada com sucesso!');
+            // Recarregue a lista de consultas ou atualize o estado da consulta
+            $('#lista_medicos').trigger('change'); // Ou qualquer outro método para atualizar a lista
+        },
+        error: function (error) {
+            console.error('Erro ao cancelar consulta:', error);
+        }
+    });
+});
+
+$('.btnCadastrarPacienteConsulta').on('click', function () {
+
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.form-check-input').forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -518,8 +859,12 @@ $(document).ready(function () {
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('flexSwitchCheckDefault').addEventListener('change', function () {
         var isChecked = this.checked;
-        document.getElementById('nome').disabled = !isChecked;
-        document.getElementById('telefone').disabled = !isChecked;
+        document.getElementById('nome').readOnly = !isChecked;
+        document.getElementById('telefone').readOnly = !isChecked;
+        if (!isChecked) {
+            document.getElementById('nome').value = '';
+            document.getElementById('telefone').value = '';
+        }
     });
 });
 
@@ -569,7 +914,130 @@ $(document).ready(function () {
     cb(start, end);
 });
 
+//Date range picker cadastro consulta
+$(document).ready(function () {
+    function initializeDateRangePicker(response) {
+        $('#data_cadastrar_consulta').daterangepicker({
+            singleDatePicker: true, // Habilita a seleção de uma única data
+            showDropdowns: true,
+            minDate: moment().startOf('day'),
+            locale: {
+                format: 'DD/MM/YYYY', // Formato da data
+                applyLabel: 'Aplicar',
+                cancelLabel: 'Cancelar',
+                daysOfWeek: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                firstDay: 1
+            },
+            opens: 'left',
+            isInvalidDate: function (date) {
+                var dayOfWeek = date.day(); // Obtém o dia da semana (0 = domingo, 1 = segunda, etc.)
+                var dayMapping = {
+                    'domingo': 0,
+                    'segunda': 1,
+                    'terca': 2,
+                    'quarta': 3,
+                    'quinta': 4,
+                    'sexta': 5,
+                    'sabado': 6
+                };
+                var dayName = Object.keys(dayMapping).find(key => dayMapping[key] === dayOfWeek);
 
+                // Verifica se o dia da semana é inválido com base na resposta
+                if (dayName && response[dayName] === false) {
+                    return true; // Se o dia for inválido, retorna true
+                }
+
+                return false;
+            },
+        }).on('apply.daterangepicker', function (ev, picker) {
+            var selectedDate = picker.startDate;
+            var dayOfWeek = selectedDate.day(); // Obtém o dia da semana (0 = domingo, 1 = segunda, etc.)
+            var dayMapping = {
+                0: 'domingo',
+                1: 'segunda',
+                2: 'terca',
+                3: 'quarta',
+                4: 'quinta',
+                5: 'sexta',
+                6: 'sabado'
+            };
+            var dayName = dayMapping[dayOfWeek];
+
+            // Envia o nome do dia ao servidor via AJAX
+            $.ajax({
+                url: '/horarios-disponiveis/' + medicoId + '/' + dayName + '/' + selectedDate.format('YYYY-MM-DD'),
+                method: 'GET',
+                success: function (data) {
+                    // Aqui você pode atualizar a interface do usuário com os horários disponíveis
+                    var horariosContainer = $('#horarios_disponiveis');
+                    horariosContainer.empty(); // Limpa o contêiner
+
+                    if (data.length > 0) {
+                        var ul = $('<ul></ul>').addClass('horarios-list').addClass('pt-2').addClass('pb-2'); // Cria uma lista não ordenada
+
+                        // Adiciona os horários à lista
+                        data.forEach(function (hora) {
+                            var li = $('<li></li>').addClass('horario-item').text(hora);
+                            li.on('click', function () {
+                                var horaSelecionada = $(this).text();
+                                // Atualiza a seleção
+                                if ($(this).hasClass('selecionado')) {
+                                    $(this).removeClass('selecionado');
+                                    $('#hora_selecionado').val(''); // Limpa o campo hidden
+                                } else {
+                                    $('.horario-item').removeClass('selecionado');
+                                    $(this).addClass('selecionado');
+                                    $('#hora_selecionado').val(horaSelecionada); // Atualiza o campo hidden
+                                }
+                            });
+                            ul.append(li);
+                        });
+
+                        horariosContainer.append(ul);
+                    } else {
+                        horariosContainer.html('<p>Sem horários disponíveis para o dia selecionado.</p>');
+                    }
+
+                },
+                error: function (error) {
+                    console.error('Erro ao obter os horários disponíveis:', error);
+                }
+            });
+        });
+    }
+
+    var medicoId = $(this).data('medico');
+    // Evento de clique no botão para agendar consulta
+    $('.btnAgendarConsulta').on('click', function () {
+        medicoId = $(this).data('medico');
+        $('#id_medico_consulta').val(medicoId);
+        // Função para buscar os dados via AJAX
+        function fetchData(medicoId) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '/dias-disponiveis/' + medicoId,
+                    method: 'GET',
+                    success: function (response) {
+                        resolve(response);
+                    },
+                    error: function (error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
+
+        // Executa a função fetchData e inicializa o daterangepicker após receber a resposta
+        fetchData(medicoId)
+            .then((response) => {
+                initializeDateRangePicker(response);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar dados:', error);
+            });
+    });
+});
 
 $(document).ready(function () {
     var ctx = $("#grafico-consultas");
@@ -1470,14 +1938,14 @@ document.addEventListener('DOMContentLoaded', function () {
             useColorAsDefault: true
         }],
         editing: {
-            allowAdding: false,   
-            allowDeleting: false, 
-            allowDragging: false, 
-            allowResizing: false, 
-            allowUpdating: false  
+            allowAdding: false,
+            allowDeleting: false,
+            allowDragging: false,
+            allowResizing: false,
+            allowUpdating: false
         },
         height: 470,
-        resourceCellTemplate: function(cellData, cellIndex, cellElement) {
+        resourceCellTemplate: function (cellData, cellIndex, cellElement) {
             var color = cellData.color;
             var text = cellData.text;
 
@@ -1488,20 +1956,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>`
             );
         },
-        onAppointmentDblClick: function(e) {
-            e.cancel = true; 
+        onAppointmentDblClick: function (e) {
+            e.cancel = true;
         },
-        onAppointmentFormOpening: function(e) {
+        onAppointmentFormOpening: function (e) {
             e.cancel = true;
         }
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var exitButtons = document.querySelectorAll('.exit-button');
 
-    exitButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    exitButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             var messageBox = this.closest('.message-box');
             if (messageBox) {
                 messageBox.remove();

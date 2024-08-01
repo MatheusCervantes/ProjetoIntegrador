@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class RecepcionistaController extends Controller
 {
@@ -80,7 +81,7 @@ class RecepcionistaController extends Controller
         return response()->json($recepcionista);
     }
 
-    public function update_repcionista(Request $request, $id)
+    public function update_recepcionista(Request $request, $id)
     {
         try {
             $data = $request->validate([
@@ -110,7 +111,7 @@ class RecepcionistaController extends Controller
         }
     }
 
-    public function delete_repcionista($id)
+    public function delete_recepcionista($id)
     {
         Recepcionista::findOrFail($id)->delete();
         return redirect('/painel-adm/gestao-recepcionista')->with('success', 'Recepcionista deletado com sucesso!');
@@ -134,5 +135,70 @@ class RecepcionistaController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocorreu um erro inesperado.');
         }
+    }
+
+    public function perfil_recepcionista()
+    {
+        $usuario = Auth::user();
+        return view('meu-perfil', ['usuario' => $usuario]);
+    }
+
+    public function obterPerfil()
+    {
+        $usuario = Auth::user();
+        $recepcionista = Recepcionista::where('user_id', $usuario->id)->first();
+
+        // Divida o nome completo para criar o nome e sobrenome
+        $partesNome = explode(" ", $recepcionista->nome_completo);
+        $nomeSobrenome = $partesNome[0] . " " . end($partesNome);
+        // Adiciona o nome de usuário ao array de resposta
+        $resposta = [
+            'recepcionista' => $recepcionista,
+            'nomeSobrenome' => $nomeSobrenome,
+            'foto' => $recepcionista->foto ? asset('img/perfil/' . $recepcionista->foto) : 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png'
+        ];
+        return response()->json($resposta);
+    }
+
+    public function salvarPerfil(Request $request)
+    {
+        $usuario = Auth::user();
+        $recepcionista = Recepcionista::where('user_id', $usuario->id)->first();
+
+        // Atualiza os dados do médico
+        $recepcionista->nome_completo = $request->input('nome');
+        $recepcionista->sexo = $request->input('sexo');
+        $recepcionista->cpf = $request->input('cpf');
+        $recepcionista->rg = $request->input('rg');
+        $recepcionista->data_nascimento = $request->data_nasc;
+        $recepcionista->email = $request->input('email');
+        $recepcionista->telefone = $request->input('tel');
+        $recepcionista->rua = $request->input('rua');
+        $recepcionista->numero = $request->input('num');
+        $recepcionista->complemento = $request->input('complemento');
+        $recepcionista->cidade = $request->input('cidade');
+        $recepcionista->estado = $request->input('estado');
+        $recepcionista->cep = $request->input('cep');
+
+        // Atualiza a foto, se houver
+        if ($request->hasFile('foto')) {
+            // Remove a imagem antiga, se existir
+            if ($recepcionista->foto) {
+                $path = public_path('img/perfil/' . $recepcionista->foto);
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $file = $request->file('foto');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/perfil'), $filename);
+
+            $recepcionista->foto = $filename;
+        }
+
+        $recepcionista->save();
+
+        return redirect('/painel-recepcionista/meu-perfil');
     }
 }

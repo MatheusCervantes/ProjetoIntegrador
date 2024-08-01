@@ -4,6 +4,7 @@ namespace App\Models\medico;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class InformacaoProfissional extends Model
 {
@@ -74,5 +75,33 @@ class InformacaoProfissional extends Model
     public function medico()
     {
         return $this->belongsTo(Medicos::class);
+    }
+
+    public function gerarHorarios($dia)
+    {
+        $diaSemana = strtolower($dia);
+        if (!$this->$diaSemana) {
+            return [];
+        }
+
+        $horaInicio = Carbon::parse($this->{$diaSemana . '_inicio'});
+        $horaFim = Carbon::parse($this->{$diaSemana . '_fim'});
+        $almocoInicio = Carbon::parse($this->{$diaSemana . '_almoco_inicio'});
+        $almocoFim = Carbon::parse($this->{$diaSemana . '_almoco_fim'});
+
+        $duracaoConsulta = $this->duracao_consulta;
+        $intervaloConsulta = $this->intevalo_consulta;
+
+        $horarios = [];
+
+        while ($horaInicio->addMinutes($duracaoConsulta + $intervaloConsulta)->lessThanOrEqualTo($horaFim)) {
+            if ($horaInicio->between($almocoInicio, $almocoFim)) {
+                $horaInicio = $almocoFim;
+            }
+            $horarios[] = $horaInicio->format('H:i');
+            $horaInicio->addMinutes($duracaoConsulta + $intervaloConsulta);
+        }
+
+        return $horarios;
     }
 }
