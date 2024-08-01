@@ -88,7 +88,11 @@ class UserController extends Controller
                 }
             }
             if ($user->type === 'recepcionista') {
-                return redirect('');
+                if ($user->firstlogin == true) {
+                    return redirect('/painel-recepcionista')->with('warn', 'É necessário atualizar a sua senha.');
+                } else {
+                    return redirect('/painel-recepcionista');
+                }
             }
         } else {
             return redirect('/')->with('msg', 'Os dados fornecidos são inválidos. Verifique seu login e/ou senha e tente novamente.');
@@ -156,6 +160,35 @@ class UserController extends Controller
         } catch (\Exception $e) {
             // Trata outras exceções genéricas
             return redirect('/painel-medico')->with('error', 'Ocorreu um erro ao alterar a senha: ' . $e->getMessage());
+        }
+    }
+
+    public function alterar_usuario_recepcionista(Request $request)
+    {
+        try {
+            $usuario = Auth::user();
+
+            // Verifica se a senha atual está correta
+            if (hash('sha512', $request->senha_atual) !== $usuario->password) {
+                return redirect('/painel-recepcionista')->with('error_senha', 'Por favor, verifique se digitou a senha atual corretamente.');
+            }
+
+            // Verifica se a nova senha e a confirmação são iguais
+            if ($request->nova_senha !== $request->confirm_nova_senha) {
+                return redirect('/painel-recepcionista')->with('error_senha', "As senhas novas não coincidem. Por favor, verifique se os campos 'Nova Senha' e 'Confirmar Nova Senha' são iguais.");
+            }
+
+            $usuario->username = $request->nome_usuario;
+            $usuario->password = hash('sha512', $request->nova_senha);
+            $usuario->firstlogin = false;
+            $usuario->save(); // Salva as alterações
+            return redirect('/painel-recepcionista')->with('success', 'Senha alterada com sucesso.');
+        } catch (QueryException $qe) {
+            // Trata exceções relacionadas a consultas SQL
+            return redirect('/painel-recepcionista')->with('error', 'Ocorreu um erro ao alterar a senha: ' . $qe->getMessage());
+        } catch (\Exception $e) {
+            // Trata outras exceções genéricas
+            return redirect('/painel-recepcionista')->with('error', 'Ocorreu um erro ao alterar a senha: ' . $e->getMessage());
         }
     }
 }

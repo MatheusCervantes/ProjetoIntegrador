@@ -1,4 +1,13 @@
-@extends('layouts.menu-medico')
+@php
+    $layout = '';
+    if (Request::is('painel-medico/meu-perfil')) {
+        $layout = 'layouts.menu-medico';
+    } elseif (Request::is('painel-recepcionista/meu-perfil')) {
+        $layout = 'layouts.menu-recepcionista';
+    }
+@endphp
+
+@extends($layout)
 
 @section('title', 'Painel Médico')
 
@@ -23,8 +32,8 @@
                                                             src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png"
                                                             alt="Foto Perfil" width="250rem" style="cursor: pointer;">
                                                     </div>
-                                                    <form id="formUpload" action="/painel-medico/salvar-perfil" method="POST"
-                                                        enctype="multipart/form-data">
+                                                    <form id="formUpload" action="/painel-medico/salvar-perfil"
+                                                        method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('PUT')
                                                         <input type="file" id="fileInput" name="foto" accept="image/*"
@@ -43,7 +52,8 @@
                                                     </div>
                                                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
                                                         <div class="form-group mb-3">
-                                                            <label for="nome" class="form-label">Nome Completo</label>
+                                                            <label for="nome" class="form-label">Nome
+                                                                Completo</label>
                                                             <input type="text" class="form-control" id="nome"
                                                                 name="nome">
                                                         </div>
@@ -139,7 +149,8 @@
                                                                 <option value="Amazonas">Amazonas</option>
                                                                 <option value="Bahia">Bahia</option>
                                                                 <option value="Ceará">Ceará</option>
-                                                                <option value="Distrito Federal">Distrito Federal</option>
+                                                                <option value="Distrito Federal">Distrito Federal
+                                                                </option>
                                                                 <option value="Espírito Santo">Espírito Santo</option>
                                                                 <option value="Goiás">Goiás</option>
                                                                 <option value="Maranhão">Maranhão</option>
@@ -208,5 +219,10 @@
             </div>
         </div>
     </div>
-    <script src="/js/script_meu_perfil.js"></script>
+    @if (Request::is('painel-medico/meu-perfil'))
+        <script src="/js/script_meu_perfil_medico.js"></script>
+    @endif
+    @if (Request::is('painel-recepcionista/meu-perfil'))
+        <script src="/js/script_meu_perfil_recepcionista.js"></script>
+    @endif
 @endsection

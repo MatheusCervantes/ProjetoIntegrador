@@ -49,7 +49,6 @@
                                             data-dismiss="modal" data-toggle="modal" data-target="#modalEditarAcesso">Editar
                                             Senha</button>
                                     @endif
-
                                 </div>
                             </div>
                         </div>

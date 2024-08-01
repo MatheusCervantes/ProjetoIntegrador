@@ -32,4 +32,9 @@ class Medicos extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function informacaoProfissional()
+    {
+        return $this->hasOne(InformacaoProfissional::class, 'medico_id', 'id');
+    }
 }
