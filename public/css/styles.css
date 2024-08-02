@@ -581,3 +581,9 @@ ion-icon.icon-senha {
     background-color: #d0e0f0; /* Exemplo de cor para o item selecionado */
     color: #000;
 }
+
+.text-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

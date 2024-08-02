@@ -7,17 +7,17 @@
                     <div class="d-flex align-items-center ms-3">
                         <div class="d-flex justify-content-center align-items-center rounded-circle bg-dark-subtle text-white"
                             style="width: 5.5vw; height: 5.5vw;">
-                            <div class="fs-3">JS</div>
+                            <div class="fs-3" id="iniciais"></div>
                         </div>
                         <div class="ms-3">
-                            <h4 class="mb-0 fw-semibold">João da Silva</h4>
-                            <h5 class="mb-0 text-dark-emphasis">29 anos</h5>
+                            <h4 class="mb-0 fw-semibold" id="nome_completo"></h4>
+                            <h5 class="mb-0 text-dark-emphasis" id="idade"></h5>
                         </div>
                     </div>
                     <div class="text-end text-dark-emphasis mt-4 me-4">
-                        <div>Primeira consulta: 09/08/2023</div>
-                        <div>Atendimentos: 3</div>
-                        <div>Plano de Saúde: --</div>
+                        <div id="primeira_consulta">Primeira consulta: 09/08/2023</div>
+                        <div id="atendimentos"></div>
+                        <div id="plano"></div>
                     </div>
                 </div>
                 <nav class="nav nav-tabs w-100 justify-content-center mt-4 border-bottom-0" id="nav-tab"
@@ -180,78 +180,7 @@
                     <div class="tab-pane fade" id="nav-consultas" role="tabpanel"
                         aria-labelledby="nav-consultas-tab">
                         <div class="row" id="accordion-consultas">
-                            <div class="col-9 mx-auto">
-                                <div class="card mb-2">
-                                    <div class="card-header d-flex justify-content-between align-items-center"
-                                        id="headingOne">
-                                        <div>
-                                            09/08/2023
-                                        </div>
-                                        <div>
-                                            Médico: Luzia Campos
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('consultas') }}"
-                                                class="btn btn-light shadow-sm border small me-3" type="button"
-                                                data-toggle="tooltip" title="Abrir Consulta">
-                                                <span
-                                                    class="material-symbols-outlined align-middle fs-4">tab_move</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordion-consultas">
-                                        <div class="card-body">
-                                            <p><strong>Médico:</strong> Luzia Campos</p>
-                                            <p><strong>Data:</strong> 09/08/2023</p>
-                                            <p><strong>Observações:</strong> O paciente apresentou sintomas de gripe.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-9 mx-auto">
-                                <div class="card mb-2">
-                                    <div class="card-header d-flex justify-content-between align-items-center"
-                                        id="headingTwo">
-                                        <div>
-                                            22/08/2023
-                                        </div>
-                                        <div>
-                                            Médico: Luzia Campos
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('consultas') }}"
-                                                class="btn btn-light shadow-sm border small me-3" type="button"
-                                                data-toggle="tooltip" title="Abrir Consulta">
-                                                <span
-                                                    class="material-symbols-outlined align-middle fs-4">tab_move</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-9 mx-auto">
-                                <div class="card mb-3">
-                                    <div class="card-header d-flex justify-content-between align-items-center"
-                                        id="headingThree">
-                                        <div>
-                                            05/09/2023
-                                        </div>
-                                        <div>
-                                            Médico: Luzia Campos
-                                        </div>
-                                        <div>
-                                            <a href="{{ route('consultas') }}"
-                                                class="btn btn-light shadow-sm border small me-3" type="button"
-                                                data-toggle="tooltip" title="Abrir Consulta">
-                                                <span
-                                                    class="material-symbols-outlined align-middle fs-4">tab_move</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
