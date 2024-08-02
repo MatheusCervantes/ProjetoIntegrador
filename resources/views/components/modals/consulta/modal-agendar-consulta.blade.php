@@ -28,18 +28,22 @@
                         <label class="form-check-label" for="flexSwitchCheckDefault">Primeira Consulta</label>
                     </div>
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Nome Completo</label>
-                                <input type="text" class="form-control" id="nome" name="nome_paciente" required
-                                    readonly>
+                                <input type="text" class="form-control" id="nome" name="nome_paciente" required readonly>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label for="telefone" class="form-label">Telefone</label>
-                                <input type="tel" class="form-control tel" id="telefone" name="telefone_paciente"
-                                    required readonly>
+                                <input type="tel" class="form-control tel" id="telefone" name="telefone_paciente" required readonly>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="telefone" class="form-label">Plano de Saúde</label>
+                                <input type="text" class="form-control" id="plano_de_saude" name="plano_de_saude" placeholder="Opcional" readonly>
                             </div>
                         </div>
                         <input type="hidden" id="id_paciente_consulta" name="paciente_consulta">
@@ -143,6 +147,8 @@
                         ''); // Limpa a lista antes de adicionar novos resultados
                     if (response.pacientes && response.pacientes.length > 0) {
                         $.each(response.pacientes, function(index, paciente) {
+                            var planoSaudeNome = paciente.plano_saude && paciente.plano_saude.nome_plano ? paciente.plano_saude.nome_plano : '';
+                                
                             $('#pacientesList').append(
                                 '<div class="row pt-3 pb-3 border-bottom">' +
                                 '<div class="col">' + paciente.nome_completo +
@@ -155,7 +161,8 @@
                                 '<button type="button" class="btn btn-sm btn-primary shadow-sm border small me-3 d-flex justify-content-center align-items-center btn-select-paciente" ' +
                                 'data-id="' + paciente.id + '" ' +
                                 'data-nome="' + paciente.nome_completo + '" ' +
-                                'data-telefone="' + paciente.telefone + '">' +
+                                'data-telefone="' + paciente.telefone + '" ' +
+                                'data-plano="' + planoSaudeNome + '">' +
                                 'Selecionar' +
                                 '</button>' +
                                 '</div>' +
@@ -182,11 +189,13 @@
     $(document).on('click', '.btn-select-paciente', function() {
         var pacienteId = $(this).data('id');
         var pacienteNome = $(this).data('nome');
-        var pacienteTelefone = $(this).data('telefone'); // Adicione outros dados conforme necessário
+        var pacienteTelefone = $(this).data('telefone');
+        var pacientePlano = $(this).data('plano');
 
         // Preenche os campos do modal com os dados do paciente
         $('#nome').val(pacienteNome).prop('readonly', true);
         $('#telefone').val(pacienteTelefone).prop('readonly', true);
+        $('#plano_de_saude').val(pacientePlano).prop('readonly', true);
         $('#flexSwitchCheckDefault').prop('disabled', true); // Desabilita a opção "Primeira Consulta"
         $('#id_paciente_consulta').val(pacienteId);
 

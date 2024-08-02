@@ -24,6 +24,17 @@ class Consulta extends Model
         'prescricao',
         'exames',
         'atestado',
+        'plano_saude',
+        'peso_paciente',
+        'altura_paciente',
+        'alergia',
+        'cirurgia',
+        'medicamento',
+        'condicao_saude',
+        'atividade_fisica',
+        'cid',
+        'cid_opc',
+        'vicio',
     ];
 
     /**

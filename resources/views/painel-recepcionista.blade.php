@@ -65,7 +65,22 @@
                 @if (session('error_senha'))
                     <script>
                         $(document).ready(function() {
-                            $('#modalEditarAcesso').modal('show');
+                            $.ajax({
+                                url: '/painel-recepcionista/usuario_logado',
+                                method: 'GET',
+                                success: function(response) {
+                                    if (response.usuario) {
+                                        $('#modalEditarAcesso').modal('show');
+                                        $('#nome-usuario').val(response.usuario);
+                                        $('#formEditarAcesso').attr('action', '/painel-recepcionista/alterar_senha');
+                                    } else {
+                                        console.error('Resposta inesperada da API:', response);
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    console.error('Erro ao buscar dados do usuário:', error);
+                                }
+                            });
                         });
                     </script>
                 @endif

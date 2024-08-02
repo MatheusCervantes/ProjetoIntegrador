@@ -31,10 +31,11 @@
                         </form>
                         <form class="form-inline mr-auto my-2 my-md-0">
                             <div class="input-group shadow-sm">
-                                <input type="text" class="form-control bg-light" id="pesquisar_consulta"  placeholder="Pesquisar..."
-                                    aria-label="Search">
+                                <input type="text" class="form-control bg-light" id="pesquisar_consulta" name="pesquisar_consulta"
+                                    placeholder="Pesquisar..." aria-label="Search">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-light border" type="button" id="btnPesquisarConsulta" title="Pesquisa referente ao nome do paciente">
+                                    <button class="btn btn-light border" type="button" id="btnPesquisarConsulta"
+                                        title="Pesquisa referente ao nome do paciente">
                                         <ion-icon name="search-outline" class="fs-5 align-middle"></ion-icon>
                                     </button>
                                 </div>
@@ -58,6 +59,12 @@
                             <div class="card-body py-0 ps-3 border-bottom hscroll">
                                 <div id="consulta-list">
                                     <p class="text-center pt-3">Selecione um médico</p>
+                                    <script>
+                                        $('.btnReagendarConsulta').on('click', function() {
+                                            console.log('teste');
+
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -66,5 +73,6 @@
             </div>
         </div>
         @include('components.modals.consulta.modal-cancelar-consulta')
+        @include('components.modals.paciente.modal-novo-paciente')
     </div>
 @endsection
