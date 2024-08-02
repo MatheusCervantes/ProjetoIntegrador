@@ -75,4 +75,11 @@
         @include('components.modals.consulta.modal-cancelar-consulta')
         @include('components.modals.paciente.modal-novo-paciente')
     </div>
+
+    <script>
+        $(document).ready(function() {
+            var today = new Date().toISOString().split('T')[0];
+            $('#data-consulta').val(today);
+        });
+    </script>
 @endsection

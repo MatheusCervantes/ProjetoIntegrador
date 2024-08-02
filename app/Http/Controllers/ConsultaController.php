@@ -462,4 +462,26 @@ class ConsultaController extends Controller
 
         return response()->json($consultas);
     }
+
+    public function listarProntuario($id)
+    {
+        $usuario = Auth::user();
+        $medico = Medicos::where('user_id', $usuario->id)->first();
+
+        $paciente = Pacientes::with('planoSaude')->findOrFail($id);
+        $consultas = Consulta::where('paciente_id', $id)->with('medico')->where('medico_id', $medico->id)->get();
+        $consultasCount = $consultas->count();
+
+        $dataNascimento = new Carbon($paciente->data_nascimento);
+        $idade = $dataNascimento->age;
+        $dataPrimeiraConsulta = $consultas->first()->data_consulta;
+
+        return response()->json([
+            'paciente' => $paciente,
+            'idade' => $idade,
+            'consultas_count' => $consultasCount,
+            'data_primeira_consulta' => $dataPrimeiraConsulta,
+            'consultas' => $consultas
+        ]);
+    }
 }

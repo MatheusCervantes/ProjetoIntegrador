@@ -131,6 +131,8 @@ Route::middleware(['auth', 'check.user.type:medico'])->group(function () {
     })->name('pacientes');
 
     Route::get('/listar-pacientes', [ConsultaController::class, 'listarPacientesConsulta']);
+
+    Route::get('/prontuario/{id}', [ConsultaController::class, 'listarProntuario']);
 });
 
 //Middleware para verificar se o tipo de usuário é medico

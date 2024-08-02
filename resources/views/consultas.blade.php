@@ -91,6 +91,13 @@
 
                             listaconsultas.empty();
 
+                            if (consultas.length === 0) {
+                                $('#listaconsultas').html(
+                                    '<p class="text-center pt-3">Não há consultas confirmadas para esta data.</p>'
+                                );
+                                return;
+                            }
+
                             consultas.forEach(function(consulta) {
                                 console.log(consulta);
                                 var row = $('<div class="row pt-3 pb-3 border-bottom"></div>');
