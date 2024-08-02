@@ -8,7 +8,6 @@ use App\Http\Controllers\admin\FinanceiroController;
 use App\Http\Controllers\admin\RelatorioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConsultaController;
-use App\Models\recepcionista\Recepcionista;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -101,6 +100,37 @@ Route::middleware(['auth', 'check.user.type:medico'])->group(function () {
 
     //Altera senha medico
     Route::put('/painel-medico/alterar_senha', [UserController::class, 'alterar_usuario_medico']);
+
+    //Agenda médico
+    Route::get('/painel-medico/agenda', function () {
+        return view('agenda');
+    })->name('agenda');
+
+    Route::get('/painel-medico/agenda/{data}', [ConsultaController::class, 'agendaMedico']);
+
+    Route::get('/painel-medico/agenda/pesquisar/{data}/{search}', [ConsultaController::class, 'agendaMedicoPesquisar']);
+
+    //Consulta médico
+    Route::get('/painel-medico/consultas', function () {
+        return view('consultas');
+    })->name('consultas');
+
+    Route::get('/consultas/listar_consulta/{data}', [ConsultaController::class, 'listarConsultasMedico']);
+
+    Route::get('/painel-medico/consultas/listar_consulta/pesquisa/{data}/{search}', [ConsultaController::class, 'listaConsultaMedicoPesquisa']);
+
+    Route::put('/insert/consulta/iniciar_consulta', [ConsultaController::class, 'iniciarConsulta']);
+
+    Route::put('/edit/consulta/iniciar_consulta', [ConsultaController::class, 'editarIniciarConsulta']);
+
+    Route::get('/detalhes/consulta/iniciar_consulta/{id}', [ConsultaController::class, 'detalhesConsulta']);
+
+    //Pacientes
+    Route::get('/painel-medico/pacientes', function () {
+        return view('pacientes');
+    })->name('pacientes');
+
+    Route::get('/listar-pacientes', [ConsultaController::class, 'listarPacientesConsulta']);
 });
 
 //Middleware para verificar se o tipo de usuário é medico
@@ -124,13 +154,15 @@ Route::middleware(['auth', 'check.user.type:recepcionista'])->group(function () 
 
     Route::get('/listar_consulta/{id}/{data}', [ConsultaController::class, 'listarConsultas']);
 
-    Route::get('/listar_consulta_pesquisa/{id}/{data}', [ConsultaController::class, 'listarConsultasPesquisa']);
-
-    Route::post('/reagendarConsulta/{id}', [ConsultaController::class, 'reagendarConsulta']);
-
-    Route::post('/cancelarConsulta/{id}', [ConsultaController::class, 'cancelarConsulta']);
+    Route::get('/listar_consulta_pesquisa/{id}/{data}/{search}', [ConsultaController::class, 'listarConsultasPesquisa']);
 
     Route::get('/confirmarConsulta/{id}', [ConsultaController::class, 'confirmarConsulta']);
+
+    Route::get('/reagendarConsulta/{id}', [ConsultaController::class, 'reagendarConsulta']);
+
+    Route::get('/cancelarConsulta/{id}', [ConsultaController::class, 'cancelarConsulta']);
+
+    Route::get('/efetuarCadastroPaciente/{id}', [ConsultaController::class, 'efetuarCadastroPaciente']);
 
     //Gestão paciente painel recepcionista
     Route::post('/paciente/recepcionista/insert', [PacienteController::class, 'store_recepcionista']);
@@ -158,15 +190,3 @@ Route::middleware(['auth', 'check.user.type:recepcionista'])->group(function () 
     //Altera senha recepcionista
     Route::put('/painel-recepcionista/alterar_senha', [UserController::class, 'alterar_usuario_recepcionista']);
 });
-
-Route::get('/painel-medico/agenda', function () {
-    return view('agenda');
-})->name('agenda');
-
-Route::get('/painel-medico/pacientes', function () {
-    return view('pacientes');
-})->name('pacientes');
-
-Route::get('/painel-medico/consultas', function () {
-    return view('consultas');
-})->name('consultas');

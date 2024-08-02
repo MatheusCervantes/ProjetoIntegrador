@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-footer bg-body-tertiary">
                     <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-sm btn-danger"
+                    <button type="button" class="btn btn-sm btn-danger"
                         id="btnConfirmarCancelamentoConsulta">Confirmar</button>
                 </div>
             </form>

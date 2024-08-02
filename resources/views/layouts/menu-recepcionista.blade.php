@@ -18,7 +18,7 @@
                         <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                        <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
+                        <li><button class="dropdown-item btnEditarAcessorRecepcionista">Editar Acesso</button></li>
                         <li><a class="dropdown-item" href="/painel-recepcionista/meu-perfil">Meu Perfil</a></li>
                         <form action="/logout" method="POST">
                             @csrf
@@ -53,7 +53,7 @@
                         <ion-icon name="person-circle-outline" class="icon-usuario"></ion-icon>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                        <li><button class="dropdown-item btnEditarAcesso">Editar Acesso</button></li>
+                        <li><button class="dropdown-item btnEditarAcessorRecepcionista">Editar Acesso</button></li>
                         <li><a class="dropdown-item" href="/painel-recepcionista/meu-perfil">Meu Perfil</a></li>
                         <form action="/logout" method="POST">
                             @csrf
