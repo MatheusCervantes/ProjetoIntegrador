@@ -115,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row mt-2">
                     <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-4">
                         <div class="card shadow-sm">
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

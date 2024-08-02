@@ -10,8 +10,8 @@
             <div class="modal-body mx-5 py-4">
                 <form id="formEditarSenha" method="POST" action="/painel-adm/alterar_senha">
                     @if (session('error_senha'))
-                        <div class="alert alert-danger">
-                            {{ session('error_senha') }}
+                        <div class="alert alert-danger p-2">
+                            <p class="font-resumo mb-0">{{ session('error_senha') }}</p>
                         </div>
                     @endif
                     @csrf
