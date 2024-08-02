@@ -239,6 +239,7 @@
                             }
 
                             consultas.forEach(function(consulta) {
+                                console.log(consulta);
                                 var row = $(
                                     '<div class="row pt-3 pb-3 border-bottom"></div>');
                                 var dataColuna = $(
@@ -259,16 +260,23 @@
                                 if (consulta.status === 'confirmado') {
                                     botoesContainer.append(
                                         $('<button type="button" class="btn btn-sm btn-success me-2 d-flex justify-content-center align-items-center btnIniciarConsulta" data-id_consulta="' +
-                                            consulta.id + '">Iniciar Consulta</button>')
+                                            consulta.id + '" data-plano="' + consulta
+                                            .plano_saude + '" data-nome="' + consulta
+                                            .nome_paciente +
+                                            '">Iniciar Consulta</button>')
                                     );
                                 } else if (consulta.status === 'concluido') {
                                     botoesContainer.append(
                                         $('<button type="button" class="btn btn-sm btn-warning me-2 d-flex justify-content-center align-items-center btnEditarConsulta" data-id_consulta="' +
-                                            consulta.id +
+                                            consulta.id + '" data-plano="' + consulta
+                                            .plano_saude + '" data-nome="' + consulta
+                                            .nome_paciente +
                                             '" data-toggle="tooltip" title="Editar Consulta"><ion-icon name="create-outline" class="fs-5"></ion-icon></button>'
                                         ),
                                         $('<button type="button" class="btn btn-sm btn-secondary me-2 d-flex justify-content-center align-items-center btnDetalhesConsulta" data-id_consulta="' +
-                                            consulta.id +
+                                            consulta.id + '" data-plano="' + consulta
+                                            .plano_saude + '" data-nome="' + consulta
+                                            .nome_paciente +
                                             '" data-toggle="tooltip" title="Exibir Detalhes da Consulta"><ion-icon name="information-circle-outline" class="fs-5"></ion-icon></button>'
                                         )
                                     );
