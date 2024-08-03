@@ -53,8 +53,6 @@
                 success: function(response) {
                     let pacientes = response;
                     let pacientesHtml = '';
-                    moment(response.data_primeira_consulta).format(
-                        'DD/MM/YYYY');
                     pacientes.forEach(function(paciente) {
                         let planoSaude = paciente.plano_saude ? paciente.plano_saude : '----';
                         pacientesHtml += '<div class="row pt-3 pb-3 border-bottom">';
