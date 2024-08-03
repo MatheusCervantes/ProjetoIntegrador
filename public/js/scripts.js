@@ -1060,9 +1060,11 @@ document.addEventListener("DOMContentLoaded", function () {
         var isChecked = this.checked;
         document.getElementById('nome').readOnly = !isChecked;
         document.getElementById('telefone').readOnly = !isChecked;
+        document.getElementById('plano_de_saude').readOnly = !isChecked;
         if (!isChecked) {
             document.getElementById('nome').value = '';
             document.getElementById('telefone').value = '';
+            document.getElementById('plano_de_saude').value = '';
         }
     });
 });
