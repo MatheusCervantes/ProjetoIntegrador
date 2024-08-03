@@ -177,10 +177,9 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="nav-consultas" role="tabpanel"
+                    <div class="tab-pane fade consultas-anteriores" id="nav-consultas" role="tabpanel"
                         aria-labelledby="nav-consultas-tab">
                         <div class="row" id="accordion-consultas">
-
                         </div>
                     </div>
                 </div>

@@ -551,34 +551,34 @@ ion-icon.icon-senha {
 }
 
 .horarios-list {
-    display: flex; /* Usa flexbox para alinhar os itens na mesma linha */
+    display: flex; 
     justify-content: center;
-    flex-wrap: wrap; /* Permite a quebra de linha se não houver espaço suficiente */
-    list-style: none; /* Remove marcadores padrão da lista */
+    flex-wrap: wrap; 
+    list-style: none; 
     padding: 0;
     margin: 0;
 }
 
 .horario-item {
-    display: flex; /* Garante que o conteúdo fique centralizado */
+    display: flex; 
     align-items: center;
     justify-content: center;
-    width: 4em; /* Largura do quadrado */
-    height: 4em; /* Altura do quadrado */
-    margin: 5px; /* Espaçamento entre os itens */
-    background-color: #f0f0f0; /* Cor de fundo dos itens */
-    border: 1px solid #ddd; /* Borda dos itens */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
-    transition: background-color 0.3s; /* Animação de transição para a cor de fundo */
+    width: 4em; 
+    height: 4em; 
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
 }
 
 .horario-item:hover {
-    background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+    background-color: #e0e0e0; 
 }
 
 .horario-item.selecionado {
-    background-color: #d0e0f0; /* Exemplo de cor para o item selecionado */
+    background-color: #d0e0f0;
     color: #000;
 }
 
@@ -586,4 +586,8 @@ ion-icon.icon-senha {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.consultas-anteriores {
+    width: 680px !important;
 }
