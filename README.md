@@ -19,6 +19,10 @@ Consiste em um sistema para gerenciamento de consultório médico que integra e 
 
 As seguintes tecnologias foram utilizadas no desenvolvimento desse projeto:
 
+- HTML
+- CSS
+- JavaScript
+- [Bootstrap Framework](https://getbootstrap.com/)
 - [Laravel Framework](https://laravel.com/)
 
 ## 🖼️ Imagens
