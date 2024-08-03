@@ -132,10 +132,10 @@ class ConsultaController extends Controller
             $aux->plano_saude = $request->input('plano_de_saude');
             $aux->save();
 
-            return redirect('/painel-recepcionista/consultas-agendar')->with('success', 'Consulta marcada com sucesso!');
+            return redirect('/painel-recepcionista/consultas-agendar')->with('success', 'Consulta agendada com sucesso!');
         } catch (\Exception $e) {
             // Em caso de erro, redireciona com mensagem de erro
-            return redirect('/painel-recepcionista/consultas-agendar')->with('error', 'Erro ao marcar consulta: ' . $e->getMessage());
+            return redirect('/painel-recepcionista/consultas-agendar')->with('error', 'Erro ao agendar consulta: ' . $e->getMessage());
         }
     }
 
