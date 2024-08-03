@@ -435,7 +435,7 @@ class ConsultaController extends Controller
             $consulta->atestado = $request->atestados;
             $consulta->update();
 
-            return redirect('/painel-medico/consultas')->with('success', 'Consulta concluída com sucesso!');
+            return redirect('/painel-medico/consultas')->with('success', 'Consulta alterada com sucesso!');
         } catch (ModelNotFoundException $e) {
             return redirect('/painel-medico/consultas')->with('error', 'Consulta não encontrada: ' . $e->getMessage());
         } catch (\Exception $e) {
